@@ -19,12 +19,7 @@ public class Sistema {
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         
-        servicios.Conexion con = new servicios.Conexion("localhost", "prueba", "root", "#JJBAhmyL2017?");
-        
-        con.Insert("usuarios", "null,'Prueba', '121858545'");
-        
-        
-        con.closeConexion();
+
     }
     
 }
