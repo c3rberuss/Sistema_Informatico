@@ -5,6 +5,9 @@
  */
 package sistema;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author josuee
@@ -14,10 +17,14 @@ public class Sistema {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         
-        System.out.println("Hola mundo");
+        servicios.Conexion con = new servicios.Conexion("localhost", "prueba", "root", "#JJBAhmyL2017?");
         
+        con.Insert("usuarios", "null,'Prueba', '121858545'");
+        
+        
+        con.closeConexion();
     }
     
 }
