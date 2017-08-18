@@ -29,12 +29,15 @@ public class Conexion {
     private PreparedStatement st;
     private ResultSet result = null;
     
-    public Conexion(String server, String db, String user, String pass) throws ClassNotFoundException, SQLException{
-       try{
-            this.server = server;
-            this.db = db;
-            this.user = user;
-            this.pass = pass;
+    public Conexion() throws ClassNotFoundException, SQLException{
+       
+        Configuracion config = new Configuracion();
+        
+        try{
+            this.server = config.getConfProperty("data.server");
+            this.db = "Sistema_DB";
+            this.user = config.getConfProperty("data.user");
+            this.pass = config.getConfProperty("data.pass");
             Class.forName(driver);
             url = "jdbc:mysql://"+server+"/"+db;
             con=DriverManager.getConnection(url, user, pass);
