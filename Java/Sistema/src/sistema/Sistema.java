@@ -5,8 +5,6 @@
  */
 package sistema;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
@@ -17,9 +15,11 @@ public class Sistema {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args){
         
-
+     vistas.Principal vent = new vistas.Principal();
+     vent.setVisible(true);
+        
     }
     
 }
