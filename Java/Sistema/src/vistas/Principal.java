@@ -16,18 +16,12 @@ import servicios.Configuracion;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
-    
-    
-    
-    
     public Principal(){
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         Configuracion config = new Configuracion();
         boolean sesionActive = Boolean.valueOf(config.getConfProperty("sesion.active"));
+        
         if(!sesionActive){
             Login log = new Login(this, true);
             log.setLocationRelativeTo(null);
@@ -58,7 +52,9 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        MenuBar.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        MenuBar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        MenuBar.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        MenuBar.setMargin(new java.awt.Insets(5, 5, 5, 5));
 
         jMenu1.setText("Inventario");
         MenuBar.add(jMenu1);
@@ -86,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
         pack();

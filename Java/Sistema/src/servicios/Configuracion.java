@@ -24,11 +24,28 @@ import java.util.logging.Logger;
 
 public class Configuracion {
     
-    private static String configFilePath = "config.properties";
-    private static Properties configProp = new Properties();
-    private static InputStream input = null;
-    private static OutputStream output = null;
+    private static String configFilePath;
+    private static Properties configProp;
+    private static InputStream input;
+    private static OutputStream output;
     
+    
+    public Configuracion(){
+        
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if(osName.equals("linux")){
+            configFilePath = "/home/"+System.getProperty("user.name")+"/config.properties";
+        }else{
+            configFilePath = "C:\\Users\\"+System.getProperty("user.name").toLowerCase()+"\\config.properties";
+        }
+        
+       configProp = new Properties();
+       input = null;
+       output = null;
+    }
+    
+
     /**
      * Gets cofig property from config.properties file.
      * @param propName (Property name)

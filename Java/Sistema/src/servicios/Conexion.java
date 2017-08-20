@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,26 +32,25 @@ public class Conexion {
     private ResultSet result = null;
     
     public Conexion() throws ClassNotFoundException, SQLException{
-       
-        Configuracion config = new Configuracion();
         
-        try{
-            this.server = config.getConfProperty("data.server");
-            this.db = "Sistema_DB";
-            this.user = config.getConfProperty("data.user");
-            this.pass = config.getConfProperty("data.pass");
-            Class.forName(driver);
-            url = "jdbc:mysql://"+server+"/"+db;
+        Configuracion config = new Configuracion();
+        this.server = config.getConfProperty("data.server");
+        this.db = config.getConfProperty("data.db");
+        this.user = config.getConfProperty("data.user");
+        this.pass = config.getConfProperty("data.pass");
+        Class.forName(driver);
+        url = "jdbc:mysql://"+server+"/"+db;
+    }
+    
+    public Connection getConexion(){
+        try {
             con=DriverManager.getConnection(url, user, pass);
             System.out.println("<-------------------------------------->");
             System.out.println("Conectado a "+server+"/"+db);
             System.out.println("<-------------------------------------->");
-       }catch(SQLException ex){
-           System.out.println("Error al conectar\n"+ex.getMessage());
-       }
-    }
-    
-    public Connection getConexion(){
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return con;
     }
     
