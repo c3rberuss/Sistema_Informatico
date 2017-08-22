@@ -105,7 +105,7 @@ public class Conexion {
         String sql = "INSERT INTO "+tabla+" VALUES ("+valores+")";
         this.st = getConexion().prepareStatement(sql);
         this.st.executeUpdate();
-        
+       
     }
     
     

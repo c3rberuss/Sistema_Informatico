@@ -115,6 +115,8 @@ public class Principal extends javax.swing.JFrame {
             Config cfg = new Config(this, true);
             cfg.setLocationRelativeTo(null);
             cfg.setVisible(true);
+            
+            
     }//GEN-LAST:event_MenuConexionMousePressed
 
     private void buscar_ventasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_ventasMousePressed
