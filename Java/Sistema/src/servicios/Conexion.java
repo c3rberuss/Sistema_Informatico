@@ -81,6 +81,17 @@ public class Conexion {
         
     }
     
+     public ResultSet Search(String campos, String tabla, String condicion, String palabra) throws SQLException{
+        
+        String sql = "SELECT "+campos+" FROM "+tabla+" WHERE "+condicion+" LIKE '%"+palabra+"%';";
+        
+        this.s = getConexion().createStatement();
+        this.result = s.executeQuery(sql);
+        
+        return this.result;
+        
+    }
+    
     public void Delete(String tabla, String condicion) throws SQLException{
         
         String sql = "DELETE FROM "+tabla+" WHERE "+condicion;

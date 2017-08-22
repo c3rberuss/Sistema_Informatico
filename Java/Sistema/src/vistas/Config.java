@@ -14,16 +14,19 @@ import servicios.Configuracion;
 public class Config extends javax.swing.JDialog {
 
     private boolean islocal;
-
+    private Configuracion config;
     
     public Config(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Configuracion config = new Configuracion();
+        config = new Configuracion();
         this.islocal = Boolean.valueOf(config.getConfProperty("data.local"));
         this.txtServer.setText(config.getConfProperty("data.server"));
         this.txtUsuario.setText(config.getConfProperty("data.user"));
         this.txtPass.setText(config.getConfProperty("data.pass"));
+        
+        this.txtDB.setText(config.getConfProperty("data.db"));
+        
         if(this.islocal){
             this.txtDB.disable();
         }
@@ -53,7 +56,7 @@ public class Config extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
+        setModal(true);
 
         jLabel1.setText("Servidor");
 
@@ -167,7 +170,13 @@ public class Config extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-        System.exit(1);
+        
+        boolean init = Boolean.valueOf(config.getConfProperty("data.init"));
+        if(init){
+            this.dispose();        
+        }else{
+            System.exit(1);   
+        }
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     /**

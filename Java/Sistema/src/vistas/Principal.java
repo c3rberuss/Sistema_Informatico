@@ -5,9 +5,7 @@
  */
 package vistas;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import servicios.Configuracion;
 
 /**
@@ -44,11 +42,15 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         MenuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MenuVentas = new javax.swing.JMenu();
+        buscar_ventas = new javax.swing.JMenuItem();
+        MenuAdmin = new javax.swing.JMenu();
+        MenuInventario = new javax.swing.JMenu();
+        MenuUsuarios = new javax.swing.JMenu();
+        MenuConfiguracion = new javax.swing.JMenu();
+        MenuConexion = new javax.swing.JMenuItem();
+        AcercaDe = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,21 +58,42 @@ public class Principal extends javax.swing.JFrame {
         MenuBar.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         MenuBar.setMargin(new java.awt.Insets(5, 5, 5, 5));
 
-        jMenu1.setText("Inventario");
-        MenuBar.add(jMenu1);
+        MenuVentas.setText("Ventas");
 
-        jMenu2.setText("Configuración");
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Conexión");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        buscar_ventas.setText("Buscar");
+        buscar_ventas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem1MousePressed(evt);
+                buscar_ventasMousePressed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        MenuVentas.add(buscar_ventas);
 
-        MenuBar.add(jMenu2);
+        MenuBar.add(MenuVentas);
+
+        MenuAdmin.setText("Administración");
+
+        MenuInventario.setText("Inventario");
+        MenuAdmin.add(MenuInventario);
+
+        MenuUsuarios.setText("Usuarios");
+        MenuAdmin.add(MenuUsuarios);
+
+        MenuConfiguracion.setText("Configuración");
+
+        MenuConexion.setText("Conexión");
+        MenuConexion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuConexionMousePressed(evt);
+            }
+        });
+        MenuConfiguracion.add(MenuConexion);
+
+        MenuAdmin.add(MenuConfiguracion);
+
+        MenuBar.add(MenuAdmin);
+
+        AcercaDe.setText("Acerca de");
+        MenuBar.add(AcercaDe);
 
         setJMenuBar(MenuBar);
 
@@ -78,21 +101,27 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
+    private void MenuConexionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConexionMousePressed
             Config cfg = new Config(this, true);
             cfg.setLocationRelativeTo(null);
             cfg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1MousePressed
+    }//GEN-LAST:event_MenuConexionMousePressed
+
+    private void buscar_ventasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_ventasMousePressed
+        Busqueda search = new Busqueda(this, true);
+        search.setLocationRelativeTo(null);
+        search.setVisible(true);
+    }//GEN-LAST:event_buscar_ventasMousePressed
 
     /**
      * @param args the command line arguments
@@ -130,10 +159,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu AcercaDe;
+    private javax.swing.JMenu MenuAdmin;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem MenuConexion;
+    private javax.swing.JMenu MenuConfiguracion;
+    private javax.swing.JMenu MenuInventario;
+    private javax.swing.JMenu MenuUsuarios;
+    private javax.swing.JMenu MenuVentas;
+    private javax.swing.JMenuItem buscar_ventas;
     // End of variables declaration//GEN-END:variables
 }
