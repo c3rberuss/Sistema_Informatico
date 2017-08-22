@@ -82,12 +82,17 @@ public class Busqueda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MenuFlotante = new javax.swing.JPopupMenu();
+        addCartito = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Resultados = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
+
+        addCartito.setText("Agregar al Carrito");
+        MenuFlotante.add(addCartito);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -112,6 +117,7 @@ public class Busqueda extends javax.swing.JDialog {
 
             }
         ));
+        Resultados.setComponentPopupMenu(MenuFlotante);
         jScrollPane1.setViewportView(Resultados);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -208,7 +214,9 @@ public class Busqueda extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu MenuFlotante;
     private javax.swing.JTable Resultados;
+    private javax.swing.JMenuItem addCartito;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
