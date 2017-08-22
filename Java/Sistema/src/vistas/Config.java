@@ -220,7 +220,13 @@ public class Config extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-        System.exit(0);
+        boolean init = Boolean.valueOf(config.getConfProperty("data.init"));
+        if (init){
+            this.dispose();
+        }
+        else {
+            System.exit(0);
+        }
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     /**
