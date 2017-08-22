@@ -167,6 +167,8 @@ public class Config extends javax.swing.JDialog {
         config.setConfProperty("data.pass", this.txtPass.getText());
         config.setConfProperty("data.db", this.txtDB.getText());
         this.dispose();
+        //palomada
+        
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
