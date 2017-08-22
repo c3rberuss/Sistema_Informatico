@@ -21,9 +21,19 @@ public class Busqueda extends javax.swing.JDialog {
     /**
      * Creates new form Busqueda
      */
+    
+    Conexion cn;
+    DefaultTableModel modelo;
+    
     public Busqueda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        try {
+            cn = new Conexion();
+            modelo = new DefaultTableModel();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
@@ -40,21 +50,23 @@ public class Busqueda extends javax.swing.JDialog {
     
     private void mostrar(){
         try {
-            Conexion cn = new Conexion();
             
-            DefaultTableModel modelo = new DefaultTableModel();
+            int a =modelo.getRowCount();
+            for(int i=0; i<a; i++){
+                modelo.removeRow(0);
+            }
+            
             ResultSet rs = cn.Search("*", "inventario", "producto", this.txtBusqueda.getText());
             modelo.setColumnIdentifiers(new Object[]{"ID",  "PRODUCTO", "DESCRIPCIÓN"});
-            
+
             while(rs.next()){
                 modelo.addRow(new Object[]{rs.getString("id"), rs.getString("producto"), rs.getString("descripcion")});
             }
             
             this.Resultados.setModel(modelo);
             this.Resultados.updateUI();
-            cn.closeConexion();
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -78,6 +90,11 @@ public class Busqueda extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Buscar");
 
@@ -143,6 +160,10 @@ public class Busqueda extends javax.swing.JDialog {
     private void txtBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyPressed
        mostrar();
     }//GEN-LAST:event_txtBusquedaKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cn.closeConexion();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
