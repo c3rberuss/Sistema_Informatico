@@ -47,6 +47,9 @@ public class Principal extends javax.swing.JFrame {
         buscar_ventas = new javax.swing.JMenuItem();
         MenuAdmin = new javax.swing.JMenu();
         MenuInventario = new javax.swing.JMenu();
+        inventario_ingresar = new javax.swing.JMenuItem();
+        inventario_listar = new javax.swing.JMenuItem();
+        inventario_modificar = new javax.swing.JMenuItem();
         MenuUsuarios = new javax.swing.JMenu();
         MenuConfiguracion = new javax.swing.JMenu();
         MenuConexion = new javax.swing.JMenuItem();
@@ -73,6 +76,34 @@ public class Principal extends javax.swing.JFrame {
         MenuAdmin.setText("Administración");
 
         MenuInventario.setText("Inventario");
+
+        inventario_ingresar.setText("Ingresar productos");
+        inventario_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inventario_ingresarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                inventario_ingresarMousePressed(evt);
+            }
+        });
+        MenuInventario.add(inventario_ingresar);
+
+        inventario_listar.setText("Listar productos");
+        inventario_listar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                inventario_listarMousePressed(evt);
+            }
+        });
+        MenuInventario.add(inventario_listar);
+
+        inventario_modificar.setText("Modificar productos");
+        inventario_modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                inventario_modificarMousePressed(evt);
+            }
+        });
+        MenuInventario.add(inventario_modificar);
+
         MenuAdmin.add(MenuInventario);
 
         MenuUsuarios.setText("Usuarios");
@@ -125,6 +156,31 @@ public class Principal extends javax.swing.JFrame {
         search.setVisible(true);
     }//GEN-LAST:event_buscar_ventasMousePressed
 
+    private void inventario_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventario_ingresarMouseClicked
+        
+    }//GEN-LAST:event_inventario_ingresarMouseClicked
+
+    private void inventario_ingresarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventario_ingresarMousePressed
+        // TODO add your handling code here:
+        Inventario_ingresar ingresar = new Inventario_ingresar(this,true);
+        ingresar.setLocationRelativeTo(null);
+        ingresar.setVisible(true);
+    }//GEN-LAST:event_inventario_ingresarMousePressed
+
+    private void inventario_listarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventario_listarMousePressed
+        // TODO add your handling code here:
+        Inventario_listar listar = new Inventario_listar(this,true);
+        listar.setLocationRelativeTo(null);
+        listar.setVisible(true);
+    }//GEN-LAST:event_inventario_listarMousePressed
+
+    private void inventario_modificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventario_modificarMousePressed
+        // TODO add your handling code here:
+        Inventario_modificar modificar = new Inventario_modificar(this,true);
+        modificar.setLocationRelativeTo(null);
+        modificar.setVisible(true);
+    }//GEN-LAST:event_inventario_modificarMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -170,5 +226,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuUsuarios;
     private javax.swing.JMenu MenuVentas;
     private javax.swing.JMenuItem buscar_ventas;
+    private javax.swing.JMenuItem inventario_ingresar;
+    private javax.swing.JMenuItem inventario_listar;
+    private javax.swing.JMenuItem inventario_modificar;
     // End of variables declaration//GEN-END:variables
 }
