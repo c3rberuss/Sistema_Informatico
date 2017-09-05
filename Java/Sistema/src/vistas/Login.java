@@ -54,11 +54,10 @@ public class Login extends javax.swing.JDialog {
         btnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(610, 370));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(35, 48, 54));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -80,7 +79,7 @@ public class Login extends javax.swing.JDialog {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 370));
 
-        jPanel2.setBackground(new java.awt.Color(36, 47, 65));
+        jPanel2.setBackground(new java.awt.Color(3, 19, 27));
         jPanel2.setMinimumSize(new java.awt.Dimension(240, 367));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -105,14 +104,14 @@ public class Login extends javax.swing.JDialog {
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 200, 10));
 
-        txtPass.setBackground(new java.awt.Color(36, 47, 65));
+        txtPass.setBackground(new java.awt.Color(3, 19, 27));
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
         txtPass.setToolTipText("Ingrese su contraseña");
         txtPass.setBorder(null);
         txtPass.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 200, 20));
 
-        txtUser.setBackground(new java.awt.Color(36, 47, 65));
+        txtUser.setBackground(new java.awt.Color(3, 19, 27));
         txtUser.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setToolTipText("Ingrese su usuario");
@@ -120,7 +119,7 @@ public class Login extends javax.swing.JDialog {
         txtUser.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 200, 20));
 
-        btnCerrar.setBackground(new java.awt.Color(255, 0, 0));
+        btnCerrar.setBackground(new java.awt.Color(204, 0, 0));
         btnCerrar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setText("X");
@@ -135,10 +134,11 @@ public class Login extends javax.swing.JDialog {
         });
         jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 40, 20));
 
-        btnIngresar.setBackground(new java.awt.Color(0, 102, 102));
+        btnIngresar.setBackground(new java.awt.Color(35, 48, 54));
         btnIngresar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("INICIAR SESION");
+        btnIngresar.setToolTipText("Iniciar sesion");
         btnIngresar.setBorder(null);
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {

@@ -167,10 +167,4 @@ public class Utilidades {
             return success;
     }
     
-    public void loadCart(){
-        
-        
-        
-    }
-    
 }

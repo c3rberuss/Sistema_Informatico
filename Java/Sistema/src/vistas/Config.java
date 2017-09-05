@@ -16,9 +16,11 @@ public class Config extends javax.swing.JDialog {
     private boolean islocal;
     private Configuracion config;
     
+    
     public Config(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         config = new Configuracion();
         this.islocal = Boolean.valueOf(config.getConfProperty("data.local"));
         this.txtServer.setText(config.getConfProperty("data.server"));
@@ -66,7 +68,8 @@ public class Config extends javax.swing.JDialog {
         setModal(true);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(3, 19, 27));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -79,7 +82,8 @@ public class Config extends javax.swing.JDialog {
         jLabel6.setText("CONFIGURACION   INICIAL");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 250, -1));
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(3, 19, 27));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 9)); // NOI18N
@@ -87,7 +91,8 @@ public class Config extends javax.swing.JDialog {
         jLabel1.setText("TODOS LOS DERECHOS RESERVADOS | 2017");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 20));
 
-        jPanel3.setBackground(new java.awt.Color(36, 47, 65));
+        jPanel3.setBackground(new java.awt.Color(35, 48, 54));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -98,7 +103,7 @@ public class Config extends javax.swing.JDialog {
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, 10));
 
-        txtServer.setBackground(new java.awt.Color(36, 47, 65));
+        txtServer.setBackground(new java.awt.Color(35, 48, 54));
         txtServer.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         txtServer.setForeground(new java.awt.Color(255, 255, 255));
         txtServer.setToolTipText("direccion del servidor");
@@ -109,7 +114,7 @@ public class Config extends javax.swing.JDialog {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 200, 10));
 
-        txtDB.setBackground(new java.awt.Color(36, 47, 65));
+        txtDB.setBackground(new java.awt.Color(35, 48, 54));
         txtDB.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         txtDB.setForeground(new java.awt.Color(255, 255, 255));
         txtDB.setToolTipText("Nombre de la base de datos");
@@ -125,10 +130,10 @@ public class Config extends javax.swing.JDialog {
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 200, 10));
 
-        txtUsuario.setBackground(new java.awt.Color(36, 47, 65));
+        txtUsuario.setBackground(new java.awt.Color(35, 48, 54));
         txtUsuario.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setToolTipText("Ingrese su usuario");
+        txtUsuario.setToolTipText(" Ingrese usuario (servidor)");
         txtUsuario.setBorder(null);
         txtUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel3.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 200, 20));
@@ -146,10 +151,11 @@ public class Config extends javax.swing.JDialog {
         jLabel4.setText("CONTRASEÑA:");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, 20));
 
-        BtnCancelar.setBackground(new java.awt.Color(204, 0, 0));
+        BtnCancelar.setBackground(new java.awt.Color(153, 0, 0));
         BtnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelar.setText("CANCELAR");
+        BtnCancelar.setToolTipText("Cancelar modificacion");
         BtnCancelar.setBorder(null);
         BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,10 +165,11 @@ public class Config extends javax.swing.JDialog {
         });
         jPanel3.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 90, 30));
 
-        BtnGuardar.setBackground(new java.awt.Color(0, 102, 102));
+        BtnGuardar.setBackground(new java.awt.Color(0, 102, 0));
         BtnGuardar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         BtnGuardar.setText("GUARDAR");
+        BtnGuardar.setToolTipText("Guardar cambios");
         BtnGuardar.setBorder(null);
         BtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -170,11 +177,11 @@ public class Config extends javax.swing.JDialog {
                 BtnGuardarActionPerformed(evt);
             }
         });
-        jPanel3.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 90, 30));
+        jPanel3.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 90, 30));
 
-        txtPass.setBackground(new java.awt.Color(36, 47, 65));
+        txtPass.setBackground(new java.awt.Color(35, 48, 54));
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
-        txtPass.setToolTipText("Ingrese su contraseña");
+        txtPass.setToolTipText("Ingrese contraseña (servidor)");
         txtPass.setBorder(null);
         txtPass.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel3.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 200, 20));
