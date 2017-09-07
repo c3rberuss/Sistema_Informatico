@@ -5,9 +5,7 @@
  */
 package vistas;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import factory.Factory;
 import servicios.Configuracion;
 
 /**
@@ -18,13 +16,28 @@ public class Login extends javax.swing.JDialog {
 
     /**
      * Creates new form Login
+     * @param parent
+     * @param modal
      */
+    
+    private Configuracion config;
+    private Factory factory;
     
     public Login(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         this.setLocationRelativeTo(null);
         initComponents();
+        factory = new Factory();
     }
+    
+    public Configuracion getConfig() {
+        return config;
+    }
+
+    public void setConfig(Configuracion config) {
+        this.config = config;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,15 +167,14 @@ public class Login extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-
         System.exit(0);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        Configuracion config = new Configuracion();
-        config.setConfProperty("sesion.user", this.txtUser.getText());
-        config.setConfProperty("sesion.active", "true");
-        config.setConfProperty("sesion.pass", this.txtPass.getText());
+        setConfig(factory.configuraciones());
+        getConfig().setConfProperty("sesion.user", this.txtUser.getText());
+        getConfig().setConfProperty("sesion.active", "true");
+        getConfig().setConfProperty("sesion.pass", this.txtPass.getText());
         this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
 

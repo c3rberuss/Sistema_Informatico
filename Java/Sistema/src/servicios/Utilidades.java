@@ -222,8 +222,9 @@ public final class Utilidades {
         return model;
     }
     
-    public void mostrar(DefaultTableModel modelo, JTable Resultados, 
-            JTextField Busqueda, Conexion cn){
+    public DefaultTableModel mostrar(JTable Resultados, Conexion cn){
+        
+        DefaultTableModel modelo = new DefaultTableModel();
         
         try {
             
@@ -232,7 +233,7 @@ public final class Utilidades {
                 modelo.removeRow(0);
             }
             
-            ResultSet rs = cn.Search("*", "inventario", "producto", Busqueda.getText());
+            ResultSet rs = cn.Select("*", "inventario", "1");
             modelo.setColumnIdentifiers(new Object[]{"ID",  "PRODUCTO", "DESCRIPCIÓN"});
 
             while(rs.next()){
@@ -245,6 +246,8 @@ public final class Utilidades {
         } catch (SQLException ex) {
             Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return modelo;
         
     }
     
