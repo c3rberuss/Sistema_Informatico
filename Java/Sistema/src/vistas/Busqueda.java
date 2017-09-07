@@ -185,6 +185,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
          txtBusqueda.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyReleased(final KeyEvent e) {
                 String cadena = (txtBusqueda.getText());
                 txtBusqueda.setText(cadena);
