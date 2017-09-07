@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import factory.Factory;
 import servicios.Configuracion;
 
 /**
@@ -21,7 +22,7 @@ public class Config extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        config = new Configuracion();
+        config = new Factory().configuraciones();
         this.islocal = Boolean.valueOf(config.getConfProperty("data.local"));
         this.txtServer.setText(config.getConfProperty("data.server"));
         this.txtUsuario.setText(config.getConfProperty("data.user"));
@@ -34,6 +35,22 @@ public class Config extends javax.swing.JDialog {
         }
     }
 
+    public boolean isIslocal() {
+        return islocal;
+    }
+
+    public void setIslocal(boolean islocal) {
+        this.islocal = islocal;
+    }
+
+    public Configuracion getConfig() {
+        return config;
+    }
+
+    public void setConfig(Configuracion config) {
+        this.config = config;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,16 +235,15 @@ public class Config extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-       Configuracion config = new Configuracion();
-        config.setConfProperty("data.server", this.txtServer.getText());
-        config.setConfProperty("data.user", this.txtUsuario.getText());
-        config.setConfProperty("data.pass", this.txtPass.getText());
-        config.setConfProperty("data.db", this.txtDB.getText());
+        getConfig().setConfProperty("data.server", this.txtServer.getText());
+        getConfig().setConfProperty("data.user", this.txtUsuario.getText());
+        getConfig().setConfProperty("data.pass", this.txtPass.getText());
+        getConfig().setConfProperty("data.db", this.txtDB.getText());
         this.dispose();
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-        boolean init = Boolean.valueOf(config.getConfProperty("data.init"));
+        boolean init = Boolean.valueOf(getConfig().getConfProperty("data.init"));
         if (init){
             this.dispose();
         }
