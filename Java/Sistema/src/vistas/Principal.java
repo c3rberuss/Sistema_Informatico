@@ -6,7 +6,9 @@
 package vistas;
 
 
+import factory.Factory;
 import servicios.Configuracion;
+import servicios.Utilidades;
 
 /**
  *
@@ -14,10 +16,14 @@ import servicios.Configuracion;
  */
 public class Principal extends javax.swing.JFrame {
 
+    private Factory factory;
+    
     public Principal(){
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        Configuracion config = new Configuracion();
+        factory = new Factory();
+        Configuracion config = factory.configuraciones();
+        
         boolean sesionActive = Boolean.valueOf(config.getConfProperty("sesion.active"));
         
         if(!sesionActive){
@@ -143,7 +149,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuConexionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConexionMousePressed
-            Config cfg = new Config(this, true);
+            Config cfg = factory.ventanaConfiguracion(this, true);
             cfg.setLocationRelativeTo(null);
             cfg.setVisible(true);
             
@@ -151,7 +157,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuConexionMousePressed
 
     private void buscar_ventasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscar_ventasMousePressed
-        Busqueda search = new Busqueda(this, true);
+        Busqueda search = factory.ventanaBusqueda(this, true);
         search.setLocationRelativeTo(null);
         search.setVisible(true);
     }//GEN-LAST:event_buscar_ventasMousePressed

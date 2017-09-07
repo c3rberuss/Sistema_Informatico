@@ -5,6 +5,7 @@
  */
 package servicios;
 
+import factory.Factory;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,21 +29,55 @@ public class Configuracion {
     private static Properties configProp;
     private static InputStream input;
     private static OutputStream output;
+    private static Factory factory;
     
     
     public Configuracion(){
         
+        factory = new Factory();
         String osName = System.getProperty("os.name").toLowerCase();
 
         if(osName.equals("linux")){
-            configFilePath = "/home/"+System.getProperty("user.name")+"/config.properties";
+            setConfigFilePath("/home/"+System.getProperty("user.name")+"/config.properties");
         }else{
-            configFilePath = "C:\\Users\\"+System.getProperty("user.name").toLowerCase()+"\\config.properties";
+             setConfigFilePath("C:\\Users\\"+System.getProperty("user.name").toLowerCase()+"\\config.properties");
         }
         
-       configProp = new Properties();
+       setConfigProp(factory.properties());
        input = null;
        output = null;
+    }
+
+    public static String getConfigFilePath() {
+        return configFilePath;
+    }
+
+    public static void setConfigFilePath(String aConfigFilePath) {
+        configFilePath = aConfigFilePath;
+    }
+
+    public static Properties getConfigProp() {
+        return configProp;
+    }
+
+    public static void setConfigProp(Properties aConfigProp) {
+        configProp = aConfigProp;
+    }
+
+    public static InputStream getInput() {
+        return input;
+    }
+
+    public static void setInput(InputStream aInput) {
+        input = aInput;
+    }
+
+    public static OutputStream getOutput() {
+        return output;
+    }
+
+    public static void setOutput(OutputStream aOutput) {
+        output = aOutput;
     }
     
 
@@ -57,29 +92,27 @@ public class Configuracion {
         
         try 
         {
-            input = new FileInputStream(configFilePath);
+            setInput(factory.fileInputStream(getConfigFilePath()));
             
             // load config file
-            configProp.load(input);
+            getConfigProp().load(getInput());
             
             // get property value
-            ret = configProp.getProperty(propName);            
+            ret = getConfigProp().getProperty(propName);            
         } 
         catch (IOException ex)
         {
-            ex.printStackTrace();
         }
         finally 
         {
-            if (input != null) 
+            if (getInput() != null) 
             {
                 try 
                 {
-                    input.close();
+                    getInput().close();
                 }
                 catch (IOException e) 
                 {
-                    e.printStackTrace();
                 }
             }
         }
@@ -104,45 +137,40 @@ public class Configuracion {
         config = Configuracion.getConfigFileValues();
         
         // Set the new value to the array
-        for(int i=0; i < config.length; i++)
-        {
-            if(config[i][0].equals(propName))
-            {
-                config[i][1] = propValue;
-                System.out.println(config[i][0] + " - " + config[i][1]);
+        for (String[] config1 : config) {
+            if (config1[0].equals(propName)) {
+                config1[1] = propValue;
+                System.out.println(config1[0] + " - " + config1[1]);
             }
         }
         
         // Save the new .properties file.
         try 
         {
-            output = new FileOutputStream(configFilePath);
+            setOutput(new FileOutputStream(getConfigFilePath()));
             
             // sets value to property
-            for(int i=0; i < config.length;i++)
-            {
-                configProp.setProperty(config[i][0], config[i][1]);
+            for (String[] config1 : config) {
+                getConfigProp().setProperty(config1[0], config1[1]);
             }
             
             // save new changes on 'config.properties' file
-            configProp.store(output, null);
+            getConfigProp().store(getOutput(), null);
         
             ret = true;
         } 
         catch (IOException io) 
         {
-            io.printStackTrace();
         }
         finally 
         {
-            if (output != null) 
+            if (getOutput() != null) 
             {
                 try 
                 {
-                    output.close();
+                    getOutput().close();
                 } catch (IOException e) 
                 {
-                    e.printStackTrace();
                 }
             }
         }
@@ -159,10 +187,10 @@ public class Configuracion {
         
         try
         {
-            InputStream is = new FileInputStream(configFilePath);
-            configProp.load(is);
+            InputStream is = factory.fileInputStream(getConfigFilePath());
+            getConfigProp().load(is);
             
-            ret = configProp.size();
+            ret = getConfigProp().size();
         }
         catch (FileNotFoundException ex) 
         {
@@ -187,12 +215,12 @@ public class Configuracion {
         
         String ret[][] = new String[size][2];
         
-        for (Enumeration e = configProp.keys(); e.hasMoreElements();)
+        for (Enumeration e = getConfigProp().keys(); e.hasMoreElements();)
         {
             Object obj = e.nextElement();
             
             ret[con][0] = obj.toString();
-            ret[con][1] = configProp.getProperty(obj.toString());
+            ret[con][1] = getConfigProp().getProperty(obj.toString());
             con++;
         }
         

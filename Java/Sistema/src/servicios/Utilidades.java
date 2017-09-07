@@ -5,37 +5,84 @@
  */
 package servicios;
 
+import factory.Factory;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import vistas.Busqueda;
+import vistas.Config;
 
 /**
  *
  * @author josuee
  */
-public class Utilidades {
+public final class Utilidades {
     
+    private final Factory factory;
+    private Config vent_config;
+    private Conexion conexion;
+    private Statement s;
+    private Configuracion configuracion;
     
+    public Utilidades(){
+        factory = new Factory();
+        setConexion(factory.connect());
+        setVent_config(factory.ventanaConfiguracion(null, true));
+    }
+
+    public Configuracion getConfiguracion() {
+        return configuracion;
+    }
+
+    public void setConfiguracion(Configuracion configuracion) {
+        this.configuracion = configuracion;
+    }
+    
+    public Config getVent_config() {
+        return vent_config;
+    }
+
+    public void setVent_config(Config vent_config) {
+        this.vent_config = vent_config;
+    }
+
+    public Conexion getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Conexion conexion) {
+        this.conexion = conexion;
+    }
+
+    public Statement getS() {
+        return s;
+    }
+
+    public void setS(Statement s) {
+        this.s = s;
+    }
     
     public boolean isInicialized(){
         
         boolean success = false;
-        vistas.Config vent_config;
-        Conexion conexion;
-        Statement s;
         String sql;
         
         try {
 
-            Configuracion config = new Configuracion();
+            setConfiguracion(factory.configuraciones());
             
-            boolean init = Boolean.valueOf(config.getConfProperty("data.init"));
+            boolean init = Boolean.valueOf(getConfiguracion().getConfProperty("data.init"));
         
             if(init == false){
                 
@@ -45,24 +92,23 @@ public class Utilidades {
                     JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
                 
                 if(resp == 0){
-                     config.setConfProperty("data.local", "true");
+                     getConfiguracion().setConfProperty("data.local", "true");
                 }else{
-                      config.setConfProperty("data.local", "false");
+                     getConfiguracion().setConfProperty("data.local", "false");
                 }
                  
                 switch(resp){
                     case 0:
                         
-                        vent_config = new vistas.Config(null, true);
-                        vent_config.setLocationRelativeTo(null);
-                        vent_config.setVisible(true);
+                        setVent_config(factory.ventanaConfiguracion(null, true));
+                        getVent_config().setLocationRelativeTo(null);
+                        getVent_config().setVisible(true);
 
-                        conexion = new Conexion();
                         sql = "CREATE DATABASE Sistema_DB;";
-                        s = conexion.getConexion().createStatement();
-                        s.executeUpdate(sql);
+                        setS(getConexion().getConexion().createStatement());
+                        getS().executeUpdate(sql);
                         sql = "USE Sistema_DB;";
-                        s.executeUpdate(sql);
+                        getS().executeUpdate(sql);
 
                         sql=    "CREATE TABLE `Sistema_DB`.`users` ( "
                                 + "`id_usr` INT(10) NOT NULL AUTO_INCREMENT , "
@@ -74,25 +120,24 @@ public class Utilidades {
                                 + "`second_last_name_usr` VARCHAR(20) NOT NULL , "
                                 + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;";
 
-                        s.executeUpdate(sql);
-                        config.setConfProperty("data.db", "Sistema_DB");
-                        config.setConfProperty("data.init", "true");
+                        getS().executeUpdate(sql);
+                        getConfiguracion().setConfProperty("data.db", "Sistema_DB");
+                        getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
-                        conexion.closeConexion();
+                        getConexion().closeConexion();
                         
                         break;
                     case 1:
                         
-                        vent_config = new vistas.Config(null, true);
-                        vent_config.setLocationRelativeTo(null);
-                        vent_config.setVisible(true);
+                        setVent_config(new vistas.Config(null, true));
+                        getVent_config().setLocationRelativeTo(null);
+                        getVent_config().setVisible(true);
                         
-                        String db = config.getConfProperty("data.db");
+                        String db = getConfiguracion().getConfProperty("data.db");
                         
-                        conexion = new Conexion();
                         sql = "USE "+db+";";
-                        s = conexion.getConexion().createStatement();
-                        s.executeUpdate(sql);
+                        setS(getConexion().getConexion().createStatement());
+                        getS().executeUpdate(sql);
 
                         sql=    "CREATE TABLE `"+db+"`.`users` ( "
                                 + "`id_usr` INT(10) NOT NULL AUTO_INCREMENT , "
@@ -104,14 +149,13 @@ public class Utilidades {
                                 + "`second_last_name_usr` VARCHAR(20) NOT NULL , "
                                 + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;";
 
-                        s.executeUpdate(sql);
-                        config.setConfProperty("data.init", "true");
+                        getS().executeUpdate(sql);
+                        getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
-                        conexion.closeConexion();
                         break;
                         
                     case 2:
-                        System.exit(1);
+                        System.exit(0);
                         break;
                 }
                 
@@ -119,7 +163,7 @@ public class Utilidades {
                 
             }
             
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -139,11 +183,11 @@ public class Utilidades {
                     ruta = "C:\\Users\\"+System.getProperty("user.name").toLowerCase()+"\\config.properties";
                 }
 
-                File archivo = new File(ruta);
+                File archivo = factory.createFile(ruta);
                 BufferedWriter bw;
                 if(!archivo.exists()) {
 
-                    bw = new BufferedWriter(new FileWriter(archivo));
+                    bw = factory.bufferWriter(archivo);
                     bw.write("sesion.pass=none\n" +
                             "data.pass=none\n" +
                             "data.init=false\n" +
@@ -167,4 +211,55 @@ public class Utilidades {
             return success;
     }
     
+    public DefaultTableModel removeRow(JTable modelo){
+        DefaultTableModel model = (DefaultTableModel)modelo.getModel();
+        int[] rows = modelo.getSelectedRows();
+        
+        for(int i = 0; i<rows.length; i++){
+            model.removeRow(rows[i]-i);
+        }
+        
+        return model;
+    }
+    
+    public void mostrar(DefaultTableModel modelo, JTable Resultados, 
+            JTextField Busqueda, Conexion cn){
+        
+        try {
+            
+            int a =modelo.getRowCount();
+            for(int i=0; i<a; i++){
+                modelo.removeRow(0);
+            }
+            
+            ResultSet rs = cn.Search("*", "inventario", "producto", Busqueda.getText());
+            modelo.setColumnIdentifiers(new Object[]{"ID",  "PRODUCTO", "DESCRIPCIÓN"});
+
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("id"), rs.getString("producto"), rs.getString("descripcion")});
+            }
+            
+            Resultados.setModel(modelo);
+            Resultados.updateUI();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public String generateId(){
+        return String.valueOf((java.util.UUID.randomUUID().getLeastSignificantBits()*-1)/10000).substring(0, 10);
+    }
+    
+    public String getDate(){
+       
+        Calendar fecha = new GregorianCalendar();
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        
+        return String.valueOf(dia)+"-"+String.valueOf(mes)+"-"+String.valueOf(año);
+    }
+
 }

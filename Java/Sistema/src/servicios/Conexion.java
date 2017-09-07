@@ -5,6 +5,7 @@
  */
 package servicios;
 
+import factory.Factory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,6 +20,74 @@ import java.util.logging.Logger;
  * @author josuee
  */
 public class Conexion {
+
+    public String getServer() {
+        return server;
+    }
+
+    public void setServer(String server) {
+        this.server = server;
+    }
+
+    public String getDb() {
+        return db;
+    }
+
+    public void setDb(String db) {
+        this.db = db;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public Statement getS() {
+        return s;
+    }
+
+    public void setS(Statement s) {
+        this.s = s;
+    }
+
+    public PreparedStatement getSt() {
+        return st;
+    }
+
+    public void setSt(PreparedStatement st) {
+        this.st = st;
+    }
+
+    public ResultSet getResult() {
+        return result;
+    }
+
+    public void setResult(ResultSet result) {
+        this.result = result;
+    }
     
     private Connection con = null;
     private String server="";
@@ -26,14 +95,16 @@ public class Conexion {
     private String user="";
     private String pass="";
     private String url="";
-    private String driver="com.mysql.jdbc.Driver";
+    private final String driver="com.mysql.jdbc.Driver";
     private Statement s = null;
     private PreparedStatement st;
     private ResultSet result = null;
+    private Factory factory;
     
     public Conexion() throws ClassNotFoundException, SQLException{
         
-        Configuracion config = new Configuracion();
+        factory = new Factory();
+        Configuracion config = factory.configuraciones();
         this.server = config.getConfProperty("data.server");
         this.db = config.getConfProperty("data.db");
         this.user = config.getConfProperty("data.user");
@@ -44,9 +115,9 @@ public class Conexion {
     
     public Connection getConexion(){
         try {
-            con=DriverManager.getConnection(url, user, pass);
+            con=DriverManager.getConnection(getUrl(), getUser(), getPass());
             System.out.println("<-------------------------------------->");
-            System.out.println("Conectado a "+server+"/"+db);
+            System.out.println("Conectado a "+getServer()+"/"+getDb());
             System.out.println("<-------------------------------------->");
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,10 +145,10 @@ public class Conexion {
         
         String sql = "SELECT "+campos+" FROM "+tabla+" WHERE "+condicion;
         
-        this.s = getConexion().createStatement();
-        this.result = s.executeQuery(sql);
+        this.setS(getConexion().createStatement());
+        this.setResult(getS().executeQuery(sql));
         
-        return this.result;
+        return this.getResult();
         
     }
     
@@ -85,29 +156,28 @@ public class Conexion {
         
         String sql = "SELECT "+campos+" FROM "+tabla+" WHERE "+condicion+" LIKE '%"+palabra+"%';";
         
-        this.s = getConexion().createStatement();
-        this.result = s.executeQuery(sql);
+        this.setS(getConexion().createStatement());
+        this.setResult(getS().executeQuery(sql));
         
-        return this.result;
+        return this.getResult();
         
     }
     
     public void Delete(String tabla, String condicion) throws SQLException{
         
         String sql = "DELETE FROM "+tabla+" WHERE "+condicion;
-        this.st = getConexion().prepareStatement(sql);
-        this.st.executeUpdate();
+        this.setSt(getConexion().prepareStatement(sql));
+        this.getSt().executeUpdate();
         
     }
     
     public void Insert(String tabla, String valores) throws SQLException{
         
         String sql = "INSERT INTO "+tabla+" VALUES ("+valores+")";
-        this.st = getConexion().prepareStatement(sql);
-        this.st.executeUpdate();
+        this.setSt(getConexion().prepareStatement(sql));
+        this.getSt().executeUpdate();
        
     }
-    
-    
+      
     
 }
