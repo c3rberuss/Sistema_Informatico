@@ -80,15 +80,8 @@ public class Factory {
         return new Properties();
     }
     
-    public FileInputStream fileInputStream(String path){
-        FileInputStream file = null;
-        try {
-            file = new FileInputStream(path);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return file;
+    public FileInputStream fileInputStream(String path) throws FileNotFoundException{
+        return new FileInputStream(path);
     }
     
 }
