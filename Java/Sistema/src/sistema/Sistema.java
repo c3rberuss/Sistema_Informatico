@@ -5,6 +5,7 @@
  */
 package sistema;
 
+import factory.Factory;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,13 @@ import java.util.logging.Logger;
  */
 public class Sistema {
 
+    /**
+     * @return the factory
+     */
+    public static Factory getFactory() {
+        return factory;
+    }
+
     public static servicios.Conexion getCon() {
         return con;
     }
@@ -25,12 +33,14 @@ public class Sistema {
      */
     
     private static servicios.Conexion con;
+    private static Factory factory;
     
     public static void main(String[] args){
         
         try {
             
             con = new servicios.Conexion();
+            factory = new Factory();
             
             servicios.Utilidades uti = new servicios.Utilidades();
             
