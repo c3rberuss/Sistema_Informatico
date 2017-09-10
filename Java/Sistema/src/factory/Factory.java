@@ -84,4 +84,8 @@ public class Factory {
         return new FileInputStream(path);
     }
     
+    public Reportes generateReport(){
+        return new Reportes();
+    }
+    
 }

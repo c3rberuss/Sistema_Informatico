@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import servicios.Reportes;
 import servicios.Ventana;
 import sistema.Sistema;
 
@@ -21,13 +22,45 @@ import sistema.Sistema;
  */
 public class Carrito extends javax.swing.JDialog implements Ventana{
 
+    /**
+     * @return the readyAdd
+     */
+    public boolean isReadyAdd() {
+        return readyAdd;
+    }
+
+    /**
+     * @param readyAdd the readyAdd to set
+     */
+    public void setReadyAdd(boolean readyAdd) {
+        this.readyAdd = readyAdd;
+    }
+
+    /**
+     * @return the edit
+     */
+    public boolean isEdit() {
+        return edit;
+    }
+
+    /**
+     * @param edit the edit to set
+     */
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+
     private boolean add;
+    private Reportes report;
+    private boolean edit;
+    private boolean readyAdd;
     
     public Carrito(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         cargarDatos();
+        report = Sistema.getFactory().generateReport();
     }
 
     /**
@@ -39,6 +72,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PopMenu = new javax.swing.JPopupMenu();
+        elimnarItem = new javax.swing.JMenuItem();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -56,6 +91,14 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         TxtPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Resultados = new javax.swing.JTable();
+
+        elimnarItem.setText("Eliminar Producto");
+        elimnarItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                elimnarItemMousePressed(evt);
+            }
+        });
+        PopMenu.add(elimnarItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -95,6 +138,11 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         BtnFacturar.setToolTipText("Facturar los articulos agregados");
         BtnFacturar.setBorder(null);
         BtnFacturar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnFacturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFacturarActionPerformed(evt);
+            }
+        });
         jPanel6.add(BtnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 90, 30));
 
         BtnLimpiar.setBackground(new java.awt.Color(51, 51, 51));
@@ -182,6 +230,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
             }
         ));
+        Resultados.setComponentPopupMenu(PopMenu);
         Resultados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Resultados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -282,10 +331,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                }
                
             }
-               
-               
-               
-           
+
        }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
             limpiar();
             this.setAdd(false);
@@ -293,7 +339,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }//GEN-LAST:event_TxtIdKeyPressed
 
     private void TxtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCantidadKeyPressed
-        if(!this.TxtCantidad.equals("")){
+        if(!this.TxtCantidad.equals("") && isAdd()){
           if(evt.getKeyCode() == KeyEvent.VK_ENTER){
               try {
                   
@@ -304,6 +350,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                    limpiar();
                    this.TxtId.requestFocus();
                    cargarDatos();
+                   enableOrDisable(true);
                   
               } catch (SQLException ex) {
                   Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
@@ -311,7 +358,17 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                    
                    
           } 
-       }
+       }else{
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){   
+               Sistema.getFactory().connect().Update("shopping_cart", "cantidad="+this.TxtCantidad.getText(), "id='"+this.TxtId.getText()+"'");
+               this.setAdd(false);
+               limpiar();
+               this.TxtId.requestFocus();
+               cargarDatos();
+               enableOrDisable(true);
+ 
+          }
+        }
     }//GEN-LAST:event_TxtCantidadKeyPressed
 
     private void ResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResultadosMouseClicked
@@ -321,7 +378,9 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             this.TxtProducto.setText(String.valueOf(this.Resultados.getValueAt(fila, 1)));
             this.TxtPrecio.setText(String.valueOf(this.Resultados.getValueAt(fila, 2)));
             this.TxtCantidad.setText(String.valueOf(this.Resultados.getValueAt(fila, 3)));
-            this.TxtPrecio.disable();
+            enableOrDisable(false);
+            setEdit(true);
+            this.TxtCantidad.requestFocus();
         }
     }//GEN-LAST:event_ResultadosMouseClicked
 
@@ -329,6 +388,26 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         Sistema.getFactory().connect().vaciarCarrito();
         cargarDatos();
     }//GEN-LAST:event_BtnLimpiarMousePressed
+
+    private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
+        report.factura("1", "josuee", "1213", "121653", "lhjhj");
+    }//GEN-LAST:event_BtnFacturarActionPerformed
+
+    private void elimnarItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimnarItemMousePressed
+        try {
+            limpiar();
+            int fila = this.Resultados.getSelectedRow();
+            String id = (String) this.Resultados.getValueAt(fila, 0);
+            Sistema.getFactory().connect().Delete("shopping_cart", "id='"+id+"'");
+            this.setAdd(false);
+            cargarDatos();
+            this.TxtId.requestFocus();
+            enableOrDisable(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_elimnarItemMousePressed
 
         /**
      * @return the add
@@ -389,11 +468,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnFacturar;
     private javax.swing.JButton BtnLimpiar;
+    private javax.swing.JPopupMenu PopMenu;
     private javax.swing.JTable Resultados;
     private javax.swing.JTextField TxtCantidad;
     private javax.swing.JTextField TxtId;
     private javax.swing.JTextField TxtPrecio;
     private javax.swing.JTextField TxtProducto;
+    private javax.swing.JMenuItem elimnarItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -429,11 +510,24 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             
             this.Resultados.setModel(modelo);
             this.Resultados.updateUI();
-            Sistema.getFactory().connect().closeConexion();
             
         } catch (SQLException ex) {
             Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    private void enableOrDisable(boolean type){
+        if(type){
+            this.TxtId.enable();
+            this.TxtCantidad.enable();
+            this.TxtPrecio.enable();
+            this.TxtProducto.enable();
+        }
+        else{
+            this.TxtPrecio.disable();
+            this.TxtId.disable();
+            this.TxtProducto.disable();
+        }
     }
 }
