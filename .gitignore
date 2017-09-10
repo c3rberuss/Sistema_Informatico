@@ -21,7 +21,6 @@ nbproject/
 *.out
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.zip
@@ -41,5 +40,4 @@ Java/Sistema/config.properties
 /Java/Cliente/build/
 /Java/PracticaProgra/build/
 /Java/PracticaProgra/dist/
-/Java/Sistema/dist/
 /Java/PracticaPrgra2/build/
