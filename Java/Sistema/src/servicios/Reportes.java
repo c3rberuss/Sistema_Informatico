@@ -46,7 +46,7 @@ public class Reportes {
             System.out.println("Ya está guardado");
             
             JasperViewer viewer = new JasperViewer(print);
-            viewer.setTitle("Mi Rporte");
+            viewer.setTitle("Factura");
             viewer.setVisible(true);
             System.out.println("Ya está listo para ver");
             

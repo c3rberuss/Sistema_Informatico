@@ -390,7 +390,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
-        report.factura("1", "josuee", "1213", "121653", "lhjhj");
+        report.factura("000001", "Jonatan Jsoué Bermúdez Amaya", "1120-155-15855-1", "10-09-2017", "Final 2 Calle Oriente, Barrio la Parroquia");
     }//GEN-LAST:event_BtnFacturarActionPerformed
 
     private void elimnarItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimnarItemMousePressed
