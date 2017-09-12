@@ -41,6 +41,22 @@ public class Factory {
         return new Utilidades();
     }
     
+    public Inventario_Menu mainInv(java.awt.Frame parent, boolean modal){
+    return new Inventario_Menu(parent,modal);
+    }
+    
+    public Inventario_ingresar inv_ingr(java.awt.Frame parent, boolean modal){
+    return new Inventario_ingresar(parent,modal);
+    }
+    
+    public Inventario_listar inv_list(java.awt.Frame parent, boolean modal){
+    return new Inventario_listar(parent,modal);
+    }
+    
+    public Inventario_modificar inv_edit(java.awt.Frame parent, boolean modal){
+    return new Inventario_modificar(parent,modal);
+    }
+    
     public Busqueda ventanaBusqueda(java.awt.Frame parent, boolean modal){
         return new Busqueda(parent, modal);
     }

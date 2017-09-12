@@ -80,14 +80,6 @@ public class Principal extends javax.swing.JFrame {
         BtnConfiguracion.setBorder(null);
         BtnConfiguracion.setBorderPainted(false);
         BtnConfiguracion.setIconTextGap(5);
-        BtnConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnConfiguracionMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnConfiguracionMousePressed(evt);
-            }
-        });
         BtnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnConfiguracionActionPerformed(evt);
@@ -114,9 +106,9 @@ public class Principal extends javax.swing.JFrame {
         BtnInventario.setText("INVENTARIO");
         BtnInventario.setBorder(null);
         BtnInventario.setBorderPainted(false);
-        BtnInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnInventarioActionPerformed(evt);
+        BtnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnInventarioMousePressed(evt);
             }
         });
 
@@ -289,14 +281,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfiguracionMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnConfiguracionMouseClicked
-
-    private void BtnConfiguracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfiguracionMousePressed
-
-    }//GEN-LAST:event_BtnConfiguracionMousePressed
-
     private void BtnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionActionPerformed
         Config conf = new Config(this,true);
         conf.setVisible(true);
@@ -307,15 +291,18 @@ public class Principal extends javax.swing.JFrame {
         bus.setVisible(true);
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
-    private void BtnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInventarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnInventarioActionPerformed
-
     private void BtnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCarritoActionPerformed
 
         Carrito car = new Carrito(this,true);
         car.setVisible(true);
     }//GEN-LAST:event_BtnCarritoActionPerformed
+
+    private void BtnInventarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnInventarioMousePressed
+        factory = new Factory();
+        Inventario_Menu menu = factory.mainInv(this, true);
+        menu.setVisible(true);
+        
+    }//GEN-LAST:event_BtnInventarioMousePressed
 
     /**
      * @param args the command line arguments

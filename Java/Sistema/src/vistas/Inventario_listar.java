@@ -5,12 +5,15 @@
  */
 package vistas;
 
+import factory.Factory;
+
 /**
  *
  * @author Je_pa
  */
 public class Inventario_listar extends javax.swing.JDialog {
 
+    Factory factory;
     /**
      * Creates new form Inventario_listar
      */
@@ -30,11 +33,17 @@ public class Inventario_listar extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_aceptar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
+        btn_atras = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -49,11 +58,23 @@ public class Inventario_listar extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        btn_aceptar.setText("Aceptar");
 
-        jButton2.setText("jButton2");
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cancelarMouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        btn_atras.setText("Atras");
+        btn_atras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_atrasMouseClicked(evt);
+            }
+        });
+
+        btn_actualizar.setText("Actualizar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,11 +86,13 @@ public class Inventario_listar extends javax.swing.JDialog {
                 .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btn_actualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_atras)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btn_cancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btn_aceptar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,14 +102,33 @@ public class Inventario_listar extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_aceptar)
+                    .addComponent(btn_cancelar)
+                    .addComponent(btn_atras)
+                    .addComponent(btn_actualizar))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+         factory = new Factory();
+        Inventario_Menu menu = factory.mainInv(null, true);
+        this.dispose();
+        menu.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btn_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarMouseClicked
+
+    private void btn_atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_atrasMouseClicked
+        factory = new Factory();
+        Inventario_Menu menu = factory.mainInv(null, true);
+        this.dispose();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btn_atrasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -131,9 +173,10 @@ public class Inventario_listar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_atras;
+    private javax.swing.JButton btn_cancelar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
