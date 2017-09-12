@@ -96,8 +96,9 @@ public class Config extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/config pequeño.png"))); // NOI18N
         jLabel6.setText("CONFIGURACION   INICIAL");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 250, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 280, -1));
 
         jPanel2.setBackground(new java.awt.Color(3, 19, 27));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -175,6 +176,7 @@ public class Config extends javax.swing.JDialog {
         BtnCancelar.setToolTipText("Cancelar modificacion");
         BtnCancelar.setBorder(null);
         BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCancelar.setFocusPainted(false);
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
@@ -189,6 +191,7 @@ public class Config extends javax.swing.JDialog {
         BtnGuardar.setToolTipText("Guardar cambios");
         BtnGuardar.setBorder(null);
         BtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnGuardar.setFocusPainted(false);
         BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGuardarActionPerformed(evt);

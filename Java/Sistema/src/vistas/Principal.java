@@ -7,6 +7,8 @@ package vistas;
 
 
 import factory.Factory;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Utilidades;
 
@@ -22,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
+        setIconImage(new ImageIcon(getClass().getResource("/Recursos/imagenes/icono2.png")).getImage());
+        
         factory = new Factory();
         Configuracion config = factory.configuraciones();
         
@@ -61,13 +65,16 @@ public class Principal extends javax.swing.JFrame {
         BtnAcercaDe = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        LbUsuario = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        MenuBar = new javax.swing.JMenuBar();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1087, 706));
+        setTitle("Sistema de ventas");
+        setMinimumSize(new java.awt.Dimension(1090, 690));
 
         jPanel1.setBackground(new java.awt.Color(35, 48, 54));
         jPanel1.setMinimumSize(new java.awt.Dimension(1050, 630));
@@ -75,11 +82,22 @@ public class Principal extends javax.swing.JFrame {
         BtnConfiguracion.setBackground(new java.awt.Color(3, 19, 27));
         BtnConfiguracion.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
-        BtnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/config.png"))); // NOI18N
+        BtnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ajustes50.png"))); // NOI18N
         BtnConfiguracion.setText("CONFIGURACION");
         BtnConfiguracion.setBorder(null);
         BtnConfiguracion.setBorderPainted(false);
-        BtnConfiguracion.setIconTextGap(5);
+        BtnConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnConfiguracion.setFocusPainted(false);
+        BtnConfiguracion.setIconTextGap(30);
+        BtnConfiguracion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ajustes.png"))); // NOI18N
+        BtnConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnConfiguracionMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnConfiguracionMousePressed(evt);
+            }
+        });
         BtnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnConfiguracionActionPerformed(evt);
@@ -89,10 +107,14 @@ public class Principal extends javax.swing.JFrame {
         BtnBuscar.setBackground(new java.awt.Color(3, 19, 27));
         BtnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/buscar1.png"))); // NOI18N
+        BtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/buscar50.png"))); // NOI18N
         BtnBuscar.setText("BUSCAR");
         BtnBuscar.setBorder(null);
         BtnBuscar.setBorderPainted(false);
+        BtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnBuscar.setFocusPainted(false);
+        BtnBuscar.setIconTextGap(30);
+        BtnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/buscar1.png"))); // NOI18N
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
@@ -102,31 +124,48 @@ public class Principal extends javax.swing.JFrame {
         BtnInventario.setBackground(new java.awt.Color(3, 19, 27));
         BtnInventario.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnInventario.setForeground(new java.awt.Color(255, 255, 255));
-        BtnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/inventario.png"))); // NOI18N
+        BtnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/inventario50.png"))); // NOI18N
         BtnInventario.setText("INVENTARIO");
         BtnInventario.setBorder(null);
         BtnInventario.setBorderPainted(false);
-        BtnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnInventarioMousePressed(evt);
+        BtnInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnInventario.setFocusPainted(false);
+        BtnInventario.setIconTextGap(30);
+        BtnInventario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/inventario.png"))); // NOI18N
+        BtnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInventarioActionPerformed(evt);
             }
         });
 
         BtnUsuarios.setBackground(new java.awt.Color(3, 19, 27));
         BtnUsuarios.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        BtnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/usuarios.png"))); // NOI18N
+        BtnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/usuarios50.png"))); // NOI18N
         BtnUsuarios.setText("USUARIOS");
         BtnUsuarios.setBorder(null);
         BtnUsuarios.setBorderPainted(false);
+        BtnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnUsuarios.setFocusPainted(false);
+        BtnUsuarios.setIconTextGap(30);
+        BtnUsuarios.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/usuarios.png"))); // NOI18N
+        BtnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUsuariosActionPerformed(evt);
+            }
+        });
 
         BtnCarrito.setBackground(new java.awt.Color(3, 19, 27));
         BtnCarrito.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnCarrito.setForeground(new java.awt.Color(255, 255, 255));
-        BtnCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vender.png"))); // NOI18N
+        BtnCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vender50.png"))); // NOI18N
         BtnCarrito.setText("INICIAR VENTA");
         BtnCarrito.setBorder(null);
         BtnCarrito.setBorderPainted(false);
+        BtnCarrito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCarrito.setFocusPainted(false);
+        BtnCarrito.setIconTextGap(30);
+        BtnCarrito.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vender.png"))); // NOI18N
         BtnCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCarritoActionPerformed(evt);
@@ -136,19 +175,27 @@ public class Principal extends javax.swing.JFrame {
         BtnReportes.setBackground(new java.awt.Color(3, 19, 27));
         BtnReportes.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnReportes.setForeground(new java.awt.Color(255, 255, 255));
-        BtnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/report.png"))); // NOI18N
+        BtnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/report50.png"))); // NOI18N
         BtnReportes.setText("REPORTES");
         BtnReportes.setBorder(null);
         BtnReportes.setBorderPainted(false);
+        BtnReportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnReportes.setFocusPainted(false);
+        BtnReportes.setIconTextGap(30);
+        BtnReportes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/report.png"))); // NOI18N
 
         BtnAyuda.setBackground(new java.awt.Color(3, 19, 27));
         BtnAyuda.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnAyuda.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ayuda.png"))); // NOI18N
+        BtnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ayuda50.png"))); // NOI18N
         BtnAyuda.setText("AYUDA");
         BtnAyuda.setToolTipText("");
         BtnAyuda.setBorder(null);
         BtnAyuda.setBorderPainted(false);
+        BtnAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAyuda.setFocusPainted(false);
+        BtnAyuda.setIconTextGap(30);
+        BtnAyuda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ayuda.png"))); // NOI18N
 
         jButton8.setBackground(new java.awt.Color(3, 19, 27));
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -156,43 +203,47 @@ public class Principal extends javax.swing.JFrame {
         jButton8.setText("[POR ASIGNAR]");
         jButton8.setBorder(null);
         jButton8.setBorderPainted(false);
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton8.setFocusPainted(false);
 
         BtnAcercaDe.setBackground(new java.awt.Color(3, 19, 27));
         BtnAcercaDe.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         BtnAcercaDe.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/dev.png"))); // NOI18N
+        BtnAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/dev50.png"))); // NOI18N
         BtnAcercaDe.setText("ACERCA DE");
         BtnAcercaDe.setBorder(null);
         BtnAcercaDe.setBorderPainted(false);
+        BtnAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAcercaDe.setFocusPainted(false);
+        BtnAcercaDe.setIconTextGap(30);
+        BtnAcercaDe.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/dev.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(3, 19, 27));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("[NOMBRE DE EMPRESA] | SISTEMA DE VENTAS");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("[NOMBRE DE EMPRESA] | SISTEMA DE GESTION DE VENTAS");
 
-        LbUsuario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        LbUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        LbUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        LbUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/user.png"))); // NOI18N
-        LbUsuario.setText("NOMBRE DE USUARIO + TIPO DE USUARIO");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/segundoIcono.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(333, 333, 333)
-                .addComponent(LbUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(159, 159, 159)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(76, 76, 76)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                .addComponent(LbUsuario))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(3, 19, 27));
@@ -223,15 +274,15 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnConfiguracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnConfiguracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnInventario, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                     .addComponent(BtnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BtnAcercaDe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -245,27 +296,57 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                     .addComponent(BtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(BtnCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnAyuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnAyuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BtnAcercaDe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(63, 63, 63)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        MenuBar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        MenuBar.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
-        MenuBar.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        setJMenuBar(MenuBar);
+        jMenuBar1.setBackground(new java.awt.Color(3, 19, 27));
+        jMenuBar1.setBorder(null);
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setAlignmentX(70.0F);
+        jMenuBar1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+
+        jMenu1.setBackground(new java.awt.Color(3, 19, 27));
+        jMenu1.setBorder(null);
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/user.png"))); // NOI18N
+        jMenu1.setText("NOMBRE DE USUARIO + TIPO DE USUARIO");
+        jMenu1.setToolTipText("su usuario");
+        jMenu1.setBorderPainted(false);
+        jMenu1.setContentAreaFilled(false);
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jMenu1.setOpaque(false);
+
+        jMenuItem1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/escoba.png"))); // NOI18N
+        jMenuItem1.setText("CERRAR SESION                      ");
+        jMenuItem1.setToolTipText("Cerrar sesion y salir");
+        jMenuItem1.setBorder(null);
+        jMenuItem1.setBorderPainted(false);
+        jMenuItem1.setContentAreaFilled(false);
+        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,7 +356,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -291,12 +372,21 @@ public class Principal extends javax.swing.JFrame {
         bus.setVisible(true);
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
+    private void BtnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInventarioActionPerformed
+        Opciones_inventario opIn = new Opciones_inventario(this,true);
+        opIn.setVisible(true);
+    }//GEN-LAST:event_BtnInventarioActionPerformed
+
     private void BtnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCarritoActionPerformed
 
         Carrito car = new Carrito(this,true);
         car.setVisible(true);
     }//GEN-LAST:event_BtnCarritoActionPerformed
 
+    private void BtnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuariosActionPerformed
+        Opciones_usuarios opUsu= new Opciones_usuarios(this,true);
+        opUsu.setVisible(true);
+    }//GEN-LAST:event_BtnUsuariosActionPerformed
     private void BtnInventarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnInventarioMousePressed
         factory = new Factory();
         Inventario_Menu menu = factory.mainInv(this, true);
@@ -348,11 +438,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BtnInventario;
     private javax.swing.JButton BtnReportes;
     private javax.swing.JButton BtnUsuarios;
-    private javax.swing.JLabel LbUsuario;
-    private javax.swing.JMenuBar MenuBar;
     private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

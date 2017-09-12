@@ -178,6 +178,57 @@ public class Conexion {
         this.getSt().executeUpdate();
        
     }
+    
+    public void Insert(String tabla, String valores, String key, String campos_upd) throws SQLException{
+        
+       if(exists(tabla, key)){
+           Update(tabla, campos_upd, key); 
+       }else{
+           String sql = "INSERT INTO "+tabla+" VALUES ("+valores+")";
+           this.st = getConexion().prepareStatement(sql);
+           this.st.executeUpdate();
+       } 
+
+    }
+        
+        public void Update(String tabla, String campos_upd, String condicion){
+
+        try {
+            String SQL = "UPDATE "+tabla+" SET "+campos_upd+" WHERE "+condicion+";";
+            System.out.println(SQL);
+            this.st = getConexion().prepareStatement(SQL);
+            this.st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public boolean exists(String tabla, String id){
+        boolean exists = false;
+        
+        try {
+            ResultSet rs = Select("COUNT(*)",tabla,id);
+
+            rs.first();
+            exists = rs.getBoolean(1);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return exists;
+    }
+    
+    public void vaciarCarrito(){
+        try {
+            String sql = "TRUNCATE shopping_cart";
+           this.st = getConexion().prepareStatement(sql);
+           this.st.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
       
     
 }

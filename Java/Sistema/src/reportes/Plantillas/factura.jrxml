@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bc698c75-3ea0-486c-8a02-7ee19a5341f5">
-	<property name="ireport.zoom" value="8.954302432552518"/>
-	<property name="ireport.x" value="4773"/>
-	<property name="ireport.y" value="1829"/>
+	<property name="ireport.zoom" value="1.2100000000000186"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="n_factura" class="java.lang.String"/>
 	<parameter name="name_cliente" class="java.lang.String"/>
 	<parameter name="fecha" class="java.lang.String"/>
 	<parameter name="direccion" class="java.lang.String"/>
 	<parameter name="nit" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[Select producto, cantidad, precio FROM prueba.shopping_cart;]]>
+		<![CDATA[Select producto, cantidad, precio FROM shopping_cart;]]>
 	</queryString>
 	<field name="producto" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
