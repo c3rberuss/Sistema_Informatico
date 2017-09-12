@@ -5,14 +5,12 @@
  */
 package vistas;
 
-import factory.Factory;
-
 /**
  *
  * @author Je_pa
  */
 public class Inventario_modificar extends javax.swing.JDialog {
-    Factory factory;
+
     /**
      * Creates new form Inventario_modificar
      */
@@ -37,22 +35,15 @@ public class Inventario_modificar extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        btn_aceptar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btn_cancelar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btn_atras = new javax.swing.JButton();
-        btn_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         jLabel3.setText("jLabel3");
 
@@ -68,16 +59,11 @@ public class Inventario_modificar extends javax.swing.JDialog {
 
         jTextField1.setText("jTextField1");
 
-        btn_aceptar.setText("Aceptar");
+        jButton1.setText("jButton1");
 
         jLabel1.setText("jLabel1");
 
-        btn_cancelar.setText("Cancelar");
-        btn_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_cancelarMouseClicked(evt);
-            }
-        });
+        jButton2.setText("jButton2");
 
         jLabel2.setText("jLabel2");
 
@@ -95,15 +81,6 @@ public class Inventario_modificar extends javax.swing.JDialog {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        btn_atras.setText("Atras");
-        btn_atras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_atrasMouseClicked(evt);
-            }
-        });
-
-        btn_actualizar.setText("Actualizar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,13 +107,9 @@ public class Inventario_modificar extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_actualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_atras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_cancelar)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_aceptar))
+                        .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))))
@@ -171,33 +144,13 @@ public class Inventario_modificar extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_aceptar)
-                    .addComponent(btn_cancelar)
-                    .addComponent(btn_atras)
-                    .addComponent(btn_actualizar))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-         factory = new Factory();
-        Inventario_Menu menu = factory.mainInv(null, true);
-        this.dispose();
-        menu.setVisible(true);
-    }//GEN-LAST:event_formWindowClosing
-
-    private void btn_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelarMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btn_cancelarMouseClicked
-
-    private void btn_atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_atrasMouseClicked
-      factory = new Factory();
-        Inventario_Menu menu = factory.mainInv(null, true);
-        this.dispose();
-        menu.setVisible(true);
-    }//GEN-LAST:event_btn_atrasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -242,10 +195,8 @@ public class Inventario_modificar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_aceptar;
-    private javax.swing.JButton btn_actualizar;
-    private javax.swing.JButton btn_atras;
-    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

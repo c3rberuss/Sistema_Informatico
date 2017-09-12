@@ -99,8 +99,9 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/buscar pequeño.png"))); // NOI18N
         jLabel1.setText("BÚSQUEDA");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 60));
 
@@ -115,6 +116,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         BtnCancelar.setToolTipText("Cerrar panel de busqueda");
         BtnCancelar.setBorder(null);
         BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCancelar.setFocusPainted(false);
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
