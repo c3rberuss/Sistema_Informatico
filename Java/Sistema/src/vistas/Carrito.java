@@ -6,6 +6,7 @@
 package vistas;
 
 import com.sun.glass.events.KeyEvent;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Reportes;
+import servicios.Utilidades;
 import servicios.Ventana;
 import sistema.Sistema;
 
@@ -390,7 +392,11 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
-        report.factura("000001", "Jonatan Jsoué Bermúdez Amaya", "1120-155-15855-1", "10-09-2017", "Final 2 Calle Oriente, Barrio la Parroquia");
+        try {
+            report.factura("000001", "Jonatan Jsoué Bermúdez Amaya", "1120-155-15855-1", Utilidades.getDate(), "Final 2 Calle Oriente, Barrio la Parroquia");
+        } catch (IOException ex) {
+            Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BtnFacturarActionPerformed
 
     private void elimnarItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimnarItemMousePressed

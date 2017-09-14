@@ -18,8 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import sistema.Sistema;
 import vistas.Busqueda;
 import vistas.Config;
 
@@ -73,7 +73,7 @@ public final class Utilidades {
         this.s = s;
     }
     
-    public boolean isInicialized(){
+    public boolean isInicialized(Conexion con){
         
         boolean success = false;
         String sql;
@@ -105,7 +105,7 @@ public final class Utilidades {
                         getVent_config().setVisible(true);
 
                         sql = "CREATE DATABASE Sistema_DB;";
-                        setS(getConexion().getConexion().createStatement());
+                        setS(con.getConexion().createStatement());
                         getS().executeUpdate(sql);
                         sql = "USE Sistema_DB;";
                         getS().executeUpdate(sql);
@@ -121,10 +121,19 @@ public final class Utilidades {
                                 + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;";
 
                         getS().executeUpdate(sql);
+                        
+                        sql =   "INSERT INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`,"
+                                + " `type_usr`, `first_name_usr`, `second_name_usr`, "
+                                + "`first_last_name_usr`, `second_last_name_usr`) "
+                                + "VALUES(1, 'Administrador', '0000', 'Admin', "
+                                + "'Administrador', 'Administrador', 'Administrador', "
+                                + "'Administrador');";
+                        
+                        getS().executeUpdate(sql);
+                        
                         getConfiguracion().setConfProperty("data.db", "Sistema_DB");
                         getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
-                        getConexion().closeConexion();
                         
                         break;
                     case 1:
@@ -136,7 +145,7 @@ public final class Utilidades {
                         String db = getConfiguracion().getConfProperty("data.db");
                         
                         sql = "USE "+db+";";
-                        setS(getConexion().getConexion().createStatement());
+                        setS(con.getConexion().createStatement());
                         getS().executeUpdate(sql);
 
                         sql=    "CREATE TABLE `"+db+"`.`users` ( "
@@ -147,7 +156,13 @@ public final class Utilidades {
                                 + "NOT NULL , `second_name_usr` VARCHAR(20) NOT NULL , "
                                 + "`first_last_name_usr` VARCHAR(20) NOT NULL , "
                                 + "`second_last_name_usr` VARCHAR(20) NOT NULL , "
-                                + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;";
+                                + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;"
+                                + "INSERT INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`,"
+                                + " `type_usr`, `first_name_usr`, `second_name_usr`, "
+                                + "`first_last_name_usr`, `second_last_name_usr`) "
+                                + "VALUES(1, 'Administrador', '0000', 'Admin', "
+                                + "'Administrador', 'Administrador', 'Administrador', "
+                                + "'Administrador');";
 
                         getS().executeUpdate(sql);
                         getConfiguracion().setConfProperty("data.init", "true");
@@ -178,9 +193,9 @@ public final class Utilidades {
                 String osName = System.getProperty("os.name").toLowerCase();
 
                 if(osName.equals("linux")){
-                    ruta = "/home/"+System.getProperty("user.name")+"/config.properties";
+                    ruta = Sistema.getRootPath()+"config.properties";
                 }else{
-                    ruta = "C:\\Users\\"+System.getProperty("user.name").toLowerCase()+"\\config.properties";
+                    ruta = Sistema.getRootPath()+"config.properties";
                 }
 
                 File archivo = factory.createFile(ruta);
@@ -251,11 +266,11 @@ public final class Utilidades {
         
     }
     
-    public String generateId(){
+    public static String generateId(){
         return String.valueOf((java.util.UUID.randomUUID().getLeastSignificantBits()*-1)/10000).substring(0, 10);
     }
     
-    public String getDate(){
+    public static String getDate(){
        
         Calendar fecha = new GregorianCalendar();
         int año = fecha.get(Calendar.YEAR);
@@ -264,5 +279,5 @@ public final class Utilidades {
         
         return String.valueOf(dia)+"-"+String.valueOf(mes)+"-"+String.valueOf(año);
     }
-
+    
 }

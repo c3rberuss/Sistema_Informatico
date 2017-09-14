@@ -7,6 +7,7 @@ package vistas;
 
 import factory.Factory;
 import servicios.Configuracion;
+import sistema.Sistema;
 
 /**
  *
@@ -242,6 +243,7 @@ public class Config extends javax.swing.JDialog {
         getConfig().setConfProperty("data.user", this.txtUsuario.getText());
         getConfig().setConfProperty("data.pass", this.txtPass.getText());
         getConfig().setConfProperty("data.db", this.txtDB.getText());
+        Sistema.getCon().setPass(this.txtPass.getText());
         this.dispose();
     }//GEN-LAST:event_BtnGuardarActionPerformed
 

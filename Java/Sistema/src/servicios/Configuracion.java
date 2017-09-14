@@ -6,7 +6,6 @@
 package servicios;
 
 import factory.Factory;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,6 +15,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sistema.Sistema;
 
 /**
  *
@@ -38,10 +38,11 @@ public class Configuracion {
         String osName = System.getProperty("os.name").toLowerCase();
 
         if(osName.equals("linux")){
-            setConfigFilePath("/home/"+System.getProperty("user.name")+"/config.properties");
+            setConfigFilePath(Sistema.getRootPath()+"config.properties");
         }else{
-             setConfigFilePath("C:\\Users\\"+System.getProperty("user.name").toLowerCase()+"\\config.properties");
+            setConfigFilePath(Sistema.getRootPath()+"config.properties");  
         }
+        
         
        setConfigProp(factory.properties());
        input = null;
@@ -243,6 +244,14 @@ public class Configuracion {
             System.out.println("[" + i + "] " + ret[i][0] + " => " + ret[i][1]);
         }
         System.out.print("\n");
+    }
+    
+    public static String osName(){
+        return System.getProperty("os.name").toLowerCase();
+    }
+    
+    public static String osUser(){
+        return System.getProperty("user.name");
     }
     
 }

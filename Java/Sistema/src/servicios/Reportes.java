@@ -5,8 +5,10 @@
  */
 package servicios;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -15,7 +17,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import sistema.Sistema;
 
 /**
@@ -24,7 +25,7 @@ import sistema.Sistema;
  */
 public class Reportes {
     
-    public void factura(String nfactura, String cliente, String nit, String fecha, String direccion){
+    public void factura(String nfactura, String cliente, String nit, String fecha, String direccion) throws IOException{
         
         
         try {
@@ -41,14 +42,13 @@ public class Reportes {
             
             JRExporter exporter = new JRPdfExporter();
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-            exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File("reportePDF.pdf"));
+            exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(Sistema.getRootPath()+"factura.pdf"));
             exporter.exportReport();
             System.out.println("Ya está guardado");
             
-            JasperViewer viewer = new JasperViewer(print);
-            viewer.setTitle("Factura");
-            viewer.setVisible(true);
-            System.out.println("Ya está listo para ver");
+            Impresion.imprimir(Sistema.getRootPath()+"factura.pdf");
+            
+            JOptionPane.showMessageDialog(null, "Imprimiendo Factura");
             
         } catch (JRException e) {
             System.out.println(e.getMessage());
