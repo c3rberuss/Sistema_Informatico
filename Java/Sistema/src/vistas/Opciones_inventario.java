@@ -14,7 +14,7 @@ public class Opciones_inventario extends javax.swing.JDialog {
     /**
      * Creates new form Opciones_inventario
      */
-    public Opciones_inventario(java.awt.Frame parent, boolean modal) {
+    public Opciones_inventario(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,10 +34,11 @@ public class Opciones_inventario extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         BtnCancelar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BtnLISTARP = new javax.swing.JButton();
+        BtnMODIFICARP = new javax.swing.JButton();
+        BtnAGREGARP = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        BtnELIMINARP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -74,59 +75,82 @@ public class Opciones_inventario extends javax.swing.JDialog {
         });
         jPanel2.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 60, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 580, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 580, 40));
 
         jPanel3.setBackground(new java.awt.Color(35, 48, 54));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/delPequenho.png"))); // NOI18N
-        jButton1.setText("ELIMINAR PRODUCTOS");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setIconTextGap(10);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/del.png"))); // NOI18N
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 170, 90));
+        BtnLISTARP.setBackground(new java.awt.Color(0, 0, 0));
+        BtnLISTARP.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnLISTARP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnLISTARP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarPequenho.png"))); // NOI18N
+        BtnLISTARP.setText("LISTAR PRODUCTOS");
+        BtnLISTARP.setBorder(null);
+        BtnLISTARP.setBorderPainted(false);
+        BtnLISTARP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnLISTARP.setFocusPainted(false);
+        BtnLISTARP.setIconTextGap(10);
+        BtnLISTARP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listar.png"))); // NOI18N
+        jPanel3.add(BtnLISTARP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ediPequenho.png"))); // NOI18N
-        jButton2.setText("MODIFICAR INVENTARIO");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setIconTextGap(10);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/edi.png"))); // NOI18N
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 170, 90));
+        BtnMODIFICARP.setBackground(new java.awt.Color(0, 102, 102));
+        BtnMODIFICARP.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnMODIFICARP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnMODIFICARP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ediPequenho.png"))); // NOI18N
+        BtnMODIFICARP.setText("MODIFICAR INVENTARIO");
+        BtnMODIFICARP.setBorder(null);
+        BtnMODIFICARP.setBorderPainted(false);
+        BtnMODIFICARP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnMODIFICARP.setFocusPainted(false);
+        BtnMODIFICARP.setIconTextGap(10);
+        BtnMODIFICARP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/edi.png"))); // NOI18N
+        BtnMODIFICARP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMODIFICARPActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnMODIFICARP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 180, 90));
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 0));
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/addPequeño.png"))); // NOI18N
-        jButton3.setText("AGREGAR PRODUCTOS");
-        jButton3.setActionCommand("");
-        jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusPainted(false);
-        jButton3.setIconTextGap(10);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/add.png"))); // NOI18N
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 180, 90));
+        BtnAGREGARP.setBackground(new java.awt.Color(0, 102, 0));
+        BtnAGREGARP.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnAGREGARP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAGREGARP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/addPequeño.png"))); // NOI18N
+        BtnAGREGARP.setText("AGREGAR PRODUCTOS");
+        BtnAGREGARP.setActionCommand("");
+        BtnAGREGARP.setBorder(null);
+        BtnAGREGARP.setBorderPainted(false);
+        BtnAGREGARP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAGREGARP.setFocusPainted(false);
+        BtnAGREGARP.setIconTextGap(10);
+        BtnAGREGARP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/add.png"))); // NOI18N
+        BtnAGREGARP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAGREGARPActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnAGREGARP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, 90));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿QUE DESEA HACER?");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 580, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 260));
+        BtnELIMINARP.setBackground(new java.awt.Color(153, 0, 0));
+        BtnELIMINARP.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnELIMINARP.setForeground(new java.awt.Color(255, 255, 255));
+        BtnELIMINARP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/delPequenho.png"))); // NOI18N
+        BtnELIMINARP.setText("ELIMINAR PRODUCTOS");
+        BtnELIMINARP.setBorder(null);
+        BtnELIMINARP.setBorderPainted(false);
+        BtnELIMINARP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnELIMINARP.setFocusPainted(false);
+        BtnELIMINARP.setIconTextGap(10);
+        BtnELIMINARP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/del.png"))); // NOI18N
+        jPanel3.add(BtnELIMINARP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 180, 90));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,6 +159,18 @@ public class Opciones_inventario extends javax.swing.JDialog {
 
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void BtnAGREGARPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAGREGARPActionPerformed
+        this.dispose();
+        AgregarProductos AgregarP = new AgregarProductos(new javax.swing.JDialog(),true);
+        AgregarP.setVisible(true);
+    }//GEN-LAST:event_BtnAGREGARPActionPerformed
+
+    private void BtnMODIFICARPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMODIFICARPActionPerformed
+        this.dispose();
+        ModificarProductos ModificarP = new ModificarProductos(new javax.swing.JDialog(),true);
+        ModificarP.setVisible(true);
+    }//GEN-LAST:event_BtnMODIFICARPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +202,7 @@ public class Opciones_inventario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Opciones_inventario dialog = new Opciones_inventario(new javax.swing.JFrame(), true);
+                Opciones_inventario dialog = new Opciones_inventario(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -179,10 +215,11 @@ public class Opciones_inventario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAGREGARP;
     private javax.swing.JButton BtnCancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BtnELIMINARP;
+    private javax.swing.JButton BtnLISTARP;
+    private javax.swing.JButton BtnMODIFICARP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

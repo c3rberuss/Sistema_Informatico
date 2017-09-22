@@ -14,7 +14,7 @@ public class Opciones_usuarios extends javax.swing.JDialog {
     /**
      * Creates new form Opciones_usuarios
      */
-    public Opciones_usuarios(java.awt.Frame parent, boolean modal) {
+    public Opciones_usuarios(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,10 +34,11 @@ public class Opciones_usuarios extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         BtnCancelar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        BtnAGREGARU = new javax.swing.JButton();
+        BtnMODIFICARU = new javax.swing.JButton();
+        BtnELIMINARU = new javax.swing.JButton();
+        BtnLISTARU = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -74,59 +75,82 @@ public class Opciones_usuarios extends javax.swing.JDialog {
         });
         jPanel2.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 60, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 580, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 580, 40));
 
         jPanel3.setBackground(new java.awt.Color(35, 48, 54));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/delPequenho.png"))); // NOI18N
-        jButton1.setText("ELIMINAR USUARIO");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setIconTextGap(10);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/del.png"))); // NOI18N
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 170, 90));
-
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ediPequenho.png"))); // NOI18N
-        jButton2.setText("MODIFICAR USUARIO");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setIconTextGap(10);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/edi.png"))); // NOI18N
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 170, 90));
-
-        jButton3.setBackground(new java.awt.Color(0, 102, 0));
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/addPequeño.png"))); // NOI18N
-        jButton3.setText("AGREGAR USUARIO");
-        jButton3.setActionCommand("");
-        jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusPainted(false);
-        jButton3.setIconTextGap(10);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/add.png"))); // NOI18N
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 180, 90));
-
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿QUE DESEA HACER?");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 580, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 260));
+        BtnAGREGARU.setBackground(new java.awt.Color(0, 102, 0));
+        BtnAGREGARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnAGREGARU.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAGREGARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/addPequeño.png"))); // NOI18N
+        BtnAGREGARU.setText("AGREGAR USUARIOS");
+        BtnAGREGARU.setActionCommand("");
+        BtnAGREGARU.setBorder(null);
+        BtnAGREGARU.setBorderPainted(false);
+        BtnAGREGARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAGREGARU.setFocusPainted(false);
+        BtnAGREGARU.setIconTextGap(10);
+        BtnAGREGARU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/add.png"))); // NOI18N
+        BtnAGREGARU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAGREGARUActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnAGREGARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, 90));
+
+        BtnMODIFICARU.setBackground(new java.awt.Color(0, 102, 102));
+        BtnMODIFICARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnMODIFICARU.setForeground(new java.awt.Color(255, 255, 255));
+        BtnMODIFICARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ediPequenho.png"))); // NOI18N
+        BtnMODIFICARU.setText("MODIFICAR USUARIOS");
+        BtnMODIFICARU.setBorder(null);
+        BtnMODIFICARU.setBorderPainted(false);
+        BtnMODIFICARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnMODIFICARU.setFocusPainted(false);
+        BtnMODIFICARU.setIconTextGap(10);
+        BtnMODIFICARU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/edi.png"))); // NOI18N
+        BtnMODIFICARU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMODIFICARUActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnMODIFICARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 180, 90));
+
+        BtnELIMINARU.setBackground(new java.awt.Color(153, 0, 0));
+        BtnELIMINARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnELIMINARU.setForeground(new java.awt.Color(255, 255, 255));
+        BtnELIMINARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/delPequenho.png"))); // NOI18N
+        BtnELIMINARU.setText("ELIMINAR USUARIOS");
+        BtnELIMINARU.setBorder(null);
+        BtnELIMINARU.setBorderPainted(false);
+        BtnELIMINARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnELIMINARU.setFocusPainted(false);
+        BtnELIMINARU.setIconTextGap(10);
+        BtnELIMINARU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/del.png"))); // NOI18N
+        jPanel3.add(BtnELIMINARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 180, 90));
+
+        BtnLISTARU.setBackground(new java.awt.Color(0, 0, 0));
+        BtnLISTARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnLISTARU.setForeground(new java.awt.Color(255, 255, 255));
+        BtnLISTARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarPequenho.png"))); // NOI18N
+        BtnLISTARU.setText("LISTAR USUARIOS");
+        BtnLISTARU.setBorder(null);
+        BtnLISTARU.setBorderPainted(false);
+        BtnLISTARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnLISTARU.setFocusPainted(false);
+        BtnLISTARU.setIconTextGap(10);
+        BtnLISTARU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listar.png"))); // NOI18N
+        jPanel3.add(BtnLISTARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,6 +159,18 @@ public class Opciones_usuarios extends javax.swing.JDialog {
 
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void BtnAGREGARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAGREGARUActionPerformed
+        //this.dispose();
+        AgregarUsuarios AgregarU = new AgregarUsuarios(new javax.swing.JDialog(),true);
+        AgregarU.setVisible(true);
+    }//GEN-LAST:event_BtnAGREGARUActionPerformed
+
+    private void BtnMODIFICARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMODIFICARUActionPerformed
+        this.dispose();
+        ModificarUsuarios ModificarU = new ModificarUsuarios(new javax.swing.JDialog(),true);
+        ModificarU.setVisible(true);
+    }//GEN-LAST:event_BtnMODIFICARUActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +202,7 @@ public class Opciones_usuarios extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Opciones_usuarios dialog = new Opciones_usuarios(new javax.swing.JFrame(), true);
+                Opciones_usuarios dialog = new Opciones_usuarios(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -179,10 +215,11 @@ public class Opciones_usuarios extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAGREGARU;
     private javax.swing.JButton BtnCancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BtnELIMINARU;
+    private javax.swing.JButton BtnLISTARU;
+    private javax.swing.JButton BtnMODIFICARU;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

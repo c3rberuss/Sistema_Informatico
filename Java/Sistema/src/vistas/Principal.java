@@ -381,7 +381,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInventarioActionPerformed
-        Opciones_inventario opIn = new Opciones_inventario(this,true);
+        Opciones_inventario opIn = new Opciones_inventario(new javax.swing.JDialog(),true);
         opIn.setVisible(true);
     }//GEN-LAST:event_BtnInventarioActionPerformed
 
@@ -392,7 +392,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCarritoActionPerformed
 
     private void BtnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUsuariosActionPerformed
-        Opciones_usuarios opUsu= new Opciones_usuarios(this,true);
+        Opciones_usuarios opUsu= new Opciones_usuarios(new javax.swing.JDialog(),true);
         opUsu.setVisible(true);
     }//GEN-LAST:event_BtnUsuariosActionPerformed
 
