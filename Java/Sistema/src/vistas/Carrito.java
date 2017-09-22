@@ -295,7 +295,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                         while(rs.next()){
                          this.TxtProducto.setText(rs.getString(2));
                          this.TxtPrecio.setText("10.5");
-                         this.TxtCantidad.setText("5");
+                         this.TxtCantidad.setText("1");
                         }
                         this.setAdd(true);
                         this.TxtCantidad.requestFocus();
