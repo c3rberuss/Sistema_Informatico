@@ -33,7 +33,9 @@ public class Login extends javax.swing.JDialog implements Ventana{
     public Login(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         this.setLocationRelativeTo(null);
-        Sistema.getCon().closeConexion();
+        if(Sistema.getCon().getConexion() != null){
+            Sistema.getCon().closeConexion();
+        }
         try {
             Sistema.setCon(Sistema.getFactory().conexion());
         } catch (ClassNotFoundException | SQLException ex) {
