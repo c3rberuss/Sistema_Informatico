@@ -10,10 +10,15 @@ import servicios.Conexion;
 import factory.Factory;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import servicios.Utilidades;
 import servicios.Ventana;
+import sistema.Sistema;
 
 /**
  *
@@ -82,6 +87,11 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         Resultados = new javax.swing.JTable();
 
         addCartito.setText("Agregar al Carrito");
+        addCartito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addCartitoMousePressed(evt);
+            }
+        });
         MenuFlotante.add(addCartito);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -162,6 +172,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
 
             }
         ));
+        Resultados.setComponentPopupMenu(MenuFlotante);
         Resultados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(Resultados);
 
@@ -198,6 +209,29 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         this.trsFiltro = new TableRowSorter(this.Resultados.getModel());
         this.Resultados.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtBusquedaKeyTyped
+
+    private void addCartitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCartitoMousePressed
+        try {
+            int n = this.Resultados.getSelectedRow();
+            String[] datos = new String[4];
+            datos[0] = (String) this.Resultados.getValueAt(n, 0);
+            datos[1] = (String) this.Resultados.getValueAt(n, 1);
+            datos[2] = "0.50";//(String) this.carro.getValueAt(n, 2);
+            datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
+            
+            System.out.println(datos[0]);
+            System.out.println(datos[1]);
+            System.out.println(datos[2]);
+            System.out.println(datos[3]);
+            
+            Sistema.getCon().Insert("shopping_cart", datos[0]+",'"+datos[1]+"', "+datos[2]+","+datos[3]+", null","id='"+datos[0]+"'", "cantidad=cantidad+"+datos[3]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_addCartitoMousePressed
 
     /**
      * @param args the command line arguments
