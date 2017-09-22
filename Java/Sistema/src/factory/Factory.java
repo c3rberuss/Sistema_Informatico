@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,6 +88,14 @@ public class Factory {
     
     public Reportes generateReport(){
         return new Reportes();
+    }
+    
+    public Usuarios usuarios(){
+        return new Usuarios();
+    }
+    
+    public Conexion conexion() throws ClassNotFoundException, SQLException{
+        return new Conexion();
     }
     
 }

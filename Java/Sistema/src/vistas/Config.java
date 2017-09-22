@@ -6,6 +6,9 @@
 package vistas;
 
 import factory.Factory;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import servicios.Configuracion;
 import sistema.Sistema;
 
@@ -239,10 +242,12 @@ public class Config extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+
+        getConfig().setConfProperty("data.db", this.txtDB.getText());
         getConfig().setConfProperty("data.server", this.txtServer.getText());
         getConfig().setConfProperty("data.user", this.txtUsuario.getText());
         getConfig().setConfProperty("data.pass", this.txtPass.getText());
-        getConfig().setConfProperty("data.db", this.txtDB.getText());
+        Sistema.getCon().setDb(this.txtDB.getText());
         Sistema.getCon().setPass(this.txtPass.getText());
         this.dispose();
     }//GEN-LAST:event_BtnGuardarActionPerformed

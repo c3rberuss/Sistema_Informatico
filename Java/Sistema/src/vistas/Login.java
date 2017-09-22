@@ -6,13 +6,20 @@
 package vistas;
 
 import factory.Factory;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import servicios.Configuracion;
+import servicios.Usuarios;
+import servicios.Ventana;
+import sistema.Sistema;
 
 /**
  *
  * @author josuee
  */
-public class Login extends javax.swing.JDialog {
+public class Login extends javax.swing.JDialog implements Ventana{
 
     /**
      * Creates new form Login
@@ -26,6 +33,12 @@ public class Login extends javax.swing.JDialog {
     public Login(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         this.setLocationRelativeTo(null);
+        Sistema.getCon().closeConexion();
+        try {
+            Sistema.setCon(Sistema.getFactory().conexion());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         factory = new Factory();
     }
@@ -172,11 +185,28 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        setConfig(factory.configuraciones());
-        getConfig().setConfProperty("sesion.user", this.txtUser.getText());
-        getConfig().setConfProperty("sesion.active", "true");
-        getConfig().setConfProperty("sesion.pass", this.txtPass.getText());
-        this.dispose();
+        
+        Usuarios usuarios = Sistema.getFactory().usuarios();
+        try {
+            
+            if(!(this.txtUser.getText().isEmpty() && this.txtPass.getText().isEmpty())){
+                Sistema.getCon().setDb("Sistema_DB");
+                boolean success = usuarios.login(this.txtUser.getText(), this.txtPass.getText());
+                if(success){
+                    setConfig(factory.configuraciones());
+                    getConfig().setConfProperty("sesion.user", this.txtUser.getText());
+                    getConfig().setConfProperty("sesion.active", "true");
+                    getConfig().setConfProperty("sesion.pass", this.txtPass.getText());
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario u Contraseña Incorrectos");
+                    limpiar();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
@@ -241,4 +271,10 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void limpiar() {
+        this.txtPass.setText("");
+        this.txtUser.setText("");
+    }
 }

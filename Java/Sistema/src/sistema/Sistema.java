@@ -42,6 +42,10 @@ public class Sistema {
     public static servicios.Conexion getCon() {
         return con;
     }
+    
+    public static void setCon(servicios.Conexion conn) {
+        con = conn;
+    }
 
     /**
      * @param args the command line arguments
