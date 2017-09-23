@@ -14,9 +14,10 @@ public class EliminarProductos extends javax.swing.JDialog {
     /**
      * Creates new form EliminarProductos
      */
-    public EliminarProductos(java.awt.Frame parent, boolean modal) {
+    public EliminarProductos(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -47,7 +48,7 @@ public class EliminarProductos extends javax.swing.JDialog {
         jSeparator6 = new javax.swing.JSeparator();
         BtnAgregarVistaPrevia = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtProducto2 = new javax.swing.JTextField();
+        txtProducto = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         jSeparator9 = new javax.swing.JSeparator();
@@ -96,8 +97,9 @@ public class EliminarProductos extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("ELIMINAR");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 70, 20));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("ELIMINAR PRODUCTO");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 20));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,7 +167,7 @@ public class EliminarProductos extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(153, 0, 0));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnAgregarVistaPrevia.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarSuperPequenho.png"))); // NOI18N
+        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
         BtnAgregarVistaPrevia.setText("AGREGAR A VISTA PREVIA");
         BtnAgregarVistaPrevia.setToolTipText("Agregar a vista previa");
         BtnAgregarVistaPrevia.setBorder(null);
@@ -183,14 +185,14 @@ public class EliminarProductos extends javax.swing.JDialog {
         jLabel9.setText("NOMBRE DE PRODUCTO:");
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 280, 20));
 
-        txtProducto2.setBackground(new java.awt.Color(3, 19, 27));
-        txtProducto2.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtProducto2.setForeground(new java.awt.Color(255, 255, 255));
-        txtProducto2.setToolTipText("Nombre de productor");
-        txtProducto2.setBorder(null);
-        txtProducto2.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtProducto2.setEnabled(false);
-        jPanel4.add(txtProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
+        txtProducto.setBackground(new java.awt.Color(3, 19, 27));
+        txtProducto.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtProducto.setForeground(new java.awt.Color(255, 255, 255));
+        txtProducto.setToolTipText("Nombre de producto");
+        txtProducto.setBorder(null);
+        txtProducto.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtProducto.setEnabled(false);
+        jPanel4.add(txtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 10));
@@ -249,6 +251,7 @@ public class EliminarProductos extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
         jLabel3.setText("VISTA PREVIA DE PRODUCTOS POR ELIMINAR:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 410, 30));
 
@@ -365,7 +368,7 @@ public class EliminarProductos extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EliminarProductos dialog = new EliminarProductos(new javax.swing.JFrame(), true);
+                EliminarProductos dialog = new EliminarProductos(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -412,6 +415,6 @@ public class EliminarProductos extends javax.swing.JDialog {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtProducto2;
+    private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
 }

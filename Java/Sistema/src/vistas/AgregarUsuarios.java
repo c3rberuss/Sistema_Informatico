@@ -162,7 +162,7 @@ public class AgregarUsuarios extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(0, 102, 0));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnAgregarVistaPrevia.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarSuperPequenho.png"))); // NOI18N
+        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
         BtnAgregarVistaPrevia.setText("AGREGAR A VISTA PREVIA");
         BtnAgregarVistaPrevia.setToolTipText("Agregar a vista previa");
         BtnAgregarVistaPrevia.setBorder(null);
@@ -198,12 +198,13 @@ public class AgregarUsuarios extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ESTAS POR AGREGAR AL SISTEMA:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 410, 30));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 390, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
         jLabel9.setText("ACA PUEDES TENER LA VISTA PREVIA DE LOS USUARIOS QUE");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 410, 20));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 410, 20));
 
         BtnLimpiar.setBackground(new java.awt.Color(0, 0, 0));
         BtnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

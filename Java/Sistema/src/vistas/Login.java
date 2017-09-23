@@ -155,6 +155,7 @@ public class Login extends javax.swing.JDialog implements Ventana{
         btnCerrar.setBorder(null);
         btnCerrar.setBorderPainted(false);
         btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setFocusPainted(false);
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -167,7 +168,7 @@ public class Login extends javax.swing.JDialog implements Ventana{
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("INICIAR SESION");
         btnIngresar.setToolTipText("Iniciar sesion");
-        btnIngresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnIngresar.setBorder(null);
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIngresar.setFocusPainted(false);
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {

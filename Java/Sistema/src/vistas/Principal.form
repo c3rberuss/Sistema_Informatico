@@ -53,7 +53,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Century Gothic" size="14" style="0"/>
+                  <Font name="Century Gothic" size="12" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -134,17 +134,17 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="BtnAyuda" alignment="0" max="32767" attributes="0"/>
                       <Component id="BtnUsuarios" alignment="1" max="32767" attributes="0"/>
-                      <Component id="BtnConfiguracion" alignment="1" pref="374" max="32767" attributes="0"/>
+                      <Component id="BtnConfiguracion" alignment="1" pref="409" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="BtnBuscar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="BtnCarrito" alignment="0" pref="343" max="32767" attributes="0"/>
+                      <Component id="BtnCarrito" alignment="0" pref="378" max="32767" attributes="0"/>
                       <Component id="jButton8" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="BtnInventario" alignment="0" pref="319" max="32767" attributes="0"/>
+                      <Component id="BtnInventario" alignment="0" pref="354" max="32767" attributes="0"/>
                       <Component id="BtnReportes" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="BtnAcercaDe" max="32767" attributes="0"/>
@@ -215,6 +215,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnConfiguracionMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnConfiguracionMouseEntered"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnConfiguracionMousePressed"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnConfiguracionActionPerformed"/>
           </Events>
@@ -469,9 +470,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                      <Component id="jLabel3" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="63" max="-2" attributes="0"/>
+                      <Component id="jLabel3" pref="903" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="59" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
