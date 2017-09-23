@@ -6,6 +6,8 @@
 package vistas;
 
 import factory.Factory;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -200,7 +202,17 @@ public class Login extends javax.swing.JDialog implements Ventana{
                     getConfig().setConfProperty("sesion.user", this.txtUser.getText());
                     getConfig().setConfProperty("sesion.active", "true");
                     getConfig().setConfProperty("sesion.pass", this.txtPass.getText());
+                   
+                    boolean sesion = Boolean.valueOf(getConfig().getConfProperty("sesion.active"));
+                    boolean init = Boolean.valueOf(getConfig().getConfProperty("data.init"));
+                    
+                    if(sesion && init){
+                        Principal prin = factory.ventanaPrincipal(null, false);
+                        prin.setVisible(true);
+                    }
+                    
                     this.dispose();
+                   
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuario u Contraseña Incorrectos");
                     limpiar();

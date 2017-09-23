@@ -22,6 +22,7 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal(){
         initComponents();
+        System.out.println("ventana principal iniciada");
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
         setIconImage(new ImageIcon(getClass().getResource("/Recursos/imagenes/icono2.png")).getImage());
@@ -70,7 +71,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuSesion = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        closeSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de ventas");
@@ -332,17 +333,22 @@ public class Principal extends javax.swing.JFrame {
         menuSesion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         menuSesion.setOpaque(false);
 
-        jMenuItem1.setBackground(new java.awt.Color(0, 0, 0));
-        jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/cerrarSesion.png"))); // NOI18N
-        jMenuItem1.setText("CERRAR SESION Y SALIR                     ");
-        jMenuItem1.setToolTipText("Cerrar sesion y salir");
-        jMenuItem1.setBorder(null);
-        jMenuItem1.setBorderPainted(false);
-        jMenuItem1.setContentAreaFilled(false);
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menuSesion.add(jMenuItem1);
+        closeSesion.setBackground(new java.awt.Color(0, 0, 0));
+        closeSesion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        closeSesion.setForeground(new java.awt.Color(255, 255, 255));
+        closeSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/cerrarSesion.png"))); // NOI18N
+        closeSesion.setText("CERRAR SESION Y SALIR                     ");
+        closeSesion.setToolTipText("Cerrar sesion y salir");
+        closeSesion.setBorder(null);
+        closeSesion.setBorderPainted(false);
+        closeSesion.setContentAreaFilled(false);
+        closeSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeSesionActionPerformed(evt);
+            }
+        });
+        menuSesion.add(closeSesion);
 
         jMenuBar1.add(menuSesion);
 
@@ -396,6 +402,16 @@ public class Principal extends javax.swing.JFrame {
         opUsu.setVisible(true);
     }//GEN-LAST:event_BtnUsuariosActionPerformed
 
+    private void closeSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeSesionActionPerformed
+        Configuracion conf = factory.configuraciones();
+        conf.setConfProperty("sesion.active", "false");
+        Login log = factory.ventanaLogin(null, false);
+        log.setVisible(true);
+        log.setLocationRelativeTo(null);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_closeSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -440,12 +456,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BtnInventario;
     private javax.swing.JButton BtnReportes;
     private javax.swing.JButton BtnUsuarios;
+    private javax.swing.JMenuItem closeSesion;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
