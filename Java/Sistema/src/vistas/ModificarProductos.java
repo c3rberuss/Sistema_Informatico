@@ -162,7 +162,7 @@ public class ModificarProductos extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(0, 102, 102));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnAgregarVistaPrevia.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
+        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarSuperPequenho.png"))); // NOI18N
         BtnAgregarVistaPrevia.setText("AGREGAR A VISTA PREVIA");
         BtnAgregarVistaPrevia.setToolTipText("Agregar a vista previa");
         BtnAgregarVistaPrevia.setBorder(null);
@@ -245,8 +245,7 @@ public class ModificarProductos extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
-        jLabel3.setText("VISTA PREVIA DE LOS PRODUCTOS POR MODIFICAR:");
+        jLabel3.setText("VISTA PREVIA DE PRODUCTOS MODIFICADOS:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 410, 30));
 
         BtnLimpiar.setBackground(new java.awt.Color(0, 0, 0));

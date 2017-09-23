@@ -135,11 +135,6 @@ public class Opciones_usuarios extends javax.swing.JDialog {
         BtnELIMINARU.setFocusPainted(false);
         BtnELIMINARU.setIconTextGap(10);
         BtnELIMINARU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/del.png"))); // NOI18N
-        BtnELIMINARU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnELIMINARUActionPerformed(evt);
-            }
-        });
         jPanel3.add(BtnELIMINARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 180, 90));
 
         BtnLISTARU.setBackground(new java.awt.Color(0, 0, 0));
@@ -172,15 +167,10 @@ public class Opciones_usuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAGREGARUActionPerformed
 
     private void BtnMODIFICARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMODIFICARUActionPerformed
-        //this.dispose();
+        this.dispose();
         ModificarUsuarios ModificarU = new ModificarUsuarios(new javax.swing.JDialog(),true);
         ModificarU.setVisible(true);
     }//GEN-LAST:event_BtnMODIFICARUActionPerformed
-
-    private void BtnELIMINARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnELIMINARUActionPerformed
-        EliminarUsuario EliminarU = new EliminarUsuario (new javax.swing.JDialog(),true);
-        EliminarU.setVisible(true);
-    }//GEN-LAST:event_BtnELIMINARUActionPerformed
 
     /**
      * @param args the command line arguments

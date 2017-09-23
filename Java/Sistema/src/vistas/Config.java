@@ -111,7 +111,7 @@ public class Config extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 9)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("TODOS LOS DERECHOS RESERVADOS | 2017");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 200, 20));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 20));
 
         jPanel3.setBackground(new java.awt.Color(35, 48, 54));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));

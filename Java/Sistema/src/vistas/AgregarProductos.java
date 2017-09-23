@@ -54,10 +54,9 @@ public class AgregarProductos extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductosAgregados = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         BtnLimpiar = new javax.swing.JButton();
         BtnAgregar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         BtnCerrar = new javax.swing.JButton();
 
@@ -179,7 +178,7 @@ public class AgregarProductos extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(0, 102, 0));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnAgregarVistaPrevia.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
+        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarSuperPequenho.png"))); // NOI18N
         BtnAgregarVistaPrevia.setText("AGREGAR A VISTA PREVIA");
         BtnAgregarVistaPrevia.setToolTipText("Agregar a vista previa");
         BtnAgregarVistaPrevia.setBorder(null);
@@ -211,6 +210,11 @@ public class AgregarProductos extends javax.swing.JDialog {
         jScrollPane1.setViewportView(ProductosAgregados);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 420, 300));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("VISTA PREVIA DE PRODUCTOS:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 410, 30));
 
         BtnLimpiar.setBackground(new java.awt.Color(0, 0, 0));
         BtnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -248,17 +252,6 @@ public class AgregarProductos extends javax.swing.JDialog {
             }
         });
         jPanel3.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, 170, 30));
-
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ESTAS POR AGREGAR AL INVENTARIO:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 390, 30));
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
-        jLabel9.setText("ACA PUEDES TENER LA VISTA PREVIA DE LOS PRODUCTOS QUE");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 410, 20));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, 460));
 
@@ -364,7 +357,6 @@ public class AgregarProductos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
