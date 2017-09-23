@@ -407,8 +407,7 @@ public class Principal extends javax.swing.JFrame {
         conf.setConfProperty("sesion.active", "false");
         Login log = factory.ventanaLogin(null, false);
         log.setVisible(true);
-        log.setLocationRelativeTo(null);
-        
+        log.setLocationRelativeTo(null);  
         this.setVisible(false);
     }//GEN-LAST:event_closeSesionActionPerformed
 
