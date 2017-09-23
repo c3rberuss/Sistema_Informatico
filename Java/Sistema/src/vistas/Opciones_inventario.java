@@ -148,6 +148,11 @@ public class Opciones_inventario extends javax.swing.JDialog {
         BtnELIMINARP.setFocusPainted(false);
         BtnELIMINARP.setIconTextGap(10);
         BtnELIMINARP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/del.png"))); // NOI18N
+        BtnELIMINARP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnELIMINARPActionPerformed(evt);
+            }
+        });
         jPanel3.add(BtnELIMINARP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 180, 90));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 290));
@@ -171,6 +176,11 @@ public class Opciones_inventario extends javax.swing.JDialog {
         ModificarProductos ModificarP = new ModificarProductos(new javax.swing.JDialog(),true);
         ModificarP.setVisible(true);
     }//GEN-LAST:event_BtnMODIFICARPActionPerformed
+
+    private void BtnELIMINARPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnELIMINARPActionPerformed
+        EliminarProductos EliminarP = new EliminarProductos (new javax.swing.JDialog(),true);
+        EliminarP.setVisible(true);
+    }//GEN-LAST:event_BtnELIMINARPActionPerformed
 
     /**
      * @param args the command line arguments

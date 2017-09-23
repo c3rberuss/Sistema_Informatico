@@ -37,15 +37,15 @@ public class ModificarUsuarios extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        txtCodigo = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        txtPrecio = new javax.swing.JTextField();
+        txtTipoUsuario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
+        txtContra = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         BtnAgregarVistaPrevia = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtProducto2 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         jSeparator9 = new javax.swing.JSeparator();
@@ -89,8 +89,9 @@ public class ModificarUsuarios extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("MODIFICAR");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 80, 20));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("MODIFICAR USUARIO");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 20));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,39 +106,39 @@ public class ModificarUsuarios extends javax.swing.JDialog {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 10));
 
-        txtCodigo.setBackground(new java.awt.Color(3, 19, 27));
-        txtCodigo.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(255, 255, 255));
-        txtCodigo.setToolTipText("ID");
-        txtCodigo.setBorder(null);
-        txtCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
+        txtID.setBackground(new java.awt.Color(3, 19, 27));
+        txtID.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtID.setForeground(new java.awt.Color(255, 255, 255));
+        txtID.setToolTipText("ID");
+        txtID.setBorder(null);
+        txtID.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 110, 10));
 
-        txtPrecio.setBackground(new java.awt.Color(3, 19, 27));
-        txtPrecio.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
-        txtPrecio.setText("Empleado");
-        txtPrecio.setToolTipText("Tipo de usuario");
-        txtPrecio.setBorder(null);
-        txtPrecio.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtPrecio.setEnabled(false);
-        jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 20));
+        txtTipoUsuario.setBackground(new java.awt.Color(3, 19, 27));
+        txtTipoUsuario.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtTipoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtTipoUsuario.setText("Empleado");
+        txtTipoUsuario.setToolTipText("Tipo de usuario");
+        txtTipoUsuario.setBorder(null);
+        txtTipoUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtTipoUsuario.setEnabled(false);
+        jPanel4.add(txtTipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 20));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CONTRASEÑA DEL USUARIO:");
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 280, 20));
 
-        txtDescripcion.setBackground(new java.awt.Color(3, 19, 27));
-        txtDescripcion.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txtDescripcion.setToolTipText("Contraseña de acceso al sistema");
-        txtDescripcion.setBorder(null);
-        txtDescripcion.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 260, 20));
+        txtContra.setBackground(new java.awt.Color(3, 19, 27));
+        txtContra.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtContra.setForeground(new java.awt.Color(255, 255, 255));
+        txtContra.setToolTipText("Contraseña de acceso al sistema");
+        txtContra.setBorder(null);
+        txtContra.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 260, 10));
@@ -145,7 +146,7 @@ public class ModificarUsuarios extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(0, 102, 102));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnAgregarVistaPrevia.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listarSuperPequenho.png"))); // NOI18N
+        BtnAgregarVistaPrevia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
         BtnAgregarVistaPrevia.setText("AGREGAR A VISTA PREVIA");
         BtnAgregarVistaPrevia.setToolTipText("Agregar a vista previa");
         BtnAgregarVistaPrevia.setBorder(null);
@@ -163,13 +164,13 @@ public class ModificarUsuarios extends javax.swing.JDialog {
         jLabel9.setText("NOMBRE DE USUARIO:");
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 280, 20));
 
-        txtProducto2.setBackground(new java.awt.Color(3, 19, 27));
-        txtProducto2.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtProducto2.setForeground(new java.awt.Color(255, 255, 255));
-        txtProducto2.setToolTipText("Nombre del usuario");
-        txtProducto2.setBorder(null);
-        txtProducto2.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txtProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
+        txtUsuario.setBackground(new java.awt.Color(3, 19, 27));
+        txtUsuario.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setToolTipText("Nombre del usuario");
+        txtUsuario.setBorder(null);
+        txtUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 10));
@@ -228,7 +229,8 @@ public class ModificarUsuarios extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("VISTA PREVIA DE USUARIOS MODIFICADOS:");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
+        jLabel3.setText("VISTA PREVIA DE USUARIOS POR MODIFICAR:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 410, 30));
 
         BtnLimpiar.setBackground(new java.awt.Color(0, 0, 0));
@@ -385,9 +387,9 @@ public class ModificarUsuarios extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField txtBuscarCodigo;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtProducto2;
+    private javax.swing.JTextField txtContra;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtTipoUsuario;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -69,7 +69,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuSesion = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -319,32 +319,32 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.setAlignmentX(70.0F);
         jMenuBar1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jMenu1.setBackground(new java.awt.Color(3, 19, 27));
-        jMenu1.setBorder(null);
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/user.png"))); // NOI18N
-        jMenu1.setText("NOMBRE DE USUARIO + TIPO DE USUARIO");
-        jMenu1.setToolTipText("su usuario");
-        jMenu1.setBorderPainted(false);
-        jMenu1.setContentAreaFilled(false);
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu1.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jMenu1.setOpaque(false);
+        menuSesion.setBackground(new java.awt.Color(3, 19, 27));
+        menuSesion.setBorder(null);
+        menuSesion.setForeground(new java.awt.Color(255, 255, 255));
+        menuSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/user.png"))); // NOI18N
+        menuSesion.setText("NOMBRE DE USUARIO + TIPO DE USUARIO");
+        menuSesion.setToolTipText("su usuario");
+        menuSesion.setBorderPainted(false);
+        menuSesion.setContentAreaFilled(false);
+        menuSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuSesion.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        menuSesion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        menuSesion.setOpaque(false);
 
         jMenuItem1.setBackground(new java.awt.Color(0, 0, 0));
-        jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/escoba.png"))); // NOI18N
-        jMenuItem1.setText("CERRAR SESION                      ");
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/cerrarSesion.png"))); // NOI18N
+        jMenuItem1.setText("CERRAR SESION Y SALIR                     ");
         jMenuItem1.setToolTipText("Cerrar sesion y salir");
         jMenuItem1.setBorder(null);
         jMenuItem1.setBorderPainted(false);
         jMenuItem1.setContentAreaFilled(false);
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu1.add(jMenuItem1);
+        menuSesion.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuSesion);
 
         setJMenuBar(jMenuBar1);
 
@@ -444,11 +444,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JMenu menuSesion;
     // End of variables declaration//GEN-END:variables
 }

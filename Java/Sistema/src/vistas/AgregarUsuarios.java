@@ -37,15 +37,15 @@ public class AgregarUsuarios extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtProducto = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        txtCodigo = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        txtPrecio = new javax.swing.JTextField();
+        txtTipoUsuario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
+        txtContra = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         BtnAgregarVistaPrevia = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -103,13 +103,13 @@ public class AgregarUsuarios extends javax.swing.JDialog {
         jLabel7.setText("TIPO DE USUARIO:");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 280, 20));
 
-        txtProducto.setBackground(new java.awt.Color(3, 19, 27));
-        txtProducto.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtProducto.setForeground(new java.awt.Color(255, 255, 255));
-        txtProducto.setToolTipText("Nombre de usuario");
-        txtProducto.setBorder(null);
-        txtProducto.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 260, 20));
+        txtUsuario.setBackground(new java.awt.Color(3, 19, 27));
+        txtUsuario.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setToolTipText("Nombre de usuario");
+        txtUsuario.setBorder(null);
+        txtUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 260, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 260, 10));
@@ -117,26 +117,26 @@ public class AgregarUsuarios extends javax.swing.JDialog {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 10));
 
-        txtCodigo.setBackground(new java.awt.Color(3, 19, 27));
-        txtCodigo.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(255, 255, 255));
-        txtCodigo.setToolTipText("ID");
-        txtCodigo.setBorder(null);
-        txtCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
+        txtID.setBackground(new java.awt.Color(3, 19, 27));
+        txtID.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtID.setForeground(new java.awt.Color(255, 255, 255));
+        txtID.setToolTipText("ID");
+        txtID.setBorder(null);
+        txtID.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 110, 10));
 
-        txtPrecio.setBackground(new java.awt.Color(3, 19, 27));
-        txtPrecio.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
-        txtPrecio.setText("Empleado");
-        txtPrecio.setToolTipText("Tipo de usuario");
-        txtPrecio.setBorder(null);
-        txtPrecio.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtPrecio.setEnabled(false);
-        jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 110, 20));
+        txtTipoUsuario.setBackground(new java.awt.Color(3, 19, 27));
+        txtTipoUsuario.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtTipoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtTipoUsuario.setText("Empleado");
+        txtTipoUsuario.setToolTipText("Tipo de usuario");
+        txtTipoUsuario.setBorder(null);
+        txtTipoUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtTipoUsuario.setEnabled(false);
+        jPanel4.add(txtTipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 110, 20));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,13 +148,13 @@ public class AgregarUsuarios extends javax.swing.JDialog {
         jLabel10.setText("CONTRASEÑA DE USUARIO:");
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 280, 20));
 
-        txtDescripcion.setBackground(new java.awt.Color(3, 19, 27));
-        txtDescripcion.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txtDescripcion.setToolTipText("Contraseña para ingresar al sistema");
-        txtDescripcion.setBorder(null);
-        txtDescripcion.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel4.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
+        txtContra.setBackground(new java.awt.Color(3, 19, 27));
+        txtContra.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtContra.setForeground(new java.awt.Color(255, 255, 255));
+        txtContra.setToolTipText("Contraseña para ingresar al sistema");
+        txtContra.setBorder(null);
+        txtContra.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel4.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 10));
@@ -202,6 +202,7 @@ public class AgregarUsuarios extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/vista.png"))); // NOI18N
         jLabel9.setText("ACA PUEDES TENER LA VISTA PREVIA DE LOS USUARIOS QUE");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 410, 20));
 
@@ -356,9 +357,9 @@ public class AgregarUsuarios extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtProducto;
+    private javax.swing.JTextField txtContra;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtTipoUsuario;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
