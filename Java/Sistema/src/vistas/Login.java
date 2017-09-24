@@ -215,7 +215,7 @@ public class Login extends javax.swing.JDialog implements Ventana{
                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuario u Contraseña Incorrectos");
-                    limpiar();
+                    limpiar("");
                 }
             }
         } catch (SQLException ex) {
@@ -288,7 +288,7 @@ public class Login extends javax.swing.JDialog implements Ventana{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void limpiar() {
+    public void limpiar(String lugar) {
         this.txtPass.setText("");
         this.txtUser.setText("");
     }

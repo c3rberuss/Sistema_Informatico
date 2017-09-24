@@ -5,19 +5,35 @@
  */
 package vistas;
 
+import com.sun.glass.events.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import servicios.Usuarios;
+import servicios.Ventana;
+import sistema.Sistema;
+
 /**
  *
  * @author edwin
  */
-public class EliminarUsuario extends javax.swing.JDialog {
+public class EliminarUsuario extends javax.swing.JDialog implements Ventana {
 
-    /**
-     * Creates new form EliminarUsuario
-     */
+    public String[] getDatos() {
+        return datos;
+    }
+
+    public void setDatos(String[] datos) {
+        this.datos = datos;
+    }
+
+    private Usuarios users;
+    private String[] datos;
+    
     public EliminarUsuario(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        users = Sistema.getFactory().usuarios();
     }
 
     /**
@@ -55,7 +71,7 @@ public class EliminarUsuario extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductosAgregados = new javax.swing.JTable();
+        UsuariosEliminados = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         BtnLimpiar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
@@ -103,6 +119,11 @@ public class EliminarUsuario extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBorder(null);
         BtnAgregarVistaPrevia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnAgregarVistaPrevia.setFocusPainted(false);
+        BtnAgregarVistaPrevia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnAgregarVistaPreviaMousePressed(evt);
+            }
+        });
         BtnAgregarVistaPrevia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarVistaPreviaActionPerformed(evt);
@@ -123,6 +144,11 @@ public class EliminarUsuario extends javax.swing.JDialog {
         txtBuscarCodigo.setToolTipText("Codigo de producto por eliminar");
         txtBuscarCodigo.setBorder(null);
         txtBuscarCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarCodigoKeyPressed(evt);
+            }
+        });
         jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 200, 20));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -217,17 +243,17 @@ public class EliminarUsuario extends javax.swing.JDialog {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 10, 440));
 
-        ProductosAgregados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        ProductosAgregados.setModel(new javax.swing.table.DefaultTableModel(
+        UsuariosEliminados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        UsuariosEliminados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "ID", "USUARIO", "CONTRASEÑA", "TIPO"
             }
         ));
-        ProductosAgregados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(ProductosAgregados);
+        UsuariosEliminados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane1.setViewportView(UsuariosEliminados);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 420, 300));
 
@@ -267,6 +293,11 @@ public class EliminarUsuario extends javax.swing.JDialog {
         BtnEliminar.setBorder(null);
         BtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnEliminar.setFocusPainted(false);
+        BtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnEliminarMousePressed(evt);
+            }
+        });
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
@@ -304,7 +335,7 @@ public class EliminarUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAgregarVistaPreviaActionPerformed
 
     private void BtnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLimpiarMousePressed
-
+        limpiar("tabla");
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
@@ -319,6 +350,49 @@ public class EliminarUsuario extends javax.swing.JDialog {
 
         this.dispose();
     }//GEN-LAST:event_BtnCerrarActionPerformed
+
+    private void txtBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           if(!this.txtBuscarCodigo.getText().isEmpty()){
+               setDatos(users.searchUsers(this.txtBuscarCodigo.getText()));
+               this.txtID.setText(getDatos()[0]);
+               this.txtUsuario.setText(getDatos()[1]);
+               this.txtContra.setText(getDatos()[2]);
+               this.txtTipoUsuario.setText(getDatos()[3]);
+           }else{
+               System.out.println("campos vacios");
+           }
+        }
+    }//GEN-LAST:event_txtBuscarCodigoKeyPressed
+
+    private void BtnAgregarVistaPreviaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaMousePressed
+        String[] datos ={
+            this.txtID.getText(),
+            this.txtUsuario.getText(),
+            this.txtContra.getText(),
+            this.txtTipoUsuario.getText()
+        };
+        
+        if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty()){
+            this.UsuariosEliminados.setModel(users.addTable(this.UsuariosEliminados, datos));
+            this.UsuariosEliminados.repaint();
+            limpiar("campos");
+        }else{
+            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
+        }
+    }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
+
+    private void BtnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMousePressed
+        int cols = this.UsuariosEliminados.getModel().getColumnCount();
+        int fils = this.UsuariosEliminados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            this.datos[0] = this.UsuariosEliminados.getModel().getValueAt(i,0).toString();
+            users.deleteUsers(getDatos()[0]);
+        }
+        
+        limpiar("tabla");
+        JOptionPane.showMessageDialog(null, "Usuarios Eliminados Exitosamente");
+    }//GEN-LAST:event_BtnEliminarMousePressed
 
     /**
      * @param args the command line arguments
@@ -367,7 +441,7 @@ public class EliminarUsuario extends javax.swing.JDialog {
     private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnLimpiar;
-    private javax.swing.JTable ProductosAgregados;
+    private javax.swing.JTable UsuariosEliminados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -396,4 +470,23 @@ public class EliminarUsuario extends javax.swing.JDialog {
     private javax.swing.JTextField txtTipoUsuario;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void limpiar(String lugar) {
+           switch(lugar){
+            case "campos":
+                this.txtContra.setText("");
+                this.txtID.setText("");
+                this.txtUsuario.setText("");
+                this.txtBuscarCodigo.setText("");
+                break;
+            case "tabla":
+                DefaultTableModel modelo=(DefaultTableModel) this.UsuariosEliminados.getModel();
+                int filas=this.UsuariosEliminados.getRowCount();
+                for (int i = 0;i<filas; i++) {
+                    modelo.removeRow(0);
+                }
+                break;
+        }
+    }
 }

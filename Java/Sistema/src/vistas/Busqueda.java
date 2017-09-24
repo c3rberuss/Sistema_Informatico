@@ -289,7 +289,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void limpiar() {
+    public void limpiar(String lugar) {
         this.txtBusqueda.setText("");
     }
 }

@@ -302,7 +302,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                     }else{
                         this.setAdd(false);
                         JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
-                        limpiar();
+                        limpiar("");
                     }
 
                
@@ -321,7 +321,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                            this.TxtPrecio.getText()+", "+this.TxtCantidad.getText()+ ", null","id='"+this.TxtId.getText()+"'", "cantidad=cantidad+"+this.TxtCantidad.getText() );
                    
                    this.setAdd(false);
-                   limpiar();
+                   limpiar("");
                    this.TxtId.requestFocus();
                    cargarDatos();
                    
@@ -329,13 +329,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                    this.setAdd(false);
                    Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
                    System.out.println("Error al agregar");
-                   limpiar();
+                   limpiar("");
                }
                
             }
 
        }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
-            limpiar();
+            limpiar("");
             this.setAdd(false);
         }
     }//GEN-LAST:event_TxtIdKeyPressed
@@ -349,7 +349,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                            this.TxtPrecio.getText()+", "+this.TxtCantidad.getText()+ ", null","id='"+this.TxtId.getText()+"'", "cantidad=cantidad+"+this.TxtCantidad.getText() );
                    
                    this.add = false;
-                   limpiar();
+                   limpiar("");
                    this.TxtId.requestFocus();
                    cargarDatos();
                    enableOrDisable(true);
@@ -364,7 +364,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             if(evt.getKeyCode() == KeyEvent.VK_ENTER){   
                Sistema.getFactory().connect().Update("shopping_cart", "cantidad="+this.TxtCantidad.getText(), "id='"+this.TxtId.getText()+"'");
                this.setAdd(false);
-               limpiar();
+               limpiar("");
                this.TxtId.requestFocus();
                cargarDatos();
                enableOrDisable(true);
@@ -401,7 +401,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
     private void elimnarItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimnarItemMousePressed
         try {
-            limpiar();
+            limpiar("");
             int fila = this.Resultados.getSelectedRow();
             String id = (String) this.Resultados.getValueAt(fila, 0);
             Sistema.getFactory().connect().Delete("shopping_cart", "id='"+id+"'");
@@ -493,7 +493,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void limpiar() {
+    public void limpiar(String lugar) {
         this.TxtCantidad.setText("");
         this.TxtId.setText("");
         this.TxtPrecio.setText("");
@@ -504,7 +504,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private void cargarDatos(){
         
         try {
-            
             
             ResultSet rs = Sistema.getFactory().connect().Select("*", "shopping_cart", "1 ORDER BY n DESC");
             DefaultTableModel modelo = new DefaultTableModel();

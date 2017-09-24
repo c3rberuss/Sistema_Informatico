@@ -11,6 +11,7 @@ package servicios;
  */
 public interface Ventana {
     
-    public void limpiar();
+    public void limpiar(String lugar);
+    
     
 }
