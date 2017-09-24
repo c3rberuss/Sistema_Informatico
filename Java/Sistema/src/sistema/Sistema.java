@@ -18,34 +18,6 @@ import servicios.Configuracion;
  */
 public class Sistema {
 
-    /**
-     * @return the rootPath
-     */
-    public static String getRootPath() {
-        return rootPath;
-    }
-
-    /**
-     * @param aRootPath the rootPath to set
-     */
-    public static void setRootPath(String aRootPath) {
-        rootPath = aRootPath;
-    }
-
-    /**
-     * @return the factory
-     */
-    public static Factory getFactory() {
-        return factory;
-    }
-
-    public static servicios.Conexion getCon() {
-        return con;
-    }
-    
-    public static void setCon(servicios.Conexion conn) {
-        con = conn;
-    }
 
     /**
      * @param args the command line arguments
@@ -87,7 +59,6 @@ public class Sistema {
                 System.out.println("Se inició correctamente");
             }
             
-
             
             vistas.Principal vent = new vistas.Principal();
             vent.setVisible(true);
@@ -98,5 +69,35 @@ public class Sistema {
         }
         
     }
+    
+        /**
+     * @return the rootPath
+     */
+    public static String getRootPath() {
+        return rootPath;
+    }
+
+    /**
+     * @param aRootPath the rootPath to set
+     */
+    public static void setRootPath(String aRootPath) {
+        rootPath = aRootPath;
+    }
+
+    /**
+     * @return the factory
+     */
+    public static Factory getFactory() {
+        return factory;
+    }
+
+    public static servicios.Conexion getCon() {
+        return con;
+    }
+    
+    public static void setCon(servicios.Conexion conn) {
+        con = conn;
+    }
+
     
 }

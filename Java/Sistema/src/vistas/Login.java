@@ -35,14 +35,6 @@ public class Login extends javax.swing.JDialog implements Ventana{
     public Login(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         this.setLocationRelativeTo(null);
-        if(Sistema.getCon().getConexion() != null){
-            Sistema.getCon().closeConexion();
-        }
-        try {
-            Sistema.setCon(Sistema.getFactory().conexion());
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
         initComponents();
         factory = new Factory();
     }
@@ -209,6 +201,15 @@ public class Login extends javax.swing.JDialog implements Ventana{
                     if(sesion && init){
                         Principal prin = factory.ventanaPrincipal(null, false);
                         prin.setVisible(true);
+                    }
+                    
+                    if(Sistema.getCon().getConexion() != null){
+                        Sistema.getCon().closeConexion();
+                    }
+                    try {
+                        Sistema.setCon(Sistema.getFactory().conexion());
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     
                     this.dispose();

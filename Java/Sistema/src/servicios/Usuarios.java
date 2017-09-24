@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
+import vistas.Login;
 
 /**
  *
@@ -26,6 +27,11 @@ public class Usuarios {
     private ResultSet result;
     private PreparedStatement prepared;
     private String sql;
+    private static Configuracion conf;
+    
+    public Usuarios(){
+        conf = Sistema.getFactory().configuraciones();
+    }
     
     public boolean login(String user, String pass) throws SQLException{
         
@@ -37,6 +43,21 @@ public class Usuarios {
         
         getResult().first();
         success = getResult().getBoolean(1);
+        
+        if(success){
+            setSql("CALL get_user_type('"+user+"');");
+            setResult(getStatement().executeQuery(getSql()));
+            getResult().first();
+            conf.setConfProperty("user.type", getResult().getString(1));
+            if(Sistema.getCon().getConexion() != null){
+            Sistema.getCon().closeConexion();
+        }
+        try {
+            Sistema.setCon(Sistema.getFactory().conexion());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         
         return success;
     }
@@ -118,6 +139,20 @@ public class Usuarios {
         } catch (SQLException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static String nick(){
+        conf = Sistema.getFactory().configuraciones();
+        return conf.getConfProperty("sesion.user");
+    }
+    
+    public static String userType(){
+        conf = Sistema.getFactory().configuraciones();
+        return conf.getConfProperty("user.type");
+    }
+    
+    public String generateId(){
+        return String.valueOf((java.util.UUID.randomUUID().getLeastSignificantBits()*-1)/10000).substring(0, 5);
     }
     
     public Statement getStatement() {

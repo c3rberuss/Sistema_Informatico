@@ -7,10 +7,10 @@ package vistas;
 
 
 import factory.Factory;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
-import servicios.Utilidades;
+import servicios.Usuarios;
+
 
 /**
  *
@@ -26,6 +26,8 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
         setIconImage(new ImageIcon(getClass().getResource("/Recursos/imagenes/icono2.png")).getImage());
+        
+        this.menuSesion.setText(Usuarios.nick().toUpperCase()+" | "+Usuarios.userType().toUpperCase());
         
         factory = new Factory();
         Configuracion config = factory.configuraciones();

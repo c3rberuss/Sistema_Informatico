@@ -26,6 +26,8 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         this.setLocationRelativeTo(null);
         users = Sistema.getFactory().usuarios();
         datos = new String[4];
+        this.txtID.setText(users.generateId());
+        this.txtID.disable();
         
     }
 
