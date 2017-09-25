@@ -203,8 +203,7 @@ public final class Utilidades {
                 if(!archivo.exists()) {
 
                     bw = factory.bufferWriter(archivo);
-                    bw.write("sesion.pass=none\n" +
-                            "data.pass=none\n" +
+                    bw.write("data.pass=none\n" +
                             "data.init=false\n" +
                             "data.db=information_schema\n" +
                             "user.type=none\n" +
@@ -213,7 +212,6 @@ public final class Utilidades {
                             "sesion.active=false\n" +
                             "data.server=localhost\n" +
                             "data.user=root\n" +
-                            "user.name=none\n" +
                             "config.path="+ruta);
                     bw.close();
                     success = true;

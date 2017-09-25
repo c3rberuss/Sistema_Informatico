@@ -332,6 +332,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
             this.UsuariosAgregados.setModel(users.addTable(this.UsuariosAgregados, datos));
             this.UsuariosAgregados.repaint();
             limpiar("campos");
+            this.txtID.setText(users.generateId());
         }else{
             JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
         }

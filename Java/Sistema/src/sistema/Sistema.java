@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import servicios.Configuracion;
+import vistas.Login;
+import vistas.Principal;
 
 
 /**
@@ -17,6 +19,14 @@ import servicios.Configuracion;
  * @author josuee
  */
 public class Sistema {
+
+    private static Configuracion getConf() {
+        return conf;
+    }
+
+    private  static void setConf(Configuracion conf) {
+        Sistema.conf = conf;
+    }
 
 
     /**
@@ -26,6 +36,7 @@ public class Sistema {
     private static servicios.Conexion con = null;
     private static Factory factory;
     private static String rootPath;
+    private static Configuracion conf;
     
     public static void main(String[] args){
         
@@ -46,8 +57,9 @@ public class Sistema {
             
             factory = new Factory();
 
-            
+            conf = factory.configuraciones();
             servicios.Utilidades uti = new servicios.Utilidades();
+            
             
             if(uti.GenerateConfig()){
                 System.out.println("Se creó el archivo de configuracion correctamente");
@@ -59,9 +71,16 @@ public class Sistema {
                 System.out.println("Se inició correctamente");
             }
             
-            
-            vistas.Principal vent = new vistas.Principal();
-            vent.setVisible(true);
+            boolean sesionActive = Boolean.valueOf(conf.getConfProperty("sesion.active"));
+
+            if(sesionActive == false){
+                Login log = new Login(null, true);
+                log.setLocationRelativeTo(null);
+                log.setVisible(true);
+            }else{
+                Principal prin = factory.ventanaPrincipal(null, false);
+                prin.setVisible(true);
+            }
             
             
         } catch (ClassNotFoundException | SQLException ex) {

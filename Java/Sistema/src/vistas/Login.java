@@ -6,8 +6,6 @@
 package vistas;
 
 import factory.Factory;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -195,13 +193,8 @@ public class Login extends javax.swing.JDialog implements Ventana{
                     getConfig().setConfProperty("sesion.active", "true");
                     getConfig().setConfProperty("sesion.pass", this.txtPass.getText());
                    
-                    boolean sesion = Boolean.valueOf(getConfig().getConfProperty("sesion.active"));
-                    boolean init = Boolean.valueOf(getConfig().getConfProperty("data.init"));
-                    
-                    if(sesion && init){
-                        Principal prin = factory.ventanaPrincipal(null, false);
-                        prin.setVisible(true);
-                    }
+                    Principal prin = Sistema.getFactory().ventanaPrincipal(null, false);
+                    prin.setVisible(true);
                     
                     if(Sistema.getCon().getConexion() != null){
                         Sistema.getCon().closeConexion();

@@ -31,18 +31,18 @@ public class Principal extends javax.swing.JFrame {
         
         factory = new Factory();
         Configuracion config = factory.configuraciones();
-        
-        boolean sesionActive = Boolean.valueOf(config.getConfProperty("sesion.active"));
-        
-        if(!sesionActive){
-            Login log = new Login(this, true);
-            log.setLocationRelativeTo(null);
-            log.setVisible(true);
-        }
-        
+
         String userType = config.getConfProperty("user.type");
-        if(!userType.equalsIgnoreCase("admin")){
-           
+        if(userType.equalsIgnoreCase("empleado")){
+           this.BtnConfiguracion.setEnabled(false);
+           this.BtnInventario.setEnabled(false);
+           this.BtnReportes.setEnabled(false);
+           this.BtnUsuarios.setEnabled(false);
+        }else if(userType.equalsIgnoreCase("admin")){
+           this.BtnConfiguracion.setEnabled(true);
+           this.BtnInventario.setEnabled(true);
+           this.BtnReportes.setEnabled(true);
+           this.BtnUsuarios.setEnabled(true);
         }
         
     }
@@ -407,6 +407,7 @@ public class Principal extends javax.swing.JFrame {
     private void closeSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeSesionActionPerformed
         Configuracion conf = factory.configuraciones();
         conf.setConfProperty("sesion.active", "false");
+        conf.setConfProperty("sesion.close", "true");
         Login log = factory.ventanaLogin(null, false);
         log.setVisible(true);
         log.setLocationRelativeTo(null);  
