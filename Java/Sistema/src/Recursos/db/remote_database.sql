@@ -1,0 +1,14 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_user` (IN `id` VARCHAR(8), IN `nick` VARCHAR(100), IN `pwd` VARCHAR(20), IN `type` VARCHAR(30))  NO SQL INSERT INTO users VALUES(id, nick, pwd, type);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_user` (IN `id` VARCHAR(10))  NO SQL DELETE FROM users WHERE id_usr=id;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_user_type` (IN `nick` VARCHAR(100))  NO SQL SELECT type_usr FROM users WHERE nick_usr=nick;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `nick` VARCHAR(100), IN `pwd` VARCHAR(50))  NO SQL SELECT COUNT(*) FROM users WHERE nick_usr=nick AND pwd_usr=pwd;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `search_user` (IN `id` VARCHAR(10))  NO SQL SELECT * FROM users WHERE id_usr=id;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_user` (IN `id` VARCHAR(10), IN `nick` VARCHAR(100), IN `pwd` VARCHAR(20))  NO SQL UPDATE users SET id_usr=id, nick_usr=nick, pwd_usr=pwd WHERE id_usr=id;
+CREATE TABLE `inventario` (`id` varchar(20) NOT NULL, `producto` varchar(75) NOT NULL, `descripcion` varchar(125) NOT NULL, `stock` int(10) NOT NULL, `precio` double(6,2) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `shopping_cart` (`id` varchar(20) COLLATE utf8_spanish_ci NOT NULL, `producto` varchar(50) COLLATE utf8_spanish_ci NOT NULL, `precio` double(6,2) NOT NULL, `cantidad` int(4) NOT NULL, `n` int(10) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE `users` (`id_usr` varchar(10) NOT NULL, `nick_usr` varchar(100) NOT NULL, `pwd_usr` varchar(20) NOT NULL, `type_usr` varchar(30) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`, `type_usr`) VALUES('1', 'Administrador', '0000', 'Admin');
+ALTER TABLE `inventario` ADD PRIMARY KEY (`id`);
+ALTER TABLE `shopping_cart` ADD PRIMARY KEY (`n`);
+ALTER TABLE `users` ADD PRIMARY KEY (`id_usr`);
+ALTER TABLE `shopping_cart` MODIFY `n` int(10) NOT NULL AUTO_INCREMENT;

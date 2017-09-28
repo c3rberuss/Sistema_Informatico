@@ -6,6 +6,7 @@
 package sistema;
 
 import factory.Factory;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,10 +39,12 @@ public class Sistema {
     private static String rootPath;
     private static Configuracion conf;
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         
         String os = Configuracion.osName().toLowerCase();
         String osUser = Configuracion.osUser();
+                   
+        
         
         try {
             
@@ -66,7 +69,6 @@ public class Sistema {
             }
             
             con = new servicios.Conexion();
-            
             if(uti.isInicialized(con)){
                 System.out.println("Se inició correctamente");
             }
@@ -82,10 +84,13 @@ public class Sistema {
                 prin.setVisible(true);
             }
             
+            getCon().closeConexion();
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         
     }
     

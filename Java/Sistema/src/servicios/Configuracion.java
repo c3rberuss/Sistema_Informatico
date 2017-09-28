@@ -6,11 +6,16 @@
 package servicios;
 
 import factory.Factory;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -252,6 +257,31 @@ public class Configuracion {
     
     public static String osUser(){
         return System.getProperty("user.name");
+    }
+    
+    public void dbInit(String archivo, Connection con){
+        FileReader f = null;
+        try {
+            String cadena;
+            f = new FileReader(getClass().getResource("/Recursos/db/"+archivo+".sql").getPath());
+            BufferedReader b = new BufferedReader(f);
+            PreparedStatement st;
+            while((cadena = b.readLine())!=null) {
+                st = con.prepareStatement(cadena);
+                st.executeUpdate();
+            }     b.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                f.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
     
 }
