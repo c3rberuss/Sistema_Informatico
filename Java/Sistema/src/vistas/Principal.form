@@ -22,7 +22,7 @@
         <Menu class="javax.swing.JMenu" name="menuSesion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1b" green="13" red="3" type="rgb"/>
+              <Color blue="0" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -34,14 +34,14 @@
               <Image iconType="3" name="/Recursos/imagenes/user.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="NOMBRE DE USUARIO + TIPO DE USUARIO"/>
-            <Property name="toolTipText" type="java.lang.String" value="su usuario"/>
+            <Property name="toolTipText" type="java.lang.String" value="Su usuario"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="10" style="0"/>
+              <Font name="Century Gothic" size="12" style="0"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="opaque" type="boolean" value="false"/>
@@ -50,7 +50,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="closeSesion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="1b" green="13" red="3" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="12" style="0"/>
@@ -61,7 +61,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Recursos/imagenes/cerrarSesion.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CERRAR SESION Y SALIR                     "/>
+                <Property name="text" type="java.lang.String" value="CERRAR SESION Y SALIR"/>
                 <Property name="toolTipText" type="java.lang.String" value="Cerrar sesion y salir"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>

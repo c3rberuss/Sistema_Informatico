@@ -322,24 +322,24 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.setAlignmentX(70.0F);
         jMenuBar1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        menuSesion.setBackground(new java.awt.Color(3, 19, 27));
+        menuSesion.setBackground(new java.awt.Color(0, 153, 0));
         menuSesion.setBorder(null);
         menuSesion.setForeground(new java.awt.Color(255, 255, 255));
         menuSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/user.png"))); // NOI18N
         menuSesion.setText("NOMBRE DE USUARIO + TIPO DE USUARIO");
-        menuSesion.setToolTipText("su usuario");
+        menuSesion.setToolTipText("Su usuario");
         menuSesion.setBorderPainted(false);
         menuSesion.setContentAreaFilled(false);
         menuSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menuSesion.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        menuSesion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         menuSesion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         menuSesion.setOpaque(false);
 
-        closeSesion.setBackground(new java.awt.Color(0, 0, 0));
+        closeSesion.setBackground(new java.awt.Color(3, 19, 27));
         closeSesion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         closeSesion.setForeground(new java.awt.Color(255, 255, 255));
         closeSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/cerrarSesion.png"))); // NOI18N
-        closeSesion.setText("CERRAR SESION Y SALIR                     ");
+        closeSesion.setText("CERRAR SESION Y SALIR");
         closeSesion.setToolTipText("Cerrar sesion y salir");
         closeSesion.setBorder(null);
         closeSesion.setBorderPainted(false);
