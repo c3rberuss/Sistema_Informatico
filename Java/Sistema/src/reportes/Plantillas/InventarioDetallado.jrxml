@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7cc335fe-6453-4748-a740-6a3622b6c689">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from inventario]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="producto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="producto_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{producto}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="21" y="13" width="70" height="54" uuid="1bcf1e5a-695e-40fa-8494-52f4eb02e934"/>
+				<imageExpression><![CDATA["C:\\Users\\edwin\\Documents\\NetBeansProjects\\Sistema_Informatico\\Sistema\\Java\\Sistema\\src\\Recursos\\imagenes\\icono2.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="91" y="13" width="429" height="35" uuid="eebdafd4-26dc-45ca-b91d-24ca4d9e30fc"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA["[NOMBRE DE EMPRESA]"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="0" width="499" height="35" uuid="05591893-076e-4891-80b2-f44bd2858001"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE TODOS LOS PRODUCTOS AGREGADOS EN EL INVENTARIO
+[NOMBRE DE EMPRESA] ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<rectangle>
+				<reportElement x="143" y="2" width="151" height="26" backcolor="#CCCCCC" uuid="c2f7b527-fdc9-41f9-9514-7a3992038f38"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="155" y="11" width="139" height="17" uuid="d711f617-6747-4815-a43a-e0ed119a8ed4"/>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="11" y="2" width="80" height="26" backcolor="#CCCCCC" uuid="ae1bb85d-c298-41a9-822a-98f7a9216190"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="21" y="11" width="70" height="17" uuid="64e5e505-4263-4687-943c-a83eb3646bc6"/>
+				<text><![CDATA[COD. BARRA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="294" y="2" width="130" height="26" backcolor="#CCCCCC" uuid="8306f3be-3b99-4417-836b-31076725451e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="304" y="11" width="90" height="17" uuid="895c8d13-759a-437e-915a-c327c4f1b2bf"/>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="486" y="2" width="50" height="26" backcolor="#CCCCCC" uuid="42f5db91-af28-4504-bfd5-d5b39f05ee21"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="91" y="2" width="52" height="26" backcolor="#CCCCCC" uuid="d4a9951a-2f34-40b4-9499-6209b63fa303"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="102" y="11" width="41" height="17" uuid="2533df86-0dd0-4367-8a58-60fee2a65fdc"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="424" y="2" width="62" height="26" backcolor="#CCCCCC" uuid="788d49f8-347c-4210-9650-67bd9428962b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="492" y="11" width="44" height="17" uuid="e0a2fcb4-0e50-4544-b6cd-306c693a4314"/>
+				<text><![CDATA[STOCK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="11" width="52" height="17" uuid="d666b37f-f42f-456a-8db8-cf84ed20b054"/>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<rectangle>
+				<reportElement x="486" y="0" width="50" height="26" backcolor="#FFFFFF" uuid="ad245bd7-2d48-49b7-88c9-70c08b19b8c2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="143" y="0" width="151" height="26" uuid="8e635cec-c17f-43bc-b57f-dc2d385cd97f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="11" y="0" width="80" height="26" uuid="5b6a09a9-0cad-4bcc-8179-1135f1bc6fd9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="91" y="0" width="52" height="26" uuid="74845d66-098d-4819-8957-473edf79beb5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="294" y="0" width="130" height="26" backcolor="#FFFFFF" uuid="445b4d8e-7173-449d-ba18-d8ca32045ca6"/>
+			</rectangle>
+			<textField>
+				<reportElement x="102" y="5" width="41" height="15" uuid="5fee81d7-57a7-48b2-9305-ba690f2f694b"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="5" width="137" height="15" uuid="a6651a16-b1dc-4bfc-a8a6-a23a7075df28"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="5" width="120" height="15" uuid="a6361182-faa8-41da-a2d0-61d921c54fe1"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="424" y="0" width="62" height="26" backcolor="#FFFFFF" uuid="73257a54-6ac2-4207-9550-f91594ffc601"/>
+			</rectangle>
+			<componentElement>
+				<reportElement x="15" y="5" width="74" height="18" uuid="eb83fc8f-de60-46ab-aec8-242677a52cc5"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{id}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="515" y="8" width="21" height="20" uuid="e79f33eb-bbeb-4f09-ade6-fb9b8e5b0ddc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="8" width="334" height="17" uuid="d4bbcdff-0acf-440b-b8a7-afeb5c7fcb5a"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TODOS LOS DERECHOS RESERVADOS 2017 | [NOMBRE DE EMPRESA]"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="88" splitType="Stretch">
+			<rectangle>
+				<reportElement x="259" y="23" width="277" height="65" backcolor="#CCCCCC" uuid="b115669c-d045-44a0-95f5-6f4ca28fc0c3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="259" y="6" width="139" height="17" uuid="e3a8b1ed-8a88-42cf-ab9c-33b085b104be"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE INVENTARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="31" width="109" height="17" uuid="a984ae3f-ae15-4068-95d8-d861226c4b54"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE PRODUCTOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="48" width="167" height="17" uuid="4e87c8d6-44c3-4bf9-8f08-a8987b06e0ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE DINERO INVERTIDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="65" width="129" height="17" uuid="448b7064-3916-471c-9124-eaa5a81fa0eb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[TOTAL GENERAL DE STOCK:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="31" width="62" height="17" forecolor="#FF0000" uuid="db25cc44-2ecf-4763-94fb-f8a50e5f55b0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{producto_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

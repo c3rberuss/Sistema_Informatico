@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee0d5167-119a-4310-82d1-513a0c117305">
+	<property name="ireport.zoom" value="1.0000000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from users]]>
+	</queryString>
+	<field name="id_usr" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nick_usr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pwd_usr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="type_usr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="nick_usr_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{nick_usr}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<image>
+				<reportElement x="37" y="31" width="70" height="54" uuid="d48998e4-6f56-4268-910d-b382f00072aa"/>
+				<imageExpression><![CDATA["C:\\Users\\edwin\\Documents\\NetBeansProjects\\Sistema_Informatico\\Sistema\\Java\\Sistema\\src\\Recursos\\imagenes\\icono2.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="107" y="31" width="429" height="35" uuid="b014ca15-6f18-4095-9c6a-86241410be2d"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA["[NOMBRE DE EMPRESA]"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="10" width="499" height="40" uuid="808b8737-c274-4bbc-987d-2f617f1b4564"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE USUARIOS AUTORIZADOS EN SISTEMA DE VENTAS
+[NOMBRE DE EMPRESA]]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="37" y="0" width="100" height="25" backcolor="#CCCCCC" uuid="ad364128-7999-4b33-94a7-45c15e149e12"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="137" y="0" width="234" height="25" backcolor="#CCCCCC" uuid="6588317f-93d4-48ff-a622-fafb7911a687"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="371" y="0" width="165" height="25" backcolor="#CCCCCC" uuid="6de07047-305e-4ae7-946a-fb9582c77358"/>
+			</rectangle>
+			<textField>
+				<reportElement x="382" y="5" width="133" height="20" uuid="4a0374b6-0a33-4a23-b770-bcd01e23d79a"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TIPO DE USUARIO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="5" width="209" height="20" uuid="c84d16dc-bfec-46c9-8821-df91e156f297"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NOMBRE DE USUARIO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="47" y="5" width="90" height="20" uuid="c851ba52-50c2-4852-8948-2b043f1778c8"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ID"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="37" y="0" width="100" height="25" uuid="424418a7-912b-42f9-8e83-60142c5822ba"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="137" y="0" width="234" height="25" uuid="b2043f82-c50c-4a90-9d72-03aa7fa30523"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="371" y="0" width="165" height="25" uuid="1c921afe-e10f-4f92-bdfa-d3a3a778dddf"/>
+			</rectangle>
+			<textField>
+				<reportElement x="148" y="5" width="209" height="20" uuid="4077d09c-785c-4070-9605-c19382e1e607"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nick_usr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="47" y="5" width="90" height="20" uuid="a73ed5b1-a99f-4ae4-a02c-840cc8e6cbf2"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_usr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="5" width="133" height="20" uuid="29d2810c-0928-4edd-b05f-fc96888e459b"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{type_usr}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="499" y="20" width="37" height="20" uuid="f7dfb13a-b1e2-49e1-aebc-0641181ba69f"/>
+				<textElement>
+					<font fontName="Dialog" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="20" width="334" height="17" uuid="24a99df8-a133-487e-bdcb-9c4ec0d4c3cf"/>
+				<textElement markup="none">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TODOS LOS DERECHOS RESERVADOS 2017 | [NOMBRE DE EMPRESA]"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="120" splitType="Stretch">
+			<rectangle>
+				<reportElement x="314" y="10" width="222" height="22" uuid="96cd9687-3195-4d72-be12-83477c4a233f"/>
+			</rectangle>
+			<textField>
+				<reportElement x="515" y="12" width="21" height="20" forecolor="#FF0000" uuid="958d1cba-d3f1-4453-ad2c-39864d35250a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{nick_usr_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="12" width="185" height="20" uuid="8e485124-a1e4-45e7-82a7-88c0ca0a36f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL DE USUARIOS EN EL SISTEMA:"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -166,13 +166,13 @@ public class Opciones_inventario extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void BtnAGREGARPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAGREGARPActionPerformed
-        this.dispose();
+        //this.dispose();
         AgregarProductos AgregarP = new AgregarProductos(new javax.swing.JDialog(),true);
         AgregarP.setVisible(true);
     }//GEN-LAST:event_BtnAGREGARPActionPerformed
 
     private void BtnMODIFICARPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMODIFICARPActionPerformed
-        this.dispose();
+        //his.dispose();
         ModificarProductos ModificarP = new ModificarProductos(new javax.swing.JDialog(),true);
         ModificarP.setVisible(true);
     }//GEN-LAST:event_BtnMODIFICARPActionPerformed

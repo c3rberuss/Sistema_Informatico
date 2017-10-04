@@ -42,7 +42,7 @@ public class DatosFactura extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDireccion = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         BtnFacturar = new javax.swing.JButton();
@@ -131,16 +131,16 @@ public class DatosFactura extends javax.swing.JDialog {
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 190, 10));
 
-        jTextArea1.setBackground(new java.awt.Color(35, 48, 54));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(3);
-        jTextArea1.setText("---");
-        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jScrollPane1.setViewportView(jTextArea1);
+        txtDireccion.setBackground(new java.awt.Color(35, 48, 54));
+        txtDireccion.setColumns(20);
+        txtDireccion.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDireccion.setRows(3);
+        txtDireccion.setText("---");
+        txtDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jScrollPane1.setViewportView(txtDireccion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 260, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 270, 60));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -263,7 +263,7 @@ public class DatosFactura extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtDireccion;
     private javax.swing.JTextField txtEmpleado;
     private javax.swing.JTextField txtNIT;
     private javax.swing.JTextField txtNcliente;
