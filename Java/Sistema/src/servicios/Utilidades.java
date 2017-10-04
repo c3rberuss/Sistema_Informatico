@@ -73,113 +73,64 @@ public final class Utilidades {
         this.s = s;
     }
     
-    public boolean isInicialized(Conexion con){
+    public boolean isInicialized(Conexion con) throws IOException, ClassNotFoundException, SQLException{
         
         boolean success = false;
         String sql;
         
-        try {
-
-            setConfiguracion(factory.configuraciones());
+        setConfiguracion(factory.configuraciones());
+        boolean init = Boolean.valueOf(getConfiguracion().getConfProperty("data.init"));
+        if(init == false){
             
-            boolean init = Boolean.valueOf(getConfiguracion().getConfProperty("data.init"));
-        
-            if(init == false){
-                
-                 String[] botones = { "Servidor Local", "Servidor Online","Cancelar"};
-                 int resp = JOptionPane.showOptionDialog(null,"¿Qué tipo de Servidor usará?", 
+            String[] botones = { "Servidor Local", "Servidor Online","Cancelar"};
+            int resp = JOptionPane.showOptionDialog(null,"¿Qué tipo de Servidor usará?",
                     "Confguracion Inicial", JOptionPane.YES_NO_CANCEL_OPTION, 
                     JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
-                
-                if(resp == 0){
-                     getConfiguracion().setConfProperty("data.local", "true");
-                }else{
-                     getConfiguracion().setConfProperty("data.local", "false");
-                }
-                 
-                switch(resp){
-                    case 0:
-                        
-                        setVent_config(factory.ventanaConfiguracion(null, true));
-                        getVent_config().setLocationRelativeTo(null);
-                        getVent_config().setVisible(true);
-
-                        sql = "CREATE DATABASE Sistema_DB;";
-                        setS(con.getConexion().createStatement());
-                        getS().executeUpdate(sql);
-                        sql = "USE Sistema_DB;";
-                        getS().executeUpdate(sql);
-
-                        sql=    "CREATE TABLE `Sistema_DB`.`users` ( "
-                                + "`id_usr` INT(10) NOT NULL AUTO_INCREMENT , "
-                                + "`nick_usr` VARCHAR(50) NOT NULL , `pwd_usr` "
-                                + "VARCHAR(16) NOT NULL , `type_usr` VARCHAR(10) "
-                                + "NOT NULL , `first_name_usr` VARCHAR(20) "
-                                + "NOT NULL , `second_name_usr` VARCHAR(20) NOT NULL , "
-                                + "`first_last_name_usr` VARCHAR(20) NOT NULL , "
-                                + "`second_last_name_usr` VARCHAR(20) NOT NULL , "
-                                + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;";
-
-                        getS().executeUpdate(sql);
-                        
-                        sql =   "INSERT INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`,"
-                                + " `type_usr`, `first_name_usr`, `second_name_usr`, "
-                                + "`first_last_name_usr`, `second_last_name_usr`) "
-                                + "VALUES(1, 'Administrador', '0000', 'Admin', "
-                                + "'Administrador', 'Administrador', 'Administrador', "
-                                + "'Administrador');";
-                        
-                        getS().executeUpdate(sql);
-                        
-                        getConfiguracion().setConfProperty("data.db", "Sistema_DB");
-                        getConfiguracion().setConfProperty("data.init", "true");
-                        success = true;
-                        
-                        break;
-                    case 1:
-                        
-                        setVent_config(new vistas.Config(null, true));
-                        getVent_config().setLocationRelativeTo(null);
-                        getVent_config().setVisible(true);
-                        
-                        String db = getConfiguracion().getConfProperty("data.db");
-                        
-                        sql = "USE "+db+";";
-                        setS(con.getConexion().createStatement());
-                        getS().executeUpdate(sql);
-
-                        sql=    "CREATE TABLE `"+db+"`.`users` ( "
-                                + "`id_usr` INT(10) NOT NULL AUTO_INCREMENT , "
-                                + "`nick_usr` VARCHAR(50) NOT NULL , `pwd_usr` "
-                                + "VARCHAR(16) NOT NULL , `type_usr` VARCHAR(10) "
-                                + "NOT NULL , `first_name_usr` VARCHAR(20) "
-                                + "NOT NULL , `second_name_usr` VARCHAR(20) NOT NULL , "
-                                + "`first_last_name_usr` VARCHAR(20) NOT NULL , "
-                                + "`second_last_name_usr` VARCHAR(20) NOT NULL , "
-                                + "PRIMARY KEY (`id_usr`)) ENGINE = InnoDB;"
-                                + "INSERT INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`,"
-                                + " `type_usr`, `first_name_usr`, `second_name_usr`, "
-                                + "`first_last_name_usr`, `second_last_name_usr`) "
-                                + "VALUES(1, 'Administrador', '0000', 'Admin', "
-                                + "'Administrador', 'Administrador', 'Administrador', "
-                                + "'Administrador');";
-
-                        getS().executeUpdate(sql);
-                        getConfiguracion().setConfProperty("data.init", "true");
-                        success = true;
-                        break;
-                        
-                    case 2:
-                        System.exit(0);
-                        break;
-                }
-                
-                JOptionPane.showMessageDialog(null, "El sistema se configuró  correctamente");
-                
+            
+            if(resp == 0){
+                getConfiguracion().setConfProperty("data.local", "true");
+            }else{
+                getConfiguracion().setConfProperty("data.local", "false");
             }
             
-        } catch (SQLException ex) {
-            Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+            switch(resp){
+                case 0:
+                    
+                    setVent_config(factory.ventanaConfiguracion(null, true));
+                    getVent_config().setLocationRelativeTo(null);
+                    getVent_config().setVisible(true);
+                    
+                    getConfiguracion().dbInit("local_database", con.getConexion());
+                    
+                    getConfiguracion().setConfProperty("data.db", "Sistema_DB");
+                    getConfiguracion().setConfProperty("data.init", "true");
+                    success = true;
+                    
+                    break;
+                case 1:
+                    
+                    setVent_config(new vistas.Config(null, true));
+                    getVent_config().setLocationRelativeTo(null);
+                    getVent_config().setVisible(true);
+                    
+                    getConfiguracion().dbInit("remote_database", con.getConexion());
+                    
+                    getConfiguracion().setConfProperty("data.init", "true");
+                    success = true;
+                    break;
+                    
+                case 2:
+                    System.exit(0);
+                    break;
+            }
+            
+            JOptionPane.showMessageDialog(null, "El sistema se configuró  correctamente");
+            
+        }
+        
+        if(Sistema.getCon().getConexion() != null){
+            Sistema.getCon().closeConexion();
+            Sistema.setCon(Sistema.getFactory().conexion());
         }
         
         return success;
@@ -277,5 +228,6 @@ public final class Utilidades {
         
         return String.valueOf(dia)+"-"+String.valueOf(mes)+"-"+String.valueOf(año);
     }
+    
     
 }
