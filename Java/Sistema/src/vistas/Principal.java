@@ -208,6 +208,11 @@ public class Principal extends javax.swing.JFrame {
         jButton8.setBorderPainted(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setFocusPainted(false);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         BtnAcercaDe.setBackground(new java.awt.Color(3, 19, 27));
         BtnAcercaDe.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -413,6 +418,11 @@ public class Principal extends javax.swing.JFrame {
         log.setLocationRelativeTo(null);  
         this.dispose();
     }//GEN-LAST:event_closeSesionActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    MensajePlantilla men = new MensajePlantilla(this, true);
+    men.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

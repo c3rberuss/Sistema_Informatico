@@ -14,6 +14,7 @@ import servicios.Configuracion;
 import servicios.Usuarios;
 import servicios.Ventana;
 import sistema.Sistema;
+import vistas.MensajePlantilla;
 
 /**
  *
@@ -44,6 +45,8 @@ public class Login extends javax.swing.JDialog implements Ventana{
     public void setConfig(Configuracion config) {
         this.config = config;
     }
+    
+    
 
 
     /**
@@ -208,6 +211,7 @@ public class Login extends javax.swing.JDialog implements Ventana{
                     this.dispose();
                    
                 }else{
+                    
                     JOptionPane.showMessageDialog(null, "Usuario u Contraseña Incorrectos");
                     limpiar("");
                 }

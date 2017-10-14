@@ -33,7 +33,7 @@
 			<textField>
 				<reportElement x="107" y="31" width="429" height="35" uuid="b014ca15-6f18-4095-9c6a-86241410be2d"/>
 				<textElement markup="none">
-					<font fontName="Arial" size="22"/>
+					<font fontName="SansSerif" size="22"/>
 				</textElement>
 				<textFieldExpression><![CDATA["[NOMBRE DE EMPRESA]"]]></textFieldExpression>
 			</textField>
@@ -44,7 +44,7 @@
 			<staticText>
 				<reportElement x="37" y="10" width="499" height="40" uuid="808b8737-c274-4bbc-987d-2f617f1b4564"/>
 				<textElement textAlignment="Center" markup="none">
-					<font fontName="Arial" size="12" isUnderline="true"/>
+					<font fontName="SansSerif" size="12" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE USUARIOS AUTORIZADOS EN SISTEMA DE VENTAS
 [NOMBRE DE EMPRESA]]]></text>
@@ -65,21 +65,21 @@
 			<textField>
 				<reportElement x="382" y="5" width="133" height="20" uuid="4a0374b6-0a33-4a23-b770-bcd01e23d79a"/>
 				<textElement markup="none">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TIPO DE USUARIO"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="148" y="5" width="209" height="20" uuid="c84d16dc-bfec-46c9-8821-df91e156f297"/>
 				<textElement markup="none">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["NOMBRE DE USUARIO"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="47" y="5" width="90" height="20" uuid="c851ba52-50c2-4852-8948-2b043f1778c8"/>
 				<textElement markup="none">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["ID"]]></textFieldExpression>
 			</textField>
@@ -99,21 +99,21 @@
 			<textField>
 				<reportElement x="148" y="5" width="209" height="20" uuid="4077d09c-785c-4070-9605-c19382e1e607"/>
 				<textElement>
-					<font fontName="Arial" size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nick_usr}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="47" y="5" width="90" height="20" uuid="a73ed5b1-a99f-4ae4-a02c-840cc8e6cbf2"/>
 				<textElement>
-					<font fontName="Arial" size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_usr}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="382" y="5" width="133" height="20" uuid="29d2810c-0928-4edd-b05f-fc96888e459b"/>
 				<textElement>
-					<font fontName="Arial" size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{type_usr}]]></textFieldExpression>
 			</textField>
@@ -127,14 +127,14 @@
 			<textField>
 				<reportElement x="499" y="20" width="37" height="20" uuid="f7dfb13a-b1e2-49e1-aebc-0641181ba69f"/>
 				<textElement>
-					<font fontName="Dialog" isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="37" y="20" width="334" height="17" uuid="24a99df8-a133-487e-bdcb-9c4ec0d4c3cf"/>
 				<textElement markup="none">
-					<font fontName="Arial" size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TODOS LOS DERECHOS RESERVADOS 2017 | [NOMBRE DE EMPRESA]"]]></textFieldExpression>
 			</textField>
@@ -148,14 +148,14 @@
 			<textField>
 				<reportElement x="515" y="12" width="21" height="20" forecolor="#FF0000" uuid="958d1cba-d3f1-4453-ad2c-39864d35250a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{nick_usr_1}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="314" y="12" width="185" height="20" uuid="8e485124-a1e4-45e7-82a7-88c0ca0a36f0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="Arial" size="9" isBold="true"/>
+					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["TOTAL DE USUARIOS EN EL SISTEMA:"]]></textFieldExpression>
 			</textField>
