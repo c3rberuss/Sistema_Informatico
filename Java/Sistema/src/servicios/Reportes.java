@@ -27,7 +27,6 @@ public class Reportes {
     
     public void factura(String nfactura, String cliente, String nit, String fecha, String direccion) throws IOException{
         
-        
         try {
             JasperReport factura = (JasperReport)JRLoader.loadObject(getClass().getResource("/reportes/Plantillas/factura.jasper"));
             

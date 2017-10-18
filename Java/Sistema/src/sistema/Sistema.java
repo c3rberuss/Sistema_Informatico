@@ -84,7 +84,6 @@ public class Sistema {
                 prin.setVisible(true);
             }
             
-            getCon().closeConexion();
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);

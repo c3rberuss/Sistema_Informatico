@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import servicios.Venta;
 import servicios.Reportes;
 import servicios.Utilidades;
 import servicios.Ventana;
@@ -56,12 +56,14 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private Reportes report;
     private boolean edit;
     private boolean readyAdd;
+    public Venta venta;
     
     public Carrito(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        venta = Sistema.getFactory().venta();
         initComponents();
         this.setLocationRelativeTo(null);
-        cargarDatos();
+        venta.cargarDatos(LblTotal, Resultados);
         report = Sistema.getFactory().generateReport();
     }
 
@@ -93,6 +95,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         TxtPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Resultados = new javax.swing.JTable();
+        LblTotal = new javax.swing.JLabel();
 
         elimnarItem.setText("Eliminar Producto");
         elimnarItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,7 +244,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         });
         jScrollPane1.setViewportView(Resultados);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 310));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 280));
+
+        LblTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        LblTotal.setForeground(new java.awt.Color(255, 255, 255));
+        LblTotal.setText("0000000");
+        LblTotal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel2.add(LblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 290, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -323,7 +332,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                    this.setAdd(false);
                    limpiar("");
                    this.TxtId.requestFocus();
-                   cargarDatos();
+                  // cargarDatos();
+                  venta.cargarDatos(LblTotal, Resultados);
                    
                } catch (SQLException ex) {
                    this.setAdd(false);
@@ -351,7 +361,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                    this.add = false;
                    limpiar("");
                    this.TxtId.requestFocus();
-                   cargarDatos();
+                   //cargarDatos();
+                   venta.cargarDatos(LblTotal, Resultados);
                    enableOrDisable(true);
                   
               } catch (SQLException ex) {
@@ -366,7 +377,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                this.setAdd(false);
                limpiar("");
                this.TxtId.requestFocus();
-               cargarDatos();
+              // cargarDatos();
+              venta.cargarDatos(LblTotal, Resultados);
                enableOrDisable(true);
  
           }
@@ -388,7 +400,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
     private void BtnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLimpiarMousePressed
         Sistema.getFactory().connect().vaciarCarrito();
-        cargarDatos();
+        //cargarDatos();
+        venta.cargarDatos(LblTotal, Resultados);
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
@@ -406,7 +419,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             String id = (String) this.Resultados.getValueAt(fila, 0);
             Sistema.getFactory().connect().Delete("shopping_cart", "id='"+id+"'");
             this.setAdd(false);
-            cargarDatos();
+            //cargarDatos();
+            venta.cargarDatos(LblTotal, Resultados);
             this.TxtId.requestFocus();
             enableOrDisable(true);
         } catch (SQLException ex) {
@@ -474,6 +488,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnFacturar;
     private javax.swing.JButton BtnLimpiar;
+    private javax.swing.JLabel LblTotal;
     private javax.swing.JPopupMenu PopMenu;
     private javax.swing.JTable Resultados;
     private javax.swing.JTextField TxtCantidad;
@@ -501,26 +516,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         this.TxtId.requestFocus();
     }
     
-    private void cargarDatos(){
-        
-        try {
-            
-            ResultSet rs = Sistema.getFactory().connect().Select("*", "shopping_cart", "1 ORDER BY n DESC");
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new Object[]{"ID",  "PRODUCTO", "PRECIO", "CANTIDAD"});
-            
-            while(rs.next()){
-                modelo.addRow(new Object[]{rs.getString("id"), rs.getString("producto"), rs.getString("precio"), rs.getString("cantidad")});
-            }
-            
-            this.Resultados.setModel(modelo);
-            this.Resultados.updateUI();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
     
     private void enableOrDisable(boolean type){
         if(type){
