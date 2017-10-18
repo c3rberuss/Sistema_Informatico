@@ -14,3 +14,5 @@ ALTER TABLE `inventario` ADD PRIMARY KEY (`id`);
 ALTER TABLE `shopping_cart` ADD PRIMARY KEY (`n`);
 ALTER TABLE `users` ADD PRIMARY KEY (`id_usr`);
 ALTER TABLE `shopping_cart` MODIFY `n` int(10) NOT NULL AUTO_INCREMENT;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `carrito`() NO SQL SELECT id, producto, precio, cantidad FROM shopping_cart ORDER BY n DESC;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `subtotal_carrito`() NO SQL SELECT SUM(precio*cantidad) as total FROM shopping_cart;
