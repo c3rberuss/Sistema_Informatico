@@ -10,6 +10,7 @@ import factory.Factory;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Usuarios;
+import sistema.Sistema;
 
 
 /**
@@ -208,6 +209,11 @@ public class Principal extends javax.swing.JFrame {
         jButton8.setBorderPainted(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setFocusPainted(false);
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -420,9 +426,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_closeSesionActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-    MensajePlantilla men = new MensajePlantilla(this, true);
-    men.setVisible(true);
+
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        MensajePlantilla mensaje = new MensajePlantilla(this, true);
+        mensaje.mensaje("exito", "Esto es una prueba de mensaje de error, para probarque tanto texto se le puede meter a esta cosa :v", "titulo");
+    }//GEN-LAST:event_jButton8MouseClicked
 
     /**
      * @param args the command line arguments

@@ -5,20 +5,24 @@
  */
 package vistas;
 
+import javax.swing.ImageIcon;
+import javax.swing.text.DefaultCaret;
+import sistema.Sistema;
+
 /**
  *
  * @author edwin
  */
 public class MensajePlantilla extends javax.swing.JDialog {
 
-    /**
-     * Creates new form MensajePlantilla
-     */
+    private ImageIcon icon;
+    
     public MensajePlantilla(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.icono.setVisible(false);
+        this.icono.setVisible(true);
+
     }
 
     /**
@@ -33,11 +37,11 @@ public class MensajePlantilla extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         BtnCancelar1 = new javax.swing.JButton();
-        txtMensaje = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         txtTipoMensaje = new javax.swing.JLabel();
-        BtnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -68,11 +72,6 @@ public class MensajePlantilla extends javax.swing.JDialog {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 40));
 
-        txtMensaje.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        txtMensaje.setForeground(new java.awt.Color(255, 255, 255));
-        txtMensaje.setText("Mensaje--->");
-        jPanel1.add(txtMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 280, 30));
-
         icono.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         icono.setForeground(new java.awt.Color(255, 255, 255));
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/advertencia.png"))); // NOI18N
@@ -80,6 +79,24 @@ public class MensajePlantilla extends javax.swing.JDialog {
         icono.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         icono.setIconTextGap(-10);
         jPanel1.add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 40, 40));
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(35, 48, 54));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Mensaje  -->");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setBorder(null);
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 290, -1));
 
         jPanel3.setBackground(new java.awt.Color(3, 19, 27));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -93,34 +110,52 @@ public class MensajePlantilla extends javax.swing.JDialog {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 20));
 
-        BtnCancelar.setBackground(new java.awt.Color(153, 0, 0));
-        BtnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnCancelar.setText("mostrar icono");
-        BtnCancelar.setBorder(null);
-        BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnCancelar.setFocusPainted(false);
-        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancelarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 100, 20));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-
-        this.icono.setVisible(true);
-    }//GEN-LAST:event_BtnCancelarActionPerformed
-
     private void BtnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelar1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_BtnCancelar1ActionPerformed
 
+    
+    public void mensaje(String tipo, String mensaje, String titulo){
+        this.txtTipoMensaje.setText(titulo.toUpperCase());
+        this.jTextArea1.setText(mensaje);
+        
+        switch(tipo.toLowerCase()){
+            case "advertencia":
+                setIcon(Sistema.getFactory().icono(this.getClass().getClassLoader().getResource("Recursos/imagenes/advertencia.png")));
+                this.icono.setIcon(getIcon());
+                break;
+            case "error":
+                setIcon(Sistema.getFactory().icono(this.getClass().getResource("/Recursos/imagenes/error.png")));
+                this.icono.setIcon(getIcon());
+                break;
+            case "exito":
+                setIcon(Sistema.getFactory().icono(this.getClass().getResource("/Recursos/imagenes/exito.png")));
+                this.icono.setIcon(getIcon());
+                break;
+            default:
+                setIcon(Sistema.getFactory().icono(this.getClass().getResource("/Recursos/imagenes/ayuda.png")));
+                this.icono.setIcon(getIcon());
+                break;
+        }
+        
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.icono.repaint();
+    }
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -164,13 +199,13 @@ public class MensajePlantilla extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnCancelar1;
     private javax.swing.JLabel icono;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel txtMensaje;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel txtTipoMensaje;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,10 +12,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
 import servicios.*;
@@ -104,6 +106,10 @@ public class Factory {
     
     public DatosFactura facturacion(Frame padre, boolean modal){
         return new DatosFactura(padre, modal);
+    }
+    
+    public ImageIcon icono(URL url){
+        return new ImageIcon(url);
     }
     
 }

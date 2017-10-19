@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import servicios.Utilidades;
+import servicios.Venta;
 import servicios.Ventana;
 import sistema.Sistema;
 
@@ -26,35 +27,34 @@ import sistema.Sistema;
  */
 public class Busqueda extends javax.swing.JDialog implements Ventana {
 
-    private Factory factory;
-    private Conexion cn;
     private DefaultTableModel modelo;
     private Utilidades utilidades;
     private TableRowSorter trsFiltro;
+    private Venta venta;
     
     public Busqueda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        factory = new Factory();
-        cn = factory.connect();
-        modelo = factory.modelo();
-        utilidades = factory.herramientas();
-        utilidades.mostrar(this.Resultados, cn);
+        modelo = Sistema.getFactory().modelo();
+        utilidades = Sistema.getFactory().herramientas();
+        setVenta(Sistema.getFactory().venta());
+        utilidades.mostrar(this.Resultados, getVenta().mostrarItems());
        
     }
     
 
-    public Conexion getCn() {
-        return cn;
-    }
-
-    public void setCn(Conexion cn) {
-        this.cn = cn;
-    }
 
     public DefaultTableModel getModelo() {
         return modelo;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public void setModelo(DefaultTableModel modelo) {
@@ -169,11 +169,20 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
 
             },
             new String [] {
-
+                "ID", "PRODUCTO", "DESCRIPCION", "PRECIO", "CTD"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         Resultados.setComponentPopupMenu(MenuFlotante);
         Resultados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Resultados.setUpdateSelectionOnSort(false);
         jScrollPane1.setViewportView(Resultados);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 460, 310));
@@ -184,7 +193,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        getCn().closeConexion();
+        //Sistema.getCon().closeConexion();
     }//GEN-LAST:event_formWindowClosing
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -193,7 +202,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
 
    public void filtro() {
         int columnaABuscar = 1;
-        this.trsFiltro.setRowFilter(RowFilter.regexFilter(this.txtBusqueda.getText(), columnaABuscar));
+        this.trsFiltro.setRowFilter(RowFilter.regexFilter(this.txtBusqueda.getText().toUpperCase(), columnaABuscar));
    }
     
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
@@ -211,25 +220,17 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void addCartitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCartitoMousePressed
-        try {
-            int n = this.Resultados.getSelectedRow();
-            String[] datos = new String[4];
-            datos[0] = (String) this.Resultados.getValueAt(n, 0);
-            datos[1] = (String) this.Resultados.getValueAt(n, 1);
-            datos[2] = "0.50";//(String) this.carro.getValueAt(n, 2);
-            datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
-            
-            System.out.println(datos[0]);
-            System.out.println(datos[1]);
-            System.out.println(datos[2]);
-            System.out.println(datos[3]);
-            
-            Sistema.getCon().Insert("shopping_cart", datos[0]+",'"+datos[1]+"', "+datos[2]+","+datos[3]+", null","id='"+datos[0]+"'", "cantidad=cantidad+"+datos[3]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+        int n = this.Resultados.getSelectedRow();
+        String[] datos = new String[4];
+        datos[0] = (String) this.Resultados.getValueAt(n, 0);
+        datos[1] = (String) this.Resultados.getValueAt(n, 1);
+        datos[2] = (String) this.Resultados.getValueAt(n, 3);
+        datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
+        System.out.println(datos[0]);
+        System.out.println(datos[1]);
+        System.out.println(datos[2]);
+        System.out.println(datos[3]);
+        getVenta().insertarItem(datos[0], datos[1], Double.valueOf(datos[2]), Integer.valueOf(datos[3]));
         
     }//GEN-LAST:event_addCartitoMousePressed
 

@@ -25,7 +25,7 @@ public class Venta {
     
     private PreparedStatement statement;
     private ResultSet result;
-    private DefaultTableModel modelo;
+    DefaultTableModel modelo;
     
     public Venta(){
         setModelo(Sistema.getFactory().modelo());
@@ -96,6 +96,104 @@ public class Venta {
             Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void borrarItem(JTable resultados, String id){
+        
+        if(resultados.getSelectedRow() > 0){
+            try {
+                setStatement(Sistema.getCon().getConexion().prepareStatement("CALL borrarItem(?)"));
+                getStatement().setString(1, id);
+                getStatement().executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
+    public void actualizarItem(int cantidad, String id){
+        try {
+            setStatement(Sistema.getCon().getConexion().prepareStatement("CALL actualizarItem(?, ?)"));
+            getStatement().setInt(1, cantidad);
+            getStatement().setString(2, id);
+            getStatement().executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ResultSet buscarItem(String id){
+        try {
+            setStatement(Sistema.getCon().getConexion().prepareStatement("CALL buscarItem(?)"));
+            getStatement().setString(1, id);
+            setResult(getStatement().executeQuery());
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return getResult();
+    }
+    
+    public void vaciarCarrito(){
+        try {
+            setStatement(Sistema.getCon().getConexion().prepareStatement("CALL vaciarCarrito()"));
+            setResult(getStatement().executeQuery());
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public ResultSet mostrarItems(){
+         try {
+            if(Sistema.getCon() != null){
+                setStatement(Sistema.getCon().getConexion().prepareStatement("CALL mostrarItems()"));
+            setResult(getStatement().executeQuery());
+            }
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         return getResult();
+    }
+    
+    public void insertarItem(String id, String producto, double precio, int cantidad){
+        
+        try {
+            
+            if(existe(id)){
+                actualizarItem(cantidad, id);
+            }else{
+                setStatement(Sistema.getCon().getConexion().prepareStatement("CALL insertarItem(?, ?, ?, ?)"));
+                getStatement().setString(1, id);
+                getStatement().setString(2, producto);
+                getStatement().setDouble(3, precio);
+                getStatement().setInt(4, cantidad);
+                getStatement().executeUpdate();
+            }
+    
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public boolean existe(String id){
+        boolean existe = false;
+        
+        try {
+            setStatement(Sistema.getCon().getConexion().prepareStatement("CALL existeItem(?)"));
+            getStatement().setString(1, id);
+            setResult(getStatement().executeQuery());
+            getResult().first();
+            existe = getResult().getBoolean(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return existe;
     }
     
 

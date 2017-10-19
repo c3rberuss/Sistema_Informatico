@@ -5,15 +5,12 @@
  */
 package servicios;
 
-import factory.Factory;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,16 +26,21 @@ import vistas.Config;
  */
 public final class Utilidades {
     
-    private final Factory factory;
     private Config vent_config;
-    private Conexion conexion;
     private Statement s;
     private Configuracion configuracion;
+    private Venta venta;
     
     public Utilidades(){
-        factory = new Factory();
-        setConexion(factory.connect());
-        setVent_config(factory.ventanaConfiguracion(null, true));
+        setVent_config(Sistema.getFactory().ventanaConfiguracion(null, true));
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public Configuracion getConfiguracion() {
@@ -57,14 +59,6 @@ public final class Utilidades {
         this.vent_config = vent_config;
     }
 
-    public Conexion getConexion() {
-        return conexion;
-    }
-
-    public void setConexion(Conexion conexion) {
-        this.conexion = conexion;
-    }
-
     public Statement getS() {
         return s;
     }
@@ -78,7 +72,7 @@ public final class Utilidades {
         boolean success = false;
         String sql;
         
-        setConfiguracion(factory.configuraciones());
+        setConfiguracion(Sistema.getFactory().configuraciones());
         boolean init = Boolean.valueOf(getConfiguracion().getConfProperty("data.init"));
         if(init == false){
             
@@ -96,7 +90,7 @@ public final class Utilidades {
             switch(resp){
                 case 0:
                     
-                    setVent_config(factory.ventanaConfiguracion(null, true));
+                    setVent_config(Sistema.getFactory().ventanaConfiguracion(null, true));
                     getVent_config().setLocationRelativeTo(null);
                     getVent_config().setVisible(true);
                     
@@ -149,11 +143,11 @@ public final class Utilidades {
                     ruta = Sistema.getRootPath()+"config.properties";
                 }
 
-                File archivo = factory.createFile(ruta);
+                File archivo = Sistema.getFactory().createFile(ruta);
                 BufferedWriter bw;
                 if(!archivo.exists()) {
 
-                    bw = factory.bufferWriter(archivo);
+                    bw = Sistema.getFactory().bufferWriter(archivo);
                     bw.write("data.pass=none\n" +
                             "data.init=false\n" +
                             "data.db=information_schema\n" +
@@ -186,22 +180,21 @@ public final class Utilidades {
         return model;
     }
     
-    public DefaultTableModel mostrar(JTable Resultados, Conexion cn){
+    public void mostrar(JTable Resultados, ResultSet rs){
         
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = (DefaultTableModel) Resultados.getModel();
         
         try {
             
             int a =modelo.getRowCount();
             for(int i=0; i<a; i++){
-                modelo.removeRow(0);
+                modelo.removeRow(i);
             }
-            
-            ResultSet rs = cn.Select("*", "inventario", "1");
-            modelo.setColumnIdentifiers(new Object[]{"ID",  "PRODUCTO", "DESCRIPCIÓN"});
+            modelo.setColumnIdentifiers(new Object[]{"ID",  "PRODUCTO", "DESCRIPCIÓN", "PRECIO", "CTD"});
 
             while(rs.next()){
-                modelo.addRow(new Object[]{rs.getString("id"), rs.getString("producto"), rs.getString("descripcion")});
+                modelo.addRow(new Object[]{rs.getString("id"), rs.getString("producto").toUpperCase(), rs.getString("descripcion"),
+                rs.getString("precio"), rs.getString("stock")});
             }
             
             Resultados.setModel(modelo);
@@ -211,7 +204,6 @@ public final class Utilidades {
             Logger.getLogger(Busqueda.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return modelo;
         
     }
     
