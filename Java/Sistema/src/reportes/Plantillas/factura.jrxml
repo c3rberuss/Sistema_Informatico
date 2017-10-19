@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bc698c75-3ea0-486c-8a02-7ee19a5341f5">
 	<property name="ireport.zoom" value="1.4641000000000282"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="62"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="n_factura" class="java.lang.String"/>
 	<parameter name="name_cliente" class="java.lang.String"/>
 	<parameter name="fecha" class="java.lang.String"/>
 	<parameter name="direccion" class="java.lang.String"/>
 	<parameter name="nit" class="java.lang.String"/>
-	<parameter name="rutaimg" class="java.lang.String"/>
+	<parameter name="rutaimg" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[Select producto, cantidad, precio FROM shopping_cart;]]>
 	</queryString>
@@ -55,7 +55,7 @@
 			</textField>
 			<image>
 				<reportElement x="10" y="10" width="59" height="52" uuid="0b9e4371-ddc6-42b2-8004-4744f4d903cc"/>
-				<imageExpression><![CDATA[getClass().getResource("/Recursos/imagenes/icono.png").toString()]]></imageExpression>
+				<imageExpression><![CDATA[$P{rutaimg}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="69" y="10" width="296" height="36" uuid="ae5202cf-6000-446d-8d10-ec876e70d930"/>
@@ -210,7 +210,7 @@
 			<textField>
 				<reportElement x="223" y="0" width="18" height="17" uuid="9dff89f3-406b-4189-b0f9-d4367e83a757"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="Arial" isBold="false"/>
+					<font fontName="SansSerif" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["$  "]]></textFieldExpression>
 			</textField>

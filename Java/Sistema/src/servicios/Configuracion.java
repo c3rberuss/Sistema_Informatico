@@ -263,7 +263,7 @@ public class Configuracion {
         FileReader f = null;
         try {
             String cadena;
-            f = new FileReader(getClass().getResource("/Recursos/db/"+archivo+".sql").getPath());
+            f = new FileReader(getClass().getClassLoader().getResource("/Recursos/db/"+archivo+".sql").toString());
             BufferedReader b = new BufferedReader(f);
             PreparedStatement st;
             while((cadena = b.readLine())!=null) {
