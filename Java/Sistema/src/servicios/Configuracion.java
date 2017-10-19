@@ -12,7 +12,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -260,26 +262,29 @@ public class Configuracion {
     }
     
     public void dbInit(String archivo, Connection con){
-        FileReader f = null;
-        try {
+        try { 
+            
+            URL url = getClass().getResource("/Recursos/db/"+archivo);
+            InputStream is = url.openStream();
+            InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+        
             String cadena;
-            f = new FileReader(getClass().getClassLoader().getResource("/Recursos/db/"+archivo+".sql").toString());
-            BufferedReader b = new BufferedReader(f);
-            PreparedStatement st;
-            while((cadena = b.readLine())!=null) {
-                st = con.prepareStatement(cadena);
-                st.executeUpdate();
-            }     b.close();
+            
+            try (BufferedReader b = new BufferedReader(isr)) {
+                PreparedStatement st;
+
+                while((cadena = b.readLine())!=null) {
+                    st = con.prepareStatement(cadena);
+                    st.executeUpdate();
+                }
+            }
+            
         } catch (FileNotFoundException ex) {
+            System.out.println("ERROR!!!!!!");
             Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | SQLException ex) {
+            System.out.println("ERROR!!!!!!");
             Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                f.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }

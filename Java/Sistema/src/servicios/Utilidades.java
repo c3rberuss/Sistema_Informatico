@@ -94,12 +94,16 @@ public final class Utilidades {
                     getVent_config().setLocationRelativeTo(null);
                     getVent_config().setVisible(true);
                     
-                    getConfiguracion().dbInit("local_database", con.getConexion());
+                    if(con.getConexion() != null){
+                        getConfiguracion().dbInit("local_database.sql", con.getConexion());
+                        getConfiguracion().setConfProperty("data.db", "Sistema_DB");
+                        getConfiguracion().setConfProperty("data.init", "true");
+                        success = true;
+                    }else{
+                        System.out.println("Conexion no iniciada");
+                    }
                     
-                    getConfiguracion().setConfProperty("data.db", "Sistema_DB");
-                    getConfiguracion().setConfProperty("data.init", "true");
-                    success = true;
-                    
+
                     break;
                 case 1:
                     
@@ -107,7 +111,7 @@ public final class Utilidades {
                     getVent_config().setLocationRelativeTo(null);
                     getVent_config().setVisible(true);
                     
-                    getConfiguracion().dbInit("remote_database", con.getConexion());
+                    getConfiguracion().dbInit("remote_database.sql", con.getConexion());
                     
                     getConfiguracion().setConfProperty("data.init", "true");
                     success = true;
