@@ -6,7 +6,6 @@
 package vistas;
 
 import com.sun.glass.events.KeyEvent;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import servicios.Venta;
 import servicios.Reportes;
-import servicios.Utilidades;
 import servicios.Ventana;
 import sistema.Sistema;
 
@@ -23,6 +21,14 @@ import sistema.Sistema;
  * @author edwin
  */
 public class Carrito extends javax.swing.JDialog implements Ventana{
+
+    public DatosFactura getFacturacion() {
+        return facturacion;
+    }
+
+    public void setFacturacion(DatosFactura facturacion) {
+        this.facturacion = facturacion;
+    }
 
     /**
      * @return the readyAdd
@@ -53,10 +59,11 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }
 
     private boolean add;
-    private Reportes report;
+
     private boolean edit;
     private boolean readyAdd;
     public Venta venta;
+    private DatosFactura facturacion;
     
     public Carrito(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -64,7 +71,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         initComponents();
         this.setLocationRelativeTo(null);
         venta.cargarDatos(LblTotal, Resultados);
-        report = Sistema.getFactory().generateReport();
+        setFacturacion(Sistema.getFactory().facturacion(null, true));
     }
 
     /**
@@ -404,13 +411,11 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
-        System.out.println(this.getClass().getClassLoader().getResource("Recursos/imagenes/icono2.png"));
-        try {
-            report.factura("000001", "Jonatan Josué Bermúdez Amaya", "1120-155-15855-1", 
-                    "Final 2 Calle Oriente, Barrio la Parroquia");
-        } catch (IOException ex) {
-            Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        getFacturacion().setLocationRelativeTo(null);
+        getFacturacion().setVisible(true);
+        venta.limpiarTabla(Resultados);
+
     }//GEN-LAST:event_BtnFacturarActionPerformed
 
     private void elimnarItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimnarItemMousePressed

@@ -5,6 +5,7 @@
  */
 package factory;
 
+import java.awt.Frame;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -99,6 +100,10 @@ public class Factory {
     
     public Venta venta(){
         return new Venta();
+    }
+    
+    public DatosFactura facturacion(Frame padre, boolean modal){
+        return new DatosFactura(padre, modal);
     }
     
 }

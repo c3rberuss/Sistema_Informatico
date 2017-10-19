@@ -5,18 +5,34 @@
  */
 package vistas;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import servicios.Reportes;
+import servicios.Usuarios;
+import sistema.Sistema;
+
 /**
  *
  * @author edwin
  */
 public class DatosFactura extends javax.swing.JDialog {
 
-    /**
-     * Creates new form DatosFactura
-     */
+    private Reportes report;
+    
     public DatosFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setReport(Sistema.getFactory().generateReport());
+        this.txtEmpleado.setText(Usuarios.nick());
+    }
+
+    public Reportes getReport() {
+        return report;
+    }
+
+    public void setReport(Reportes report) {
+        this.report = report;
     }
 
     /**
@@ -35,7 +51,6 @@ public class DatosFactura extends javax.swing.JDialog {
         txtNcliente = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        txtNIT = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         txtEmpleado = new javax.swing.JTextField();
@@ -47,6 +62,7 @@ public class DatosFactura extends javax.swing.JDialog {
         jSeparator8 = new javax.swing.JSeparator();
         BtnFacturar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
+        txtNIT = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -95,15 +111,6 @@ public class DatosFactura extends javax.swing.JDialog {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("NIT:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 280, 20));
-
-        txtNIT.setBackground(new java.awt.Color(35, 48, 54));
-        txtNIT.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtNIT.setForeground(new java.awt.Color(255, 255, 255));
-        txtNIT.setText("---");
-        txtNIT.setToolTipText("ID");
-        txtNIT.setBorder(null);
-        txtNIT.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel1.add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 260, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 260, 10));
@@ -158,6 +165,11 @@ public class DatosFactura extends javax.swing.JDialog {
         BtnFacturar.setToolTipText("Facturar los articulos agregados");
         BtnFacturar.setBorder(null);
         BtnFacturar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnFacturar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnFacturarMouseClicked(evt);
+            }
+        });
         BtnFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnFacturarActionPerformed(evt);
@@ -177,6 +189,17 @@ public class DatosFactura extends javax.swing.JDialog {
             }
         });
         jPanel1.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 80, 30));
+
+        txtNIT.setBackground(new java.awt.Color(35, 48, 54));
+        txtNIT.setBorder(null);
+        txtNIT.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            txtNIT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-######-###-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtNIT.setFont(new java.awt.Font("SansSerif", 2, 12)); // NOI18N
+        jPanel1.add(txtNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 270, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 400));
 
@@ -202,6 +225,16 @@ public class DatosFactura extends javax.swing.JDialog {
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void BtnFacturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFacturarMouseClicked
+        try {
+            getReport().factura("000001", this.txtNcliente.getText(), this.txtNIT.getText(),
+                    this.txtDireccion.getText());
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(DatosFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BtnFacturarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -265,7 +298,7 @@ public class DatosFactura extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextArea txtDireccion;
     private javax.swing.JTextField txtEmpleado;
-    private javax.swing.JTextField txtNIT;
+    private javax.swing.JFormattedTextField txtNIT;
     private javax.swing.JTextField txtNcliente;
     // End of variables declaration//GEN-END:variables
 }
