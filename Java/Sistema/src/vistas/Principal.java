@@ -419,7 +419,7 @@ public class Principal extends javax.swing.JFrame {
         Configuracion conf = factory.configuraciones();
         conf.setConfProperty("sesion.active", "false");
         conf.setConfProperty("sesion.close", "true");
-        Login log = factory.ventanaLogin(null, false);
+        Login1 log = factory.ventanaLogin(null, false);
         log.setVisible(true);
         log.setLocationRelativeTo(null);  
         this.dispose();

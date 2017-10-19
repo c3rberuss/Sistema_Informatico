@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bc698c75-3ea0-486c-8a02-7ee19a5341f5">
 	<property name="ireport.zoom" value="1.4641000000000282"/>
-	<property name="ireport.x" value="62"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="n_factura" class="java.lang.String"/>
 	<parameter name="name_cliente" class="java.lang.String"/>
@@ -183,7 +183,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<rectangle>
 				<reportElement x="212" y="0" width="147" height="19" uuid="410bd3cc-ca75-4b10-9b64-cfce9df22734"/>
 			</rectangle>
@@ -232,7 +232,7 @@
 	<summary>
 		<band height="42" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="18" width="555" height="19" uuid="195e30c1-f8a8-4f2e-985d-c04561bc6e49"/>
+				<reportElement x="25" y="18" width="499" height="19" uuid="195e30c1-f8a8-4f2e-985d-c04561bc6e49"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="318" y="18" width="108" height="19" uuid="de7a9a7e-c31a-4a0b-a2c3-0562161edf5a"/>

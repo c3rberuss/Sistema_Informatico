@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
-import vistas.Login;
+import vistas.Login1;
 
 /**
  *

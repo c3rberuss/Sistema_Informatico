@@ -26,10 +26,6 @@
 	</background>
 	<title>
 		<band height="85" splitType="Stretch">
-			<image>
-				<reportElement x="37" y="31" width="70" height="54" uuid="d48998e4-6f56-4268-910d-b382f00072aa"/>
-				<imageExpression><![CDATA["C:\\Users\\edwin\\Documents\\NetBeansProjects\\Sistema_Informatico\\Sistema\\Java\\Sistema\\src\\Recursos\\imagenes\\icono2.png"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="107" y="31" width="429" height="35" uuid="b014ca15-6f18-4095-9c6a-86241410be2d"/>
 				<textElement markup="none">
@@ -37,6 +33,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA["[NOMBRE DE EMPRESA]"]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="27" y="15" width="80" height="70" uuid="c4ec1e27-fe27-45b1-b936-7e778e69e288"/>
+				<imageExpression><![CDATA["C:\\Users\\edwin\\Documents\\NetBeansProjects\\Sistema_Informatico\\Sistema\\Java\\Sistema\\src\\Recursos\\imagenes\\icono2.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
