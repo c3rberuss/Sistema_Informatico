@@ -17,6 +17,9 @@ import sistema.Sistema;
  * @author edwin
  */
 public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
+    
+    //variables para mover ventana
+    int x,y;
 
     public void setDatos(String[] datos) {
         this.datos = datos;
@@ -84,6 +87,16 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -391,6 +404,15 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         limpiar("tabla");
         JOptionPane.showMessageDialog(null, "Usuarios Actualizados Exitosamente");
     }//GEN-LAST:event_BtnModificarMousePressed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+       this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     /**
      * @param args the command line arguments

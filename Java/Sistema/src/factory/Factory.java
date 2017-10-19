@@ -51,8 +51,8 @@ public class Factory {
         return new Config(parent, modal);
     }
     
-    public Login ventanaLogin(java.awt.Frame parent, boolean modal){
-        return new Login(parent, modal);
+    public Login1 ventanaLogin(java.awt.Frame parent, boolean modal){
+        return new Login1();
     }
     
     public Principal ventanaPrincipal(java.awt.Frame parent, boolean modal){

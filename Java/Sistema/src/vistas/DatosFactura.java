@@ -20,6 +20,9 @@ public class DatosFactura extends javax.swing.JDialog {
 
     private Reportes report;
     
+    //variables de movimiento
+    int x, y;
+    
     public DatosFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -73,6 +76,16 @@ public class DatosFactura extends javax.swing.JDialog {
 
         jPanel5.setBackground(new java.awt.Color(3, 19, 27));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel5MouseDragged(evt);
+            }
+        });
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel5MousePressed(evt);
+            }
+        });
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
@@ -235,6 +248,15 @@ public class DatosFactura extends javax.swing.JDialog {
             Logger.getLogger(DatosFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BtnFacturarMouseClicked
+
+    private void jPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel5MousePressed
+
+    private void jPanel5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
+    }//GEN-LAST:event_jPanel5MouseDragged
 
     /**
      * @param args the command line arguments

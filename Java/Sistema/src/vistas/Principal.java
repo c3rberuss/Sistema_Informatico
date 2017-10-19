@@ -8,6 +8,7 @@ package vistas;
 
 import factory.Factory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import servicios.Configuracion;
 import servicios.Usuarios;
 
@@ -76,7 +77,7 @@ public class Principal extends javax.swing.JFrame {
         closeSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de ventas");
+        setTitle("Sistema de ventas | [Nombre de empresa]");
         setMinimumSize(new java.awt.Dimension(1090, 690));
 
         jPanel1.setBackground(new java.awt.Color(35, 48, 54));
@@ -96,6 +97,9 @@ public class Principal extends javax.swing.JFrame {
         BtnConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnConfiguracionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnConfiguracionMouseEntered(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 BtnConfiguracionMousePressed(evt);
@@ -413,7 +417,7 @@ public class Principal extends javax.swing.JFrame {
         Configuracion conf = factory.configuraciones();
         conf.setConfProperty("sesion.active", "false");
         conf.setConfProperty("sesion.close", "true");
-        Login log = factory.ventanaLogin(null, false);
+        Login1 log = factory.ventanaLogin(null, false);
         log.setVisible(true);
         log.setLocationRelativeTo(null);  
         this.dispose();
@@ -423,6 +427,10 @@ public class Principal extends javax.swing.JFrame {
     MensajePlantilla men = new MensajePlantilla(this, true);
     men.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void BtnConfiguracionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConfiguracionMouseEntered
+       
+    }//GEN-LAST:event_BtnConfiguracionMouseEntered
 
     /**
      * @param args the command line arguments

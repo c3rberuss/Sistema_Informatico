@@ -21,6 +21,9 @@ import sistema.Sistema;
  * @author edwin
  */
 public class Carrito extends javax.swing.JDialog implements Ventana{
+    
+    //variables de movimiento de ventanas
+    int x, y;
 
     public DatosFactura getFacturacion() {
         return facturacion;
@@ -117,6 +120,16 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
         jPanel5.setBackground(new java.awt.Color(3, 19, 27));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel5MouseDragged(evt);
+            }
+        });
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel5MousePressed(evt);
+            }
+        });
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -135,12 +148,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         BtnCancelar.setText("CERRAR");
         BtnCancelar.setBorder(null);
         BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCancelar.setFocusPainted(false);
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
             }
         });
-        jPanel6.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 60, 30));
+        jPanel6.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 60, 20));
 
         BtnFacturar.setBackground(new java.awt.Color(0, 102, 0));
         BtnFacturar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -150,12 +164,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         BtnFacturar.setToolTipText("Facturar los articulos agregados");
         BtnFacturar.setBorder(null);
         BtnFacturar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnFacturar.setFocusPainted(false);
         BtnFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnFacturarActionPerformed(evt);
             }
         });
-        jPanel6.add(BtnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 90, 30));
+        jPanel6.add(BtnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 90, 20));
 
         BtnLimpiar.setBackground(new java.awt.Color(51, 51, 51));
         BtnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -165,12 +180,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         BtnLimpiar.setToolTipText("limpiar la tabla de articulos");
         BtnLimpiar.setBorder(null);
         BtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnLimpiar.setFocusPainted(false);
         BtnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 BtnLimpiarMousePressed(evt);
             }
         });
-        jPanel6.add(BtnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 30));
+        jPanel6.add(BtnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 70, 20));
 
         jPanel2.setBackground(new java.awt.Color(35, 48, 54));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -253,11 +269,12 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 280));
 
-        LblTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        LblTotal.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         LblTotal.setForeground(new java.awt.Color(255, 255, 255));
+        LblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LblTotal.setText("0000000");
         LblTotal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel2.add(LblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 290, 30));
+        jPanel2.add(LblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 460, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -434,6 +451,15 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         }
         
     }//GEN-LAST:event_elimnarItemMousePressed
+
+    private void jPanel5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseDragged
+       this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
+    }//GEN-LAST:event_jPanel5MouseDragged
+
+    private void jPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel5MousePressed
 
         /**
      * @return the add

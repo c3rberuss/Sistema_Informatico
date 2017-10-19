@@ -32,6 +32,9 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     private Utilidades utilidades;
     private TableRowSorter trsFiltro;
     
+    //variables para mover ventana
+    int x,y;
+    
     public Busqueda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -105,6 +108,16 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
 
         jPanel5.setBackground(new java.awt.Color(3, 19, 27));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel5MouseDragged(evt);
+            }
+        });
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel5MousePressed(evt);
+            }
+        });
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -232,6 +245,15 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         
         
     }//GEN-LAST:event_addCartitoMousePressed
+
+    private void jPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel5MousePressed
+
+    private void jPanel5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
+    }//GEN-LAST:event_jPanel5MouseDragged
 
     /**
      * @param args the command line arguments

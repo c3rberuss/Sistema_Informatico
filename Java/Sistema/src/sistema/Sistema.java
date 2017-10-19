@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import servicios.Configuracion;
-import vistas.Login;
+import vistas.Login1;
 import vistas.Principal;
 
 
@@ -76,7 +76,7 @@ public class Sistema {
             boolean sesionActive = Boolean.valueOf(conf.getConfProperty("sesion.active"));
 
             if(sesionActive == false){
-                Login log = new Login(null, true);
+                Login1 log = new Login1();
                 log.setLocationRelativeTo(null);
                 log.setVisible(true);
             }else{
