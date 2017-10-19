@@ -126,19 +126,19 @@ public class MensajePlantilla extends javax.swing.JDialog {
         
         switch(tipo.toLowerCase()){
             case "advertencia":
-                setIcon(Sistema.getFactory().icono(this.getClass().getClassLoader().getResource("Recursos/imagenes/advertencia.png")));
+                setIcon(Sistema.getFactory().icono(getClass().getClassLoader().getResource("Recursos/imagenes/advertencia.png")));
                 this.icono.setIcon(getIcon());
                 break;
             case "error":
-                setIcon(Sistema.getFactory().icono(this.getClass().getResource("/Recursos/imagenes/error.png")));
+                setIcon(Sistema.getFactory().icono(getClass().getResource("/Recursos/imagenes/error.png")));
                 this.icono.setIcon(getIcon());
                 break;
             case "exito":
-                setIcon(Sistema.getFactory().icono(this.getClass().getResource("/Recursos/imagenes/exito.png")));
+                setIcon(Sistema.getFactory().icono(getClass().getResource("/Recursos/imagenes/exito.png")));
                 this.icono.setIcon(getIcon());
                 break;
             default:
-                setIcon(Sistema.getFactory().icono(this.getClass().getResource("/Recursos/imagenes/ayuda.png")));
+                setIcon(Sistema.getFactory().icono(getClass().getResource("/Recursos/imagenes/ayuda.png")));
                 this.icono.setIcon(getIcon());
                 break;
         }

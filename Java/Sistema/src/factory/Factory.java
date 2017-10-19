@@ -112,4 +112,8 @@ public class Factory {
         return new ImageIcon(url);
     }
     
+    public MensajePlantilla mostrarMensaje(Frame padre, boolean modal){
+        return new MensajePlantilla(padre, modal);
+    }
+    
 }

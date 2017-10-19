@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import servicios.Configuracion;
 import vistas.Login1;
+import vistas.MensajePlantilla;
 import vistas.Principal;
 
 
@@ -20,6 +21,20 @@ import vistas.Principal;
  * @author josuee
  */
 public class Sistema {
+
+    /**
+     * @return the mostrarMensaje
+     */
+    public static MensajePlantilla getMostrarMensaje() {
+        return mostrarMensaje;
+    }
+
+    /**
+     * @param aMostrarMensaje the mostrarMensaje to set
+     */
+    public static void setMostrarMensaje(MensajePlantilla aMostrarMensaje) {
+        mostrarMensaje = aMostrarMensaje;
+    }
 
     private static Configuracion getConf() {
         return conf;
@@ -38,39 +53,37 @@ public class Sistema {
     private static Factory factory;
     private static String rootPath;
     private static Configuracion conf;
+    private static MensajePlantilla mostrarMensaje;
     
     public static void main(String[] args) throws IOException{
         
-        String os = Configuracion.osName().toLowerCase();
-        String osUser = Configuracion.osUser();
-                   
-        
-        
         try {
-            
-            switch(os){
-                case "linux":
-                        setRootPath("/home/"+osUser+"/");
-                    break;
-                case "windows":
-                        setRootPath("C:\\Users\\"+osUser+"\\");
-                    break;
-            }
-            
-            
+            setRootPath(System.getProperty("user.home")+System.getProperty("file.separator"));   
             factory = new Factory();
-
+            setMostrarMensaje(factory.mostrarMensaje(null, true));
             conf = factory.configuraciones();
-            servicios.Utilidades uti = new servicios.Utilidades();
+            servicios.Utilidades uti = factory.herramientas();
             
             
             if(uti.GenerateConfig()){
-                System.out.println("Se creó el archivo de configuracion correctamente");
+                getMostrarMensaje().mensaje("exito", 
+                        "Se creó el archivo de configuracion Exitosamente", 
+                        "configuracion inicial");
             }
             
-            con = new servicios.Conexion();
+            try{
+                con = new servicios.Conexion();  
+            }catch(Exception ex){
+                getMostrarMensaje().mensaje("error", 
+                        "Ha ocurrido un error al intentar conectarse al servidor. "
+                                + "Por favor, revise los datos de Conexion.", 
+                        "configuracion inicial");
+            }
+            
             if(uti.isInicialized(con)){
-                System.out.println("Se inició correctamente");
+               Sistema.getMostrarMensaje().mensaje("exito", 
+                        "El sistema se ha configurado exitosamente :)", 
+                        "Configuracion finalizada");
             }
             
             boolean sesionActive = Boolean.valueOf(conf.getConfProperty("sesion.active"));
@@ -88,8 +101,6 @@ public class Sistema {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         
     }
     

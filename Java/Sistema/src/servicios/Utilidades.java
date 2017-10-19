@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
+import static sistema.Sistema.getMostrarMensaje;
 import vistas.Busqueda;
 import vistas.Config;
 
@@ -100,35 +101,48 @@ public final class Utilidades {
                         getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
                     }else{
-                        System.out.println("Conexion no iniciada");
+                        getMostrarMensaje().mensaje("error", 
+                        "Ha ocurrido un error al generar la Base de Datos :(", 
+                        "Error base de datos");
                     }
                     
 
                     break;
                 case 1:
+                    if(con.getConexion() != null){
+                        setVent_config(new vistas.Config(null, true));
+                        getVent_config().setLocationRelativeTo(null);
+                        getVent_config().setVisible(true);
+
+                        getConfiguracion().dbInit("remote_database.sql", con.getConexion());
+
+                        getConfiguracion().setConfProperty("data.init", "true");
+                        success = true;
+                    }else{
+                        getMostrarMensaje().mensaje("error", 
+                        "Ha ocurrido un error al generar la Base de Datos :(", 
+                        "Error base de datos");
+                    }
                     
-                    setVent_config(new vistas.Config(null, true));
-                    getVent_config().setLocationRelativeTo(null);
-                    getVent_config().setVisible(true);
-                    
-                    getConfiguracion().dbInit("remote_database.sql", con.getConexion());
-                    
-                    getConfiguracion().setConfProperty("data.init", "true");
-                    success = true;
                     break;
                     
                 case 2:
                     System.exit(0);
                     break;
-            }
-            
-            JOptionPane.showMessageDialog(null, "El sistema se configuró  correctamente");
+            }            
             
         }
         
         if(Sistema.getCon().getConexion() != null){
-            Sistema.getCon().closeConexion();
-            Sistema.setCon(Sistema.getFactory().conexion());
+            try{
+               Sistema.getCon().closeConexion();
+               Sistema.setCon(Sistema.getFactory().conexion()); 
+            }catch(ClassNotFoundException | SQLException ex){
+                getMostrarMensaje().mensaje("error", 
+                        "Ha ocurrido un error al intentar conectarse al servidor. "
+                                + "Por favor, revise los datos de Conexion.", 
+                        "configuracion inicial");
+            } 
         }
         
         return success;
@@ -138,15 +152,8 @@ public final class Utilidades {
         
         boolean success = false;
             try{
-                String ruta;
-                String osName = System.getProperty("os.name").toLowerCase();
-
-                if(osName.equals("linux")){
-                    ruta = Sistema.getRootPath()+"config.properties";
-                }else{
-                    ruta = Sistema.getRootPath()+"config.properties";
-                }
-
+                String ruta = Sistema.getRootPath()+"config.properties";
+                
                 File archivo = Sistema.getFactory().createFile(ruta);
                 BufferedWriter bw;
                 if(!archivo.exists()) {
