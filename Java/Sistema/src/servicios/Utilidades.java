@@ -219,15 +219,4 @@ public final class Utilidades {
         return String.valueOf((java.util.UUID.randomUUID().getLeastSignificantBits()*-1)/10000).substring(0, 10);
     }
     
-    public static String getDate(){
-       
-        Calendar fecha = new GregorianCalendar();
-        int año = fecha.get(Calendar.YEAR);
-        int mes = fecha.get(Calendar.MONTH);
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        
-        return String.valueOf(dia)+"-"+String.valueOf(mes)+"-"+String.valueOf(año);
-    }
-    
-    
 }

@@ -6,6 +6,8 @@
 package servicios;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -25,7 +27,7 @@ import sistema.Sistema;
  */
 public class Reportes {
     
-    public void factura(String nfactura, String cliente, String nit, String fecha, String direccion) throws IOException{
+    public void factura(String nfactura, String cliente, String nit, String direccion) throws IOException{
         
         try {
             JasperReport factura = (JasperReport)JRLoader.loadObject(getClass().getResource("/reportes/Plantillas/factura.jasper"));
@@ -34,8 +36,10 @@ public class Reportes {
            parametro.put("n_factura", nfactura);
            parametro.put("nit", nit);
            parametro.put("name_cliente", cliente);
-           parametro.put("fecha", fecha);
+           parametro.put("fecha", getDate());
            parametro.put("direccion", direccion);
+           parametro.put("rutaimg", this.getClass().getClassLoader().getResourceAsStream("Recursos/imagenes/icono2.png"));
+
             JasperPrint print = JasperFillManager.fillReport(factura, parametro, Sistema.getFactory().connect().getConexion());
            
             
@@ -54,6 +58,17 @@ public class Reportes {
             System.out.println("...errores");
         }
         
+    }
+    
+    
+    public static String getDate(){
+       
+        Calendar fecha = new GregorianCalendar();
+        int anio = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        
+        return String.valueOf(dia)+"-"+String.valueOf(mes+1)+"-"+String.valueOf(anio);
     }
     
 }

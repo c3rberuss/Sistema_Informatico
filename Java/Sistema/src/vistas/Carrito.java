@@ -319,7 +319,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                     this.setAdd(false);
                     JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
                     Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("Error al buscar");
                 }
            }else{
                
@@ -405,8 +404,10 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
+        System.out.println(this.getClass().getClassLoader().getResource("Recursos/imagenes/icono2.png"));
         try {
-            report.factura("000001", "Jonatan Jsoué Bermúdez Amaya", "1120-155-15855-1", Utilidades.getDate(), "Final 2 Calle Oriente, Barrio la Parroquia");
+            report.factura("000001", "Jonatan Josué Bermúdez Amaya", "1120-155-15855-1", 
+                    "Final 2 Calle Oriente, Barrio la Parroquia");
         } catch (IOException ex) {
             Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
         }
