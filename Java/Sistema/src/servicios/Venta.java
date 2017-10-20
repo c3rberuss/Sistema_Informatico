@@ -25,7 +25,7 @@ public class Venta {
     
     private PreparedStatement statement;
     private ResultSet result;
-    DefaultTableModel modelo;
+    private DefaultTableModel modelo;
     
     public Venta(){
         setModelo(Sistema.getFactory().modelo());

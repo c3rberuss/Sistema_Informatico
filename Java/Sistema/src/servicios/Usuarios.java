@@ -8,14 +8,12 @@ package servicios;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
-import vistas.Login1;
 
 /**
  *
@@ -23,9 +21,8 @@ import vistas.Login1;
  */
 public class Usuarios {
     
-    private Statement statement;
+    private PreparedStatement statement;
     private ResultSet result;
-    private PreparedStatement prepared;
     private String sql;
     private static Configuracion conf;
     
@@ -36,17 +33,23 @@ public class Usuarios {
     public boolean login(String user, String pass) throws SQLException{
         
         boolean success = false;
-        setSql("CALL login('"+user+"', '"+pass+"');");
+        setSql("CALL login(?, ?);");
         
-        setStatement(Sistema.getCon().getConexion().createStatement());
-        setResult(getStatement().executeQuery(getSql()));
+        setStatement(Sistema.getCon().getConexion().prepareStatement(getSql()));
+        getStatement().setString(1, user);
+        getStatement().setString(2, pass);
+        
+        setResult(getStatement().executeQuery());
         
         getResult().first();
         success = getResult().getBoolean(1);
         
         if(success){
-            setSql("CALL get_user_type('"+user+"');");
-            setResult(getStatement().executeQuery(getSql()));
+            setSql("CALL get_user_type(?);");
+            setStatement(Sistema.getCon().getConexion().prepareStatement(getSql()));
+            getStatement().setString(1, user);
+            
+            setResult(getStatement().executeQuery());
             getResult().first();
             conf.setConfProperty("user.type", getResult().getString(1));
             if(Sistema.getCon().getConexion() != null){
@@ -78,11 +81,14 @@ public class Usuarios {
     
     public void addUsers(String[] datos){
         try {
-            setSql( "CALL add_user('"+datos[0]+"', '"+datos[1]+"', '"+datos[2]+"', "
-                    + "'"+datos[3]+"');");
+            setSql( "CALL add_user(?, ?, ?, ?);");
             
-            setPrepared(Sistema.getCon().getConexion().prepareStatement(sql));
-            getPrepared().executeUpdate();
+            setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
+            getStatement().setString(1, datos[0]);
+            getStatement().setString(2, datos[1]);
+            getStatement().setString(3, datos[2]);
+            getStatement().setString(4, datos[3]);
+            getStatement().executeUpdate();
             
         } catch (SQLException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,10 +101,10 @@ public class Usuarios {
         String[] datos = new String[4];
         
         try {
-            
-            setStatement(Sistema.getCon().getConexion().createStatement());
-            setSql("CALL search_user('"+id+"');");
-            setResult(getStatement().executeQuery(sql));
+            setSql("CALL search_user(?);");
+            setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
+            getStatement().setString(1, id);            
+            setResult(getStatement().executeQuery());
             
             if(getResult().first()){
                 getResult().beforeFirst();
@@ -122,9 +128,12 @@ public class Usuarios {
     
     public void updateUsers(String[] datos){
         try {
-            setSql("CALL update_user('"+datos[0]+"', '"+datos[1]+"', '"+datos[2]+"');");
-            setPrepared(Sistema.getCon().getConexion().prepareStatement(sql));
-            getPrepared().executeUpdate();
+            setSql("CALL update_user(?, ?, ?);");
+            setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
+            getStatement().setString(1, datos[0]);
+            getStatement().setString(2, datos[1]);
+            getStatement().setString(3, datos[2]);
+            getStatement().executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,9 +142,10 @@ public class Usuarios {
     
     public void deleteUsers(String id){
         try {
-            setSql("CALL delete_user('"+id+"');");
-            setPrepared(Sistema.getCon().getConexion().prepareStatement(sql));
-            getPrepared().executeUpdate();
+            setSql("CALL delete_user(?);");
+            setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
+            getStatement().setString(1, id);
+            getStatement().executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -155,11 +165,11 @@ public class Usuarios {
         return String.valueOf((java.util.UUID.randomUUID().getLeastSignificantBits()*-1)/10000).substring(0, 5);
     }
     
-    public Statement getStatement() {
+    public PreparedStatement getStatement() {
         return statement;
     }
 
-    public void setStatement(Statement statement) {
+    public void setStatement(PreparedStatement statement) {
         this.statement = statement;
     }
 
@@ -171,13 +181,6 @@ public class Usuarios {
         this.result = result;
     }
 
-    public PreparedStatement getPrepared() {
-        return prepared;
-    }
-
-    public void setPrepared(PreparedStatement prepared) {
-        this.prepared = prepared;
-    }
 
     public String getSql() {
         return sql;

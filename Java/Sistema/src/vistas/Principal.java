@@ -10,7 +10,6 @@ import factory.Factory;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Usuarios;
-import sistema.Sistema;
 
 
 /**
@@ -431,7 +430,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         MensajePlantilla mensaje = new MensajePlantilla(this, true);
-        mensaje.mensaje("exito", "Esto es una prueba de mensaje de error, para probarque tanto texto se le puede meter a esta cosa :v", "titulo");
+        mensaje.mensaje("error", "Esto es una prueba de mensaje de error, para probarque tanto texto se le puede meter a esta cosa :v", "titulo");
     }//GEN-LAST:event_jButton8MouseClicked
 
     /**

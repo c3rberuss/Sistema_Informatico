@@ -5,11 +5,9 @@
  */
 package servicios;
 
-import factory.Factory;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,12 +34,10 @@ public class Configuracion {
     private static Properties configProp;
     private static InputStream input;
     private static OutputStream output;
-    private static Factory factory;
     
     
     public Configuracion(){
         
-        factory = new Factory();
         String osName = System.getProperty("os.name").toLowerCase();
 
         if(osName.equals("linux")){
@@ -51,7 +47,7 @@ public class Configuracion {
         }
         
         
-       setConfigProp(factory.properties());
+       setConfigProp(Sistema.getFactory().properties());
        input = null;
        output = null;
     }
@@ -64,27 +60,27 @@ public class Configuracion {
         configFilePath = aConfigFilePath;
     }
 
-    public static Properties getConfigProp() {
+    private static Properties getConfigProp() {
         return configProp;
     }
 
-    public static void setConfigProp(Properties aConfigProp) {
+    private static void setConfigProp(Properties aConfigProp) {
         configProp = aConfigProp;
     }
 
-    public static InputStream getInput() {
+    private static InputStream getInput() {
         return input;
     }
 
-    public static void setInput(InputStream aInput) {
+    private static void setInput(InputStream aInput) {
         input = aInput;
     }
 
-    public static OutputStream getOutput() {
+    private static OutputStream getOutput() {
         return output;
     }
 
-    public static void setOutput(OutputStream aOutput) {
+    private static void setOutput(OutputStream aOutput) {
         output = aOutput;
     }
     
@@ -100,7 +96,7 @@ public class Configuracion {
         
         try 
         {
-            setInput(factory.fileInputStream(getConfigFilePath()));
+            setInput(Sistema.getFactory().fileInputStream(getConfigFilePath()));
             
             // load config file
             getConfigProp().load(getInput());
@@ -195,7 +191,7 @@ public class Configuracion {
         
         try
         {
-            InputStream is = factory.fileInputStream(getConfigFilePath());
+            InputStream is = Sistema.getFactory().fileInputStream(getConfigFilePath());
             getConfigProp().load(is);
             
             ret = getConfigProp().size();

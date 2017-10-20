@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import servicios.Reportes;
 import servicios.Usuarios;
+import servicios.Venta;
 import sistema.Sistema;
 
 /**
@@ -19,6 +20,7 @@ import sistema.Sistema;
 public class DatosFactura extends javax.swing.JDialog {
 
     private Reportes report;
+    private Venta venta;
     
     //variables de movimiento
     int x, y;
@@ -32,6 +34,14 @@ public class DatosFactura extends javax.swing.JDialog {
 
     public Reportes getReport() {
         return report;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public void setReport(Reportes report) {
@@ -243,6 +253,9 @@ public class DatosFactura extends javax.swing.JDialog {
         try {
             getReport().factura("000001", this.txtNcliente.getText(), this.txtNIT.getText(),
                     this.txtDireccion.getText());
+            
+            setVenta(Sistema.getFactory().venta());
+            getVenta().vaciarCarrito();
             this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(DatosFactura.class.getName()).log(Level.SEVERE, null, ex);
