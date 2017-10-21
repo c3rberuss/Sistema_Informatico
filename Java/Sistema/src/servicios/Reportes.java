@@ -27,6 +27,10 @@ import sistema.Sistema;
  */
 public class Reportes {
     
+    public Reportes(){
+        
+    }
+    
     public void factura(String nfactura, String cliente, String nit, String direccion) throws IOException{
         
         try {

@@ -10,14 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
-import static sistema.Sistema.getMostrarMensaje;
 import vistas.Busqueda;
 import vistas.Config;
 
@@ -28,7 +26,6 @@ import vistas.Config;
 public final class Utilidades {
     
     private Config vent_config;
-    private Statement s;
     private Configuracion configuracion;
     private Venta venta;
     
@@ -60,13 +57,6 @@ public final class Utilidades {
         this.vent_config = vent_config;
     }
 
-    public Statement getS() {
-        return s;
-    }
-
-    public void setS(Statement s) {
-        this.s = s;
-    }
     
     public boolean isInicialized(Conexion con) throws IOException, ClassNotFoundException, SQLException{
         
@@ -101,7 +91,7 @@ public final class Utilidades {
                         getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
                     }else{
-                        getMostrarMensaje().mensaje("error", 
+                        Sistema.getMostrarMensaje().mensaje("error", 
                         "Ha ocurrido un error al generar la Base de Datos :(", 
                         "Error base de datos");
                     }
@@ -119,7 +109,7 @@ public final class Utilidades {
                         getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
                     }else{
-                        getMostrarMensaje().mensaje("error", 
+                        Sistema.getMostrarMensaje().mensaje("error", 
                         "Ha ocurrido un error al generar la Base de Datos :(", 
                         "Error base de datos");
                     }
@@ -138,7 +128,7 @@ public final class Utilidades {
                Sistema.getCon().closeConexion();
                Sistema.setCon(Sistema.getFactory().conexion()); 
             }catch(ClassNotFoundException | SQLException ex){
-                getMostrarMensaje().mensaje("error", 
+                Sistema.getMostrarMensaje().mensaje("error", 
                         "Ha ocurrido un error al intentar conectarse al servidor. "
                                 + "Por favor, revise los datos de Conexion.", 
                         "configuracion inicial");
