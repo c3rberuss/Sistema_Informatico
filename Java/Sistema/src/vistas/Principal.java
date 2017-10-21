@@ -77,7 +77,7 @@ public class Principal extends javax.swing.JFrame {
         closeSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de ventas");
+        setTitle("Sistema de ventas |  [Nombre de la empresa]");
         setMinimumSize(new java.awt.Dimension(1090, 690));
 
         jPanel1.setBackground(new java.awt.Color(35, 48, 54));
@@ -265,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("TODOS LOS DERECHOS RESERVADOS ® | 2017");
+        jLabel2.setText("[NOMBRE DE EMPRESA] | TODOS LOS DERECHOS RESERVADOS ® 2017");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

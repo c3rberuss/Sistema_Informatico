@@ -47,7 +47,7 @@ public class Venta {
         }
         
 
-        return "SubTotal: $"+total;
+        return "SUBTOTAL: $"+total;
     }
     
     public ResultSet obtenerProductos(Connection con){
@@ -89,7 +89,7 @@ public class Venta {
             if(resultados.getModel().getRowCount() > 0){
                 total.setText(obtenertotal(Sistema.getCon().getConexion()));
             }else{
-                total.setText("SubTotal: $000.00");
+                total.setText("SUBTOTAL: $000.00");
             }
             
         } catch (SQLException ex) {
