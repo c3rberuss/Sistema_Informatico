@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7cc335fe-6453-4748-a740-6a3622b6c689">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="34"/>
+	<property name="ireport.y" value="7"/>
 	<queryString>
 		<![CDATA[select * from inventario]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer">
+	<field name="id" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="producto" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="stock" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<variable name="producto_1" class="java.lang.Integer" calculation="Count">
@@ -23,10 +29,6 @@
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
-				<reportElement x="21" y="13" width="70" height="54" uuid="1bcf1e5a-695e-40fa-8494-52f4eb02e934"/>
-				<imageExpression><![CDATA["C:\\Users\\edwin\\Documents\\NetBeansProjects\\Sistema_Informatico\\Sistema\\Java\\Sistema\\src\\Recursos\\imagenes\\icono2.png"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="91" y="13" width="429" height="35" uuid="eebdafd4-26dc-45ca-b91d-24ca4d9e30fc"/>
 				<textElement markup="none">
@@ -153,8 +155,18 @@
 			<rectangle>
 				<reportElement x="424" y="0" width="62" height="26" backcolor="#FFFFFF" uuid="73257a54-6ac2-4207-9550-f91594ffc601"/>
 			</rectangle>
+			<textField>
+				<reportElement x="489" y="3" width="44" height="20" uuid="bb33b9e6-1d8b-4d55-8847-06566ff8957b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="3" width="62" height="20" uuid="7b0e2581-f776-4078-98f8-343bd061927f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
 			<componentElement>
-				<reportElement x="15" y="5" width="74" height="18" uuid="eb83fc8f-de60-46ab-aec8-242677a52cc5"/>
+				<reportElement x="13" y="4" width="74" height="18" uuid="eb83fc8f-de60-46ab-aec8-242677a52cc5"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$F{id}]]></jr:codeExpression>
 				</jr:barbecue>

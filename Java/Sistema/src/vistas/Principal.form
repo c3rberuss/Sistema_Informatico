@@ -378,6 +378,9 @@
               <Image iconType="3" name="/Recursos/imagenes/report.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnReportesMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnAyuda">
           <Properties>

@@ -5,11 +5,14 @@
  */
 package servicios;
 
+import java.awt.Desktop;
+import java.awt.HeadlessException;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
@@ -28,42 +31,78 @@ import sistema.Sistema;
 public class Reportes {
     
     public Reportes(){
-        
     }
+    
+    private File pdf;
     
     public void factura(String nfactura, String cliente, String nit, String direccion) throws IOException{
         
         try {
-            JasperReport factura = (JasperReport)JRLoader.loadObject(getClass().getResource("/reportes/Plantillas/factura.jasper"));
             
-           Map parametro = new HashMap();
-           parametro.put("n_factura", nfactura);
-           parametro.put("nit", nit);
-           parametro.put("name_cliente", cliente);
-           parametro.put("fecha", getDate());
-           parametro.put("direccion", direccion);
-           parametro.put("rutaimg", this.getClass().getClassLoader().getResourceAsStream("Recursos/imagenes/icono2.png"));
-
-            JasperPrint print = JasperFillManager.fillReport(factura, parametro, Sistema.getFactory().connect().getConexion());
-           
+            HashMap parametro = new HashMap();
+            parametro.put("n_factura", nfactura);
+            parametro.put("nit", nit);
+            parametro.put("name_cliente", cliente);
+            parametro.put("fecha", getDate());
+            parametro.put("direccion", direccion);
+            parametro.put("rutaimg", this.getClass().getClassLoader().getResourceAsStream("Recursos/imagenes/icono2.png"));
             
-            JRExporter exporter = new JRPdfExporter();
-            exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-            exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(Sistema.getRootPath()+"factura.pdf"));
-            exporter.exportReport();
-            System.out.println("Ya está guardado");
+            generarReporte(getClass().getResource("/reportes/Plantillas/factura.jasper"), parametro, "factura", false);
             
             Impresion.imprimir(Sistema.getRootPath()+"factura.pdf");
             
-            JOptionPane.showMessageDialog(null, "Imprimiendo Factura");
+            Sistema.getMostrarMensaje().mensaje("exito", 
+                        "Imprimiendo la factura, por favor espere un momento.",
+                        "Impresión");
             
-        } catch (JRException e) {
+        } catch (HeadlessException | IOException e) {
             System.out.println(e.getMessage());
             System.out.println("...errores");
         }
         
     }
     
+    private void generarReporte(URL plantilla, HashMap parametros, String nombre, boolean mostrar){
+        try {
+            JasperReport reporte = (JasperReport)JRLoader.loadObject(plantilla);
+            
+            JasperPrint print = JasperFillManager.fillReport(reporte, parametros, Sistema.getFactory().connect().getConexion());
+            
+            JRExporter exporter = new JRPdfExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+            exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(Sistema.getRootPath()+nombre+".pdf"));
+            exporter.exportReport();
+            
+            if(mostrar){
+                try {
+                    setPdf(Sistema.getFactory().createFile(Sistema.getRootPath()+nombre+".pdf"));
+                    Desktop.getDesktop().open(getPdf());
+                } catch (IOException ex) {
+                    Sistema.getMostrarMensaje().mensaje("error", 
+                        "Ha ocurrido un error al tratar de Mostrar el Reporte.",
+                        "Reporte");
+                }
+            }
+            
+            System.out.println("Reporte Generado");
+            
+        } catch (JRException e) {
+            System.out.println(e.getMessage());
+            Sistema.getMostrarMensaje().mensaje("error", 
+                        "Ha ocurrido un error al generar el Reporte.",
+                        "Reporte");
+        }
+    }
+
+    
+    public void reporteInventario(){
+        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/InventarioDetallado.jasper"),null,"reporteInventario", true);    
+        
+    }
+    
+    public void listaUsuarios(){
+        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/ListadoUsuarios.jasper"),null,"ListadoUsuarios", true);  
+    }
     
     public static String getDate(){
        
@@ -73,6 +112,14 @@ public class Reportes {
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
         
         return String.valueOf(dia)+"-"+String.valueOf(mes+1)+"-"+String.valueOf(anio);
+    }
+
+    private File getPdf() {
+        return pdf;
+    }
+
+    private void setPdf(File pdf) {
+        this.pdf = pdf;
     }
     
 }

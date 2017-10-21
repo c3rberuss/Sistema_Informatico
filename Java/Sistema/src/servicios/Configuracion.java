@@ -37,15 +37,8 @@ public class Configuracion {
     
     
     public Configuracion(){
-        
-        String osName = System.getProperty("os.name").toLowerCase();
 
-        if(osName.equals("linux")){
-            setConfigFilePath(Sistema.getRootPath()+"config.properties");
-        }else{
-            setConfigFilePath(Sistema.getRootPath()+"config.properties");  
-        }
-        
+       setConfigFilePath(Sistema.getRootPath()+"config.properties");
         
        setConfigProp(Sistema.getFactory().properties());
        input = null;

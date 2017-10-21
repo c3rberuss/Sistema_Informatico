@@ -7,6 +7,11 @@ package vistas;
 
 
 import factory.Factory;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Usuarios;
@@ -186,6 +191,11 @@ public class Principal extends javax.swing.JFrame {
         BtnReportes.setFocusPainted(false);
         BtnReportes.setIconTextGap(30);
         BtnReportes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/report.png"))); // NOI18N
+        BtnReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnReportesMouseClicked(evt);
+            }
+        });
 
         BtnAyuda.setBackground(new java.awt.Color(3, 19, 27));
         BtnAyuda.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -432,6 +442,10 @@ public class Principal extends javax.swing.JFrame {
         MensajePlantilla mensaje = new MensajePlantilla(this, true);
         mensaje.mensaje("error", "Esto es una prueba de mensaje de error, para probarque tanto texto se le puede meter a esta cosa :v", "titulo");
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void BtnReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnReportesMouseClicked
+
+    }//GEN-LAST:event_BtnReportesMouseClicked
 
     /**
      * @param args the command line arguments

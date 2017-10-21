@@ -165,8 +165,10 @@ public class DatosFactura extends javax.swing.JDialog {
         txtDireccion.setColumns(20);
         txtDireccion.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         txtDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDireccion.setLineWrap(true);
         txtDireccion.setRows(3);
         txtDireccion.setText("---");
+        txtDireccion.setWrapStyleWord(true);
         txtDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jScrollPane1.setViewportView(txtDireccion);
 

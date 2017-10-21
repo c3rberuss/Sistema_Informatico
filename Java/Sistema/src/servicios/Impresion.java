@@ -14,6 +14,7 @@ import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaSizeName;
+import sistema.Sistema;
 
 /**
  *
@@ -40,7 +41,9 @@ public class Impresion {
                 } catch (PrintException e) {
                 }
             } else {
-                System.err.println("No existen impresoras instaladas");
+                Sistema.getMostrarMensaje().mensaje("error", 
+                        "No hay ninguna impresora Instalada.",
+                        "Impresion");
             }
         }
     }

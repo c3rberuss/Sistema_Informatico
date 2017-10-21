@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import servicios.Configuracion;
+import static servicios.Configuracion.setConfigFilePath;
 import vistas.Login1;
 import vistas.MensajePlantilla;
 import vistas.Principal;
@@ -58,7 +59,24 @@ public class Sistema {
     public static void main(String[] args) throws IOException{
         
         try {
-            setRootPath(System.getProperty("user.home")+System.getProperty("file.separator"));   
+            
+       
+            
+            setRootPath(System.getProperty("user.home")+System.getProperty("file.separator"));  
+           
+             String osName = System.getProperty("os.name").toLowerCase();
+
+
+            if(osName.equals("linux")){
+                setConfigFilePath(Sistema.getRootPath()+"config.properties");
+            }else if(osName.equals("windows")){
+                String ruta = Sistema.getRootPath()+"config.properties";
+                String separador = System.getProperty("file.separator")+ System.getProperty("file.separator");
+                ruta = ruta.replaceAll(System.getProperty("file.separator"), separador);
+                Sistema.setRootPath(ruta);
+            }
+            
+            
             factory = new Factory();
             setMostrarMensaje(factory.mostrarMensaje(null, true));
             conf = factory.configuraciones();
