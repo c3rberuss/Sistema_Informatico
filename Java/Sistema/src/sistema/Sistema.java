@@ -8,6 +8,7 @@ package sistema;
 import factory.Factory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import servicios.Configuracion;
@@ -24,29 +25,6 @@ import vistas.Principal;
 public class Sistema {
 
     /**
-     * @return the mostrarMensaje
-     */
-    public static MensajePlantilla getMostrarMensaje() {
-        return mostrarMensaje;
-    }
-
-    /**
-     * @param aMostrarMensaje the mostrarMensaje to set
-     */
-    public static void setMostrarMensaje(MensajePlantilla aMostrarMensaje) {
-        mostrarMensaje = aMostrarMensaje;
-    }
-
-    private static Configuracion getConf() {
-        return conf;
-    }
-
-    private  static void setConf(Configuracion conf) {
-        Sistema.conf = conf;
-    }
-
-
-    /**
      * @param args the command line arguments
      */
     
@@ -55,16 +33,20 @@ public class Sistema {
     private static String rootPath;
     private static Configuracion conf;
     private static MensajePlantilla mostrarMensaje;
+    private static ArrayList<String[]> productosAgregados;
+    
     
     public static void main(String[] args) throws IOException{
         
         try {
             
-       
+            factory = new Factory();
+            
+            setProductosAgregados(factory.arrayList());
             
             setRootPath(System.getProperty("user.home")+System.getProperty("file.separator"));  
            
-             String osName = System.getProperty("os.name").toLowerCase();
+            String osName = System.getProperty("os.name").toLowerCase();
 
 
             if(osName.equals("linux")){
@@ -77,7 +59,7 @@ public class Sistema {
             }
             
             
-            factory = new Factory();
+            
             setMostrarMensaje(factory.mostrarMensaje(null, true));
             conf = factory.configuraciones();
             servicios.Utilidades uti = factory.herramientas();
@@ -150,6 +132,35 @@ public class Sistema {
     public static void setCon(servicios.Conexion conn) {
         con = conn;
     }
+    
+        /**
+     * @return the mostrarMensaje
+     */
+    public static MensajePlantilla getMostrarMensaje() {
+        return mostrarMensaje;
+    }
 
+    /**
+     * @param aMostrarMensaje the mostrarMensaje to set
+     */
+    public static void setMostrarMensaje(MensajePlantilla aMostrarMensaje) {
+        mostrarMensaje = aMostrarMensaje;
+    }
+
+    private static Configuracion getConf() {
+        return conf;
+    }
+
+    private  static void setConf(Configuracion conf) {
+        Sistema.conf = conf;
+    }
+
+    public static ArrayList<String[]> getProductosAgregados() {
+        return productosAgregados;
+    }
+
+    public static void setProductosAgregados(ArrayList<String[]> aProductoAgregados) {
+        productosAgregados = aProductoAgregados;
+    }
     
 }

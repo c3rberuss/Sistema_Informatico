@@ -99,7 +99,7 @@ public final class Utilidades {
 
                     break;
                 case 1:
-                    if(con.getConexion() != null){
+
                         setVent_config(new vistas.Config(null, true));
                         getVent_config().setLocationRelativeTo(null);
                         getVent_config().setVisible(true);
@@ -108,11 +108,6 @@ public final class Utilidades {
 
                         getConfiguracion().setConfProperty("data.init", "true");
                         success = true;
-                    }else{
-                        Sistema.getMostrarMensaje().mensaje("error", 
-                        "Ha ocurrido un error al generar la Base de Datos :(", 
-                        "Error base de datos");
-                    }
                     
                     break;
                     
@@ -158,7 +153,8 @@ public final class Utilidades {
                             "sesion.active=false\n" +
                             "data.server=localhost\n" +
                             "data.user=root\n" +
-                            "config.path="+ruta);
+                            "config.path="+ruta+"\n"+
+                            "numero.factura=000000");
                     bw.close();
                     success = true;
 

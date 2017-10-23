@@ -26,9 +26,11 @@ public class Venta {
     private PreparedStatement statement;
     private ResultSet result;
     private DefaultTableModel modelo;
+    private Configuracion conf;
     
     public Venta(){
         setModelo(Sistema.getFactory().modelo());
+        setConf(Sistema.getFactory().configuraciones());
     }
     
     public String obtenertotal(Connection con){
@@ -100,15 +102,13 @@ public class Venta {
     
     public void borrarItem(JTable resultados, String id){
         
-        if(resultados.getSelectedRow() > 0){
-            try {
-                setStatement(Sistema.getCon().getConexion().prepareStatement("CALL borrarItem(?)"));
-                getStatement().setString(1, id);
-                getStatement().executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        try {
+            setStatement(Sistema.getCon().getConexion().prepareStatement("CALL borrarItem(?)"));
+            getStatement().setString(1, id);
+            getStatement().executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         
     }
     
@@ -143,6 +143,8 @@ public class Venta {
             Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
     public ResultSet mostrarItems(){
          try {
@@ -196,6 +198,56 @@ public class Venta {
         return existe;
     }
     
+    public void descontarExistencias(JTable tabla){
+        
+        int filas = tabla.getModel().getRowCount();
+        System.out.println(filas);
+        for(int i = 0; i < filas; ++i){ 
+            try {
+                setStatement(Sistema.getCon().getConexion().prepareStatement("CALL descontar_existencias(?, ?)"));
+                getStatement().setString(1, tabla.getValueAt(i, 0).toString());
+                getStatement().setInt(2, Integer.valueOf(tabla.getValueAt(i, 3).toString()));
+                getStatement().executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("ha ocurrido un error al descontar del inventario");
+            }
+        } 
+        
+        System.out.println("vaciando carrito");
+        vaciarCarrito();
+        System.out.println("carrito vaciado");
+        
+    }
+    
+    public int buscarProducto(String id){
+        String producto_;
+        int valor = 0;
+        
+        for(int i = 0; i<Sistema.getProductosAgregados().size(); i++){
+            if(Sistema.getProductosAgregados().get(i)[0].equalsIgnoreCase(id)){
+                producto_=Sistema.getProductosAgregados().get(i)[1];
+                valor = Integer.valueOf(producto_);
+                break;
+            }
+        }
+        
+        return valor;
+    }
+
+    public String nFactura(){
+        //setConf(Sistema.getFactory().configuraciones());
+        String nfact = "000001";
+        
+        nfact = getConf().getConfProperty("numero.factura");
+        int n = Integer.valueOf(nfact);
+        n++;
+        nfact = nfact.substring(0, nfact.length() - String.valueOf(n).length())+String.valueOf(n);
+        getConf().setConfProperty("numero.factura", nfact);
+            
+        return nfact;
+        
+    } 
+    
 
     public PreparedStatement getStatement() {
         return statement;
@@ -219,6 +271,14 @@ public class Venta {
 
     public void setModelo(DefaultTableModel modelo) {
         this.modelo = modelo;
+    }
+    
+    private Configuracion getConf() {
+        return conf;
+    }
+
+    private void setConf(Configuracion conf) {
+        this.conf = conf;
     }
     
 }

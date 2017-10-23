@@ -14,10 +14,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
 import servicios.*;
@@ -114,6 +116,18 @@ public class Factory {
     
     public MensajePlantilla mostrarMensaje(Frame padre, boolean modal){
         return new MensajePlantilla(padre, modal);
+    }
+    
+    public SpinnerNumberModel modeloSpinner(){
+        return new SpinnerNumberModel();
+    }
+    
+    public ArrayList arrayList(){
+        return new ArrayList<>();
+    }
+    
+    public String[] arregloString(int elementos){
+        return new String[elementos];
     }
     
 }

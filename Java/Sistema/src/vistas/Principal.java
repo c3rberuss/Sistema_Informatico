@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Usuarios;
+import servicios.Venta;
 
 
 /**
@@ -83,6 +84,11 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de ventas |  [Nombre de la empresa]");
         setMinimumSize(new java.awt.Dimension(1090, 690));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(35, 48, 54));
         jPanel1.setMinimumSize(new java.awt.Dimension(1050, 630));
@@ -446,6 +452,11 @@ public class Principal extends javax.swing.JFrame {
     private void BtnReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnReportesMouseClicked
 
     }//GEN-LAST:event_BtnReportesMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       Venta venta = new Venta();
+       venta.vaciarCarrito();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

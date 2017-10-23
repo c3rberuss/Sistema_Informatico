@@ -276,42 +276,7 @@ public class Login1 extends javax.swing.JFrame implements Ventana{
     }//GEN-LAST:event_btnCerrar1ActionPerformed
 
     private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        Usuarios usuarios = Sistema.getFactory().usuarios();
-        try {
-
-            if(!(this.txtUser.getText().isEmpty() && this.txtPass.getText().isEmpty())){
-                Sistema.getCon().setDb("Sistema_DB");
-                boolean success = usuarios.login(this.txtUser.getText(), this.txtPass.getText());
-                if(success){
-                    setConfig(factory.configuraciones());
-                    getConfig().setConfProperty("sesion.user", this.txtUser.getText());
-                    getConfig().setConfProperty("sesion.active", "true");
-                    getConfig().setConfProperty("sesion.pass", this.txtPass.getText());
-
-                    Principal prin = Sistema.getFactory().ventanaPrincipal(null, false);
-                    prin.setVisible(true);
-
-                    if(Sistema.getCon().getConexion() != null){
-                        Sistema.getCon().closeConexion();
-                    }
-                    try {
-                        Sistema.setCon(Sistema.getFactory().conexion());
-                    } catch (ClassNotFoundException | SQLException ex) {
-                        Logger.getLogger(Login1.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    this.dispose();
-
-                }else{
-
-                    JOptionPane.showMessageDialog(null, "Usuario u Contraseña Incorrectos");
-                    limpiar("");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Login1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        btnIngresarActionPerformed(evt);
     }//GEN-LAST:event_txtPassActionPerformed
 
     /**

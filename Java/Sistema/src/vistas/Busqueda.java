@@ -5,14 +5,10 @@
  */
 package vistas;
 
+import java.awt.HeadlessException;
 import javax.swing.table.DefaultTableModel;
-import servicios.Conexion;
-import factory.Factory;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -39,6 +35,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        this.txtBusqueda.requestFocus();
         modelo = Sistema.getFactory().modelo();
         utilidades = Sistema.getFactory().herramientas();
         setVenta(Sistema.getFactory().venta());
@@ -88,6 +85,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         Resultados = new javax.swing.JTable();
+        paramBusqueda = new javax.swing.JComboBox<>();
 
         addCartito.setText("Agregar al Carrito");
         addCartito.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,7 +169,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
                 txtBusquedaKeyTyped(evt);
             }
         });
-        jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 460, 20));
+        jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 360, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 460, 10));
@@ -200,6 +198,9 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 460, 310));
 
+        paramBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NOMBRE", "ID" }));
+        jPanel2.add(paramBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 90, 20));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 59, 500, 420));
 
         pack();
@@ -214,8 +215,14 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
    public void filtro() {
-        int columnaABuscar = 1;
-        this.trsFiltro.setRowFilter(RowFilter.regexFilter(this.txtBusqueda.getText().toUpperCase(), columnaABuscar));
+        int columnaABuscar;
+        if(this.paramBusqueda.getSelectedIndex() == 0){
+            columnaABuscar = 1;
+            this.trsFiltro.setRowFilter(RowFilter.regexFilter(this.txtBusqueda.getText().toUpperCase(), columnaABuscar));
+        }else{
+            columnaABuscar = 0;
+            this.trsFiltro.setRowFilter(RowFilter.regexFilter(this.txtBusqueda.getText().toUpperCase(), columnaABuscar));
+        }
    }
     
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
@@ -233,18 +240,54 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void addCartitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCartitoMousePressed
-        int n = this.Resultados.getSelectedRow();
-        String[] datos = new String[4];
-        datos[0] = (String) this.Resultados.getValueAt(n, 0);
-        datos[1] = (String) this.Resultados.getValueAt(n, 1);
-        datos[2] = (String) this.Resultados.getValueAt(n, 3);
-        datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
-        System.out.println(datos[0]);
-        System.out.println(datos[1]);
-        System.out.println(datos[2]);
-        System.out.println(datos[3]);
-        getVenta().insertarItem(datos[0], datos[1], Double.valueOf(datos[2]), Integer.valueOf(datos[3]));
-        
+
+        int fila = this.Resultados.getSelectedRow();
+
+        try{
+            if(fila > -1){
+            
+                int n = this.Resultados.getSelectedRow();
+                String[] datos = new String[4];
+                datos[0] = (String) this.Resultados.getValueAt(n, 0);
+                datos[1] = (String) this.Resultados.getValueAt(n, 1);
+                datos[2] = (String) this.Resultados.getValueAt(n, 3);
+                datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
+
+                int cantidad = Integer.valueOf(datos[3]);
+                int max = Integer.valueOf(this.Resultados.getValueAt(n, 4).toString());
+
+
+                if(!(datos[3].equals("null")) && (cantidad >= 1 && cantidad <= max)){
+
+                    getVenta().insertarItem(datos[0], datos[1], Double.valueOf(datos[2]), 
+                                Integer.valueOf(datos[3]));
+
+                    String[] prod = new String[2];
+                    prod[0] = datos[0];
+                    prod[1] = String.valueOf(max);
+                    
+                    Sistema.getProductosAgregados().add(prod);
+
+                    Sistema.getMostrarMensaje().mensaje("exito", 
+                        "Producto agregado al carrito exitosamente.", 
+                        "Ventas");
+
+                }else{
+                    Sistema.getMostrarMensaje().mensaje("advertencia", 
+                        "Ingrese una cantidad válida.\n Entre 1 y "+max, 
+                        "Ventas");
+                }
+
+
+            }else{
+                Sistema.getMostrarMensaje().mensaje("advertencia", 
+                    "Debe de Seleccionar el producto a agregar al Carrito.", 
+                    "Ventas");
+            }
+        }catch(HeadlessException | NumberFormatException e){
+            System.out.println("Causa: "+e.getCause()+"\n Error: "+e.getCause());
+        }
+
     }//GEN-LAST:event_addCartitoMousePressed
 
     private void jPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MousePressed
@@ -308,6 +351,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JComboBox<String> paramBusqueda;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 

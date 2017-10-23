@@ -19,8 +19,11 @@ import sistema.Sistema;
  */
 public class DatosFactura extends javax.swing.JDialog {
 
+
+
     private Reportes report;
     private Venta venta;
+    private boolean ventaExitosa;
     
     //variables de movimiento
     int x, y;
@@ -28,8 +31,10 @@ public class DatosFactura extends javax.swing.JDialog {
     public DatosFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setVentaExitosa(false);
         setReport(Sistema.getFactory().generateReport());
         this.txtEmpleado.setText(Usuarios.nick());
+        setVenta(Sistema.getFactory().venta());
     }
 
     public Reportes getReport() {
@@ -46,6 +51,14 @@ public class DatosFactura extends javax.swing.JDialog {
 
     public void setReport(Reportes report) {
         this.report = report;
+    }
+    
+    public boolean getVentaExitosa() {
+        return ventaExitosa;
+    }
+
+    public void setVentaExitosa(boolean aVentaExitosa) {
+        ventaExitosa = aVentaExitosa;
     }
 
     /**
@@ -252,12 +265,11 @@ public class DatosFactura extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void BtnFacturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFacturarMouseClicked
+        
         try {
-            getReport().factura("000001", this.txtNcliente.getText(), this.txtNIT.getText(),
+            getReport().factura(getVenta().nFactura(), this.txtNcliente.getText(), this.txtNIT.getText(),
                     this.txtDireccion.getText());
-            
-            setVenta(Sistema.getFactory().venta());
-            getVenta().vaciarCarrito();
+            setVentaExitosa(true);
             this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(DatosFactura.class.getName()).log(Level.SEVERE, null, ex);

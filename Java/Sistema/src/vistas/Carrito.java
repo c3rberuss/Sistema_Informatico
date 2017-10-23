@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import servicios.Venta;
-import servicios.Reportes;
 import servicios.Ventana;
 import sistema.Sistema;
 
@@ -21,6 +21,14 @@ import sistema.Sistema;
  * @author edwin
  */
 public class Carrito extends javax.swing.JDialog implements Ventana{
+
+    public SpinnerNumberModel getModelo_spinner() {
+        return modelo_spinner;
+    }
+
+    public void setModelo_spinner(SpinnerNumberModel modelo_spinner) {
+        this.modelo_spinner = modelo_spinner;
+    }
     
     //variables de movimiento de ventanas
     int x, y;
@@ -67,12 +75,14 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private boolean readyAdd;
     public Venta venta;
     private DatosFactura facturacion;
+    private SpinnerNumberModel modelo_spinner;
     
     public Carrito(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         venta = Sistema.getFactory().venta();
         initComponents();
         this.setLocationRelativeTo(null);
+        setModelo_spinner(Sistema.getFactory().modeloSpinner());
         venta.cargarDatos(LblTotal, Resultados);
         setFacturacion(Sistema.getFactory().facturacion(null, true));
     }
@@ -99,7 +109,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        TxtCantidad = new javax.swing.JTextField();
         TxtId = new javax.swing.JTextField();
         TxtProducto = new javax.swing.JTextField();
         TxtPrecio = new javax.swing.JTextField();
@@ -109,6 +118,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         txtEfectivo = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
+        sCantidad = new javax.swing.JSpinner();
 
         elimnarItem.setText("Eliminar Producto");
         elimnarItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,22 +232,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel5.setText("ID:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        TxtCantidad.setBackground(new java.awt.Color(255, 255, 255));
-        TxtCantidad.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        TxtCantidad.setForeground(new java.awt.Color(0, 0, 0));
-        TxtCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        TxtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtCantidadActionPerformed(evt);
-            }
-        });
-        TxtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TxtCantidadKeyPressed(evt);
-            }
-        });
-        jPanel2.add(TxtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 70, 20));
-
         TxtId.setBackground(new java.awt.Color(255, 255, 255));
         TxtId.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
         TxtId.setForeground(new java.awt.Color(0, 0, 0));
@@ -298,9 +292,14 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         txtEfectivo.setBackground(new java.awt.Color(35, 48, 54));
         txtEfectivo.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
         txtEfectivo.setForeground(new java.awt.Color(255, 255, 255));
-        txtEfectivo.setToolTipText("Nombre de usuario");
+        txtEfectivo.setToolTipText("Efectivo");
         txtEfectivo.setBorder(null);
         txtEfectivo.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtEfectivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEfectivoActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 110, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -311,13 +310,20 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel6.setText("PRECIO:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 50, -1));
 
+        sCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 0));
+        sCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sCantidadKeyPressed(evt);
+            }
+        });
+        jPanel2.add(sCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 70, 20));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 530, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
-
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
@@ -334,12 +340,26 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                     if(rs.first()){
                         rs.beforeFirst();
                         while(rs.next()){
-                         this.TxtProducto.setText(rs.getString(2));
-                         this.TxtPrecio.setText(rs.getString(3));
-                         this.TxtCantidad.setText("1");
+                            
+                            this.TxtProducto.setText(rs.getString(2));
+                            this.TxtPrecio.setText(rs.getString(3));
+                            getModelo_spinner().setMaximum(rs.getInt(4));
+                            getModelo_spinner().setMinimum(1);
+                            getModelo_spinner().setStepSize(1);
+                            getModelo_spinner().setValue(1);
+                            this.sCantidad.setModel(getModelo_spinner());
+                            
+                            String[] producto = new String[2];
+                            
+                            producto[0] = rs.getString(1);
+                            producto[1] = String.valueOf(rs.getInt(4));
+                            
+                            Sistema.getProductosAgregados().add(producto);
+                            
                         }
                         this.setAdd(true);
-                        this.TxtCantidad.requestFocus();
+                        this.sCantidad.requestFocus();
+
                     }else{
                         this.setAdd(false);
                         JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
@@ -355,7 +375,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
            }else{
                
                venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
-                       Double.valueOf(this.TxtPrecio.getText()), Integer.valueOf(this.TxtCantidad.getText()));
+                       Double.valueOf(this.TxtPrecio.getText()), Integer.valueOf(this.sCantidad.getValue().toString()));
                this.setAdd(false);
                limpiar("");
                this.TxtId.requestFocus();
@@ -370,43 +390,26 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         }
     }//GEN-LAST:event_TxtIdKeyPressed
 
-    private void TxtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCantidadKeyPressed
-        if(!this.TxtCantidad.equals("") && isAdd()){
-          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-              venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
-                      Double.valueOf(this.TxtPrecio.getText()), Integer.valueOf(this.TxtCantidad.getText()));
-              this.add = false;
-              limpiar("");
-              this.TxtId.requestFocus();
-              //cargarDatos();
-              venta.cargarDatos(LblTotal, Resultados);
-              enableOrDisable(true);      
-                   
-          } 
-       }else{
-            if(evt.getKeyCode() == KeyEvent.VK_ENTER){   
-               venta.actualizarItem(Integer.valueOf(this.TxtCantidad.getText()), this.TxtId.getText());
-               this.setAdd(false);
-               limpiar("");
-               this.TxtId.requestFocus();
-              // cargarDatos();
-              venta.cargarDatos(LblTotal, Resultados);
-               enableOrDisable(true);
- 
-          }
-        }
-    }//GEN-LAST:event_TxtCantidadKeyPressed
-
     private void ResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResultadosMouseClicked
         int fila = this.Resultados.rowAtPoint(evt.getPoint());
+        
         if(fila > -1){
+            
+            String id_ = this.Resultados.getValueAt(fila, 0).toString();
             this.TxtId.setText(String.valueOf(this.Resultados.getValueAt(fila, 0)));
             this.TxtProducto.setText(String.valueOf(this.Resultados.getValueAt(fila, 1)));
             this.TxtPrecio.setText(String.valueOf(this.Resultados.getValueAt(fila, 2)));
-            this.TxtCantidad.setText(String.valueOf(this.Resultados.getValueAt(fila, 3)));
+            this.sCantidad.setValue(Integer.valueOf(this.Resultados.getValueAt(fila, 3).toString()));
+            
+            getModelo_spinner().setMaximum(venta.buscarProducto(id_));
+            getModelo_spinner().setMinimum(1);
+            getModelo_spinner().setStepSize(1);
+            getModelo_spinner().setValue(Integer.valueOf(this.Resultados.getValueAt(fila, 3).toString()));
+            this.sCantidad.setModel(getModelo_spinner());
+            this.sCantidad.requestFocus();
             enableOrDisable(false);
             setEdit(true);
-            this.TxtCantidad.requestFocus();
+
         }
     }//GEN-LAST:event_ResultadosMouseClicked
 
@@ -414,27 +417,67 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         venta.vaciarCarrito();
         //cargarDatos();
         venta.cargarDatos(LblTotal, Resultados);
+        Sistema.setProductosAgregados(Sistema.getFactory().arrayList());
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFacturarActionPerformed
-        
-        getFacturacion().setLocationRelativeTo(null);
-        getFacturacion().setVisible(true);
-        venta.limpiarTabla(Resultados);
-
+       
+        if(this.Resultados.getRowCount() > 0){
+            Double total = Double.valueOf(this.LblTotal.getText().substring(11, this.LblTotal.getText().length()));
+            
+            if(!this.txtEfectivo.getText().isEmpty() && (total <= Double.valueOf(this.txtEfectivo.getText()))){
+                
+                System.out.println(Resultados.getSelectedRow());
+                
+                Double cambio = Double.valueOf(this.txtEfectivo.getText()) - total;
+            
+                Sistema.getMostrarMensaje().mensaje("exito", 
+                    "Efectivo: $"+this.txtEfectivo.getText()+"\n"
+                    +"Cambio: $"+String.valueOf(cambio), 
+                    "Facturar");
+                
+                getFacturacion().setLocationRelativeTo(null);
+                getFacturacion().setVisible(true);
+                
+                if(getFacturacion().getVentaExitosa()){
+                    venta.descontarExistencias(Resultados);
+                    venta.cargarDatos(LblTotal, Resultados);
+                    Sistema.setProductosAgregados(Sistema.getFactory().arrayList());
+                    limpiar("");
+                }
+            
+            }else{
+                Sistema.getMostrarMensaje().mensaje("advertencia", 
+                    "Debe ingresar un monto correcto.", 
+                    "Facturar");
+            }
+        }else{
+            Sistema.getMostrarMensaje().mensaje("advertencia", 
+                    "Aún no ha agregado ningún producto al Carrito.", 
+                    "Facturar");
+        }
+       
     }//GEN-LAST:event_BtnFacturarActionPerformed
 
     private void elimnarItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elimnarItemMousePressed
-        limpiar("");
-        int fila = this.Resultados.getSelectedRow();
-        String id = (String) this.Resultados.getValueAt(fila, 0);
-        venta.borrarItem(Resultados, id);
-        this.setAdd(false);
-        //cargarDatos();
-        venta.cargarDatos(LblTotal, Resultados);
-        this.TxtId.requestFocus();
-        enableOrDisable(true);
         
+        if(this.Resultados.getSelectedRowCount() > 0){
+            System.out.println(Resultados.getRowCount());
+            limpiar("");
+            int fila = this.Resultados.getSelectedRow();
+            String id = (String) this.Resultados.getValueAt(fila, 0);
+            venta.borrarItem(Resultados, id);
+            Sistema.getProductosAgregados().remove(id);
+            this.setAdd(false);
+            venta.cargarDatos(LblTotal, Resultados);
+            this.TxtId.requestFocus();
+            enableOrDisable(true);
+            
+        }else{
+            Sistema.getMostrarMensaje().mensaje("advertencia", 
+                    "Debe seleccionar el elemento a Eliminar.", 
+                    "Venta");
+        }
     }//GEN-LAST:event_elimnarItemMousePressed
 
     private void jPanel5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseDragged
@@ -446,9 +489,41 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         y = evt.getY();
     }//GEN-LAST:event_jPanel5MousePressed
 
-    private void TxtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtCantidadActionPerformed
+    private void sCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sCantidadKeyPressed
+       
+        int minimo = (int) getModelo_spinner().getMinimum(), 
+            maximo = (int) getModelo_spinner().getMaximum(),
+            valor = Integer.valueOf(this.sCantidad.getValue().toString());
+        
+        if(isAdd() && (valor >= minimo || valor <= maximo)){
+          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+              venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
+                      Double.valueOf(this.TxtPrecio.getText()), valor);
+              this.add = false;
+              limpiar("");
+              this.TxtId.requestFocus();
+              //cargarDatos();
+              venta.cargarDatos(LblTotal, Resultados);
+              enableOrDisable(true);      
+                   
+          } 
+       }else{
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){   
+               venta.actualizarItem(valor, this.TxtId.getText());
+               this.setAdd(false);
+               limpiar("");
+               this.TxtId.requestFocus();
+              // cargarDatos();
+              venta.cargarDatos(LblTotal, Resultados);
+               enableOrDisable(true);
+ 
+          }
+        }
+    }//GEN-LAST:event_sCantidadKeyPressed
+
+    private void txtEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEfectivoActionPerformed
+       BtnFacturarActionPerformed(evt);
+    }//GEN-LAST:event_txtEfectivoActionPerformed
 
         /**
      * @return the add
@@ -512,7 +587,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private javax.swing.JLabel LblTotal;
     private javax.swing.JPopupMenu PopMenu;
     private javax.swing.JTable Resultados;
-    private javax.swing.JTextField TxtCantidad;
     private javax.swing.JTextField TxtId;
     private javax.swing.JTextField TxtPrecio;
     private javax.swing.JTextField TxtProducto;
@@ -528,23 +602,24 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner sCantidad;
     private javax.swing.JTextField txtEfectivo;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void limpiar(String lugar) {
-        this.TxtCantidad.setText("");
         this.TxtId.setText("");
         this.TxtPrecio.setText("");
         this.TxtProducto.setText("");
+        this.txtEfectivo.setText("");
         this.TxtId.requestFocus();
+        this.sCantidad.getModel().setValue(0);
     }
     
     
     private void enableOrDisable(boolean type){
         if(type){
             this.TxtId.enable();
-            this.TxtCantidad.enable();
             this.TxtPrecio.enable();
             this.TxtProducto.enable();
         }
