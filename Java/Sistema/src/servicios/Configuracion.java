@@ -38,7 +38,7 @@ public class Configuracion {
     
     public Configuracion(){
 
-       setConfigFilePath(Sistema.getRootPath()+"config.properties");
+       setConfigFilePath(Sistema.getRootPath()+Sistema.getCarpConf()+"config.properties");
         
        setConfigProp(Sistema.getFactory().properties());
        input = null;

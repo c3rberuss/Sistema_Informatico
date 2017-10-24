@@ -10,7 +10,7 @@ CREATE PROCEDURE `carrito`() NO SQL SELECT id, producto, precio, cantidad FROM s
 CREATE PROCEDURE `subtotal_carrito`() NO SQL SELECT SUM(precio*cantidad) as total FROM shopping_cart;
 CREATE PROCEDURE `actualizarItem`(IN `cantidad_` INT(8), IN `id_` VARCHAR(10)) NO SQL UPDATE shopping_cart SET cantidad=cantidad_ WHERE id=id_;
 CREATE PROCEDURE `borrarItem`(IN `id_` VARCHAR(15)) NO SQL DELETE FROM shopping_cart WHERE id = id_;
-CREATE PROCEDURE `buscarItem`(IN `id_` VARCHAR(10)) NO SQL SELECT id, producto, precio FROM inventario WHERE id=id_ AND stock > 0;
+CREATE PROCEDURE `buscarItem`(IN `id_` VARCHAR(10)) NO SQL SELECT id, producto, precio, stock FROM inventario WHERE id=id_ AND stock > 0;
 CREATE PROCEDURE `existeItem`(IN `id_` VARCHAR(10)) NO SQL SELECT COUNT(*) FROM shopping_cart WHERE id=id_;
 CREATE PROCEDURE `insertarItem`(IN `id_` VARCHAR(20), IN `producto_` VARCHAR(50), IN `precio_` DOUBLE(6,2), IN `cantidad_` INT(4)) NO SQL INSERT INTO shopping_cart VALUES(id_, producto_, precio_, cantidad_, null);
 CREATE PROCEDURE `mostrarItems`() NO SQL SELECT * FROM inventario WHERE stock > 0;
