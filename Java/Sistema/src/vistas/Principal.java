@@ -202,6 +202,11 @@ public class Principal extends javax.swing.JFrame {
                 BtnReportesMouseClicked(evt);
             }
         });
+        BtnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReportesActionPerformed(evt);
+            }
+        });
 
         BtnAyuda.setBackground(new java.awt.Color(3, 19, 27));
         BtnAyuda.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -457,6 +462,11 @@ public class Principal extends javax.swing.JFrame {
        Venta venta = new Venta();
        venta.vaciarCarrito();
     }//GEN-LAST:event_formWindowClosing
+
+    private void BtnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReportesActionPerformed
+        Opciones_reportes opRe= new Opciones_reportes(this,true);
+        opRe.setVisible(true);
+    }//GEN-LAST:event_BtnReportesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -119,6 +119,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         sCantidad = new javax.swing.JSpinner();
+        BtnAgregar = new javax.swing.JButton();
 
         elimnarItem.setText("Eliminar Producto");
         elimnarItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,9 +152,9 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/carritoCompra.png"))); // NOI18N
         jLabel1.setText("CARRITO DE COMPRA");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 520, -1));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 620, -1));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 60));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 60));
 
         jPanel6.setBackground(new java.awt.Color(3, 19, 27));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -163,7 +164,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         BtnLimpiar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         BtnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/escoba.png"))); // NOI18N
-        BtnLimpiar.setText("LIMPIAR");
+        BtnLimpiar.setText("LIMPIAR TABLA");
         BtnLimpiar.setToolTipText("limpiar la tabla de articulos");
         BtnLimpiar.setBorder(null);
         BtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -173,7 +174,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 BtnLimpiarMousePressed(evt);
             }
         });
-        jPanel6.add(BtnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 30));
+        jPanel6.add(BtnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 30));
 
         BtnFacturar.setBackground(new java.awt.Color(0, 102, 0));
         BtnFacturar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -189,7 +190,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 BtnFacturarActionPerformed(evt);
             }
         });
-        jPanel6.add(BtnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 90, 30));
+        jPanel6.add(BtnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 90, 30));
 
         BtnCancelar.setBackground(new java.awt.Color(153, 0, 0));
         BtnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -203,9 +204,9 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 BtnCancelarActionPerformed(evt);
             }
         });
-        jPanel6.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 70, 30));
+        jPanel6.add(BtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 70, 30));
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 530, 50));
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 630, 50));
 
         jPanel2.setBackground(new java.awt.Color(35, 48, 54));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -214,26 +215,26 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PRODUCTO:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("EFECTIVO: $");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 360, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 360, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("CANTIDAD:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("ID:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         TxtId.setBackground(new java.awt.Color(255, 255, 255));
-        TxtId.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
+        TxtId.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         TxtId.setForeground(new java.awt.Color(0, 0, 0));
         TxtId.setToolTipText("Codigo");
         TxtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -242,24 +243,24 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 TxtIdKeyPressed(evt);
             }
         });
-        jPanel2.add(TxtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 90, 20));
+        jPanel2.add(TxtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 90, 20));
 
         TxtProducto.setBackground(new java.awt.Color(255, 255, 255));
-        TxtProducto.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        TxtProducto.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         TxtProducto.setForeground(new java.awt.Color(0, 0, 0));
         TxtProducto.setToolTipText("Nombre de producto");
         TxtProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        TxtProducto.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        TxtProducto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         TxtProducto.setEnabled(false);
-        jPanel2.add(TxtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 200, 20));
+        jPanel2.add(TxtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 200, 20));
 
         TxtPrecio.setBackground(new java.awt.Color(255, 255, 255));
-        TxtPrecio.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        TxtPrecio.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         TxtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         TxtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        TxtPrecio.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        TxtPrecio.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         TxtPrecio.setEnabled(false);
-        jPanel2.add(TxtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 70, 20));
+        jPanel2.add(TxtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 70, 20));
 
         Resultados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Resultados.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -280,17 +281,17 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         });
         jScrollPane1.setViewportView(Resultados);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 460, 300));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 570, 310));
 
         LblTotal.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         LblTotal.setForeground(new java.awt.Color(255, 255, 255));
         LblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LblTotal.setText("0000000");
         LblTotal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel2.add(LblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 460, 30));
+        jPanel2.add(LblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 460, 30));
 
         txtEfectivo.setBackground(new java.awt.Color(35, 48, 54));
-        txtEfectivo.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        txtEfectivo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         txtEfectivo.setForeground(new java.awt.Color(255, 255, 255));
         txtEfectivo.setToolTipText("Efectivo");
         txtEfectivo.setBorder(null);
@@ -300,25 +301,43 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 txtEfectivoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 110, 20));
+        jPanel2.add(txtEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 110, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 110, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, 110, 10));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("PRECIO:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 50, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 50, -1));
 
+        sCantidad.setFont(new java.awt.Font("Century Gothic", 1, 11)); // NOI18N
         sCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 0));
+        sCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 sCantidadKeyPressed(evt);
             }
         });
-        jPanel2.add(sCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 70, 20));
+        jPanel2.add(sCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 70, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 530, 460));
+        BtnAgregar.setBackground(new java.awt.Color(0, 102, 0));
+        BtnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/addSuperPequenho.png"))); // NOI18N
+        BtnAgregar.setText("AGREGAR");
+        BtnAgregar.setToolTipText("Agregar a carrito");
+        BtnAgregar.setBorder(null);
+        BtnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAgregar.setFocusPainted(false);
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 90, 20));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 630, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -525,6 +544,63 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
        BtnFacturarActionPerformed(evt);
     }//GEN-LAST:event_txtEfectivoActionPerformed
 
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
+        
+        if(!isAdd()){
+               try {
+                    
+                    String consulta = this.TxtId.getText();
+
+                    ResultSet rs = venta.buscarItem(consulta);
+
+                    if(rs.first()){
+                        rs.beforeFirst();
+                        while(rs.next()){
+                            
+                            this.TxtProducto.setText(rs.getString(2));
+                            this.TxtPrecio.setText(rs.getString(3));
+                            getModelo_spinner().setMaximum(rs.getInt(4));
+                            getModelo_spinner().setMinimum(1);
+                            getModelo_spinner().setStepSize(1);
+                            getModelo_spinner().setValue(1);
+                            this.sCantidad.setModel(getModelo_spinner());
+                            
+                            String[] producto = new String[2];
+                            
+                            producto[0] = rs.getString(1);
+                            producto[1] = String.valueOf(rs.getInt(4));
+                            
+                            Sistema.getProductosAgregados().add(producto);
+                            
+                        }
+                        this.setAdd(true);
+                        this.sCantidad.requestFocus();
+
+                    }else{
+                        this.setAdd(false);
+                        JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
+                        limpiar("");
+                    }
+
+               
+                } catch (SQLException ex) {
+                    this.setAdd(false);
+                    JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
+                    Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }else{
+               
+               venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
+                       Double.valueOf(this.TxtPrecio.getText()), Integer.valueOf(this.sCantidad.getValue().toString()));
+               this.setAdd(false);
+               limpiar("");
+               this.TxtId.requestFocus();
+               // cargarDatos();
+               venta.cargarDatos(LblTotal, Resultados);
+               
+            }
+    }//GEN-LAST:event_BtnAgregarActionPerformed
+
         /**
      * @return the add
      */
@@ -581,6 +657,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnFacturar;
     private javax.swing.JButton BtnLimpiar;
