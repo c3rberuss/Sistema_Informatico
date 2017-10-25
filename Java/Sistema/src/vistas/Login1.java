@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 import servicios.Configuracion;
 import servicios.Usuarios;
 import servicios.Ventana;
@@ -243,7 +243,7 @@ public class Login1 extends javax.swing.JFrame implements Ventana{
 
                 }else{
 
-                    JOptionPane.showMessageDialog(null, "Usuario u Contraseña Incorrectos");
+                    Sistema.getMostrarMensaje().mensaje("error", "Usuario o contraseña incorrectos.\nIntente nuevamente", "ERROR");
                     limpiar("");
                 }
             }

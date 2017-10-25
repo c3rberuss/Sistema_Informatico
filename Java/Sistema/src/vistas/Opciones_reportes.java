@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import servicios.Reportes;
+
 /**
  *
  * @author edwin
@@ -35,10 +37,10 @@ public class Opciones_reportes extends javax.swing.JDialog {
         BtnCancelar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        BtnAGREGARU = new javax.swing.JButton();
-        BtnMODIFICARU = new javax.swing.JButton();
-        BtnELIMINARU = new javax.swing.JButton();
-        BtnLISTARU = new javax.swing.JButton();
+        BtnRepUsuarios = new javax.swing.JButton();
+        BtnRepInventario = new javax.swing.JButton();
+        BtnRepMasVendidos = new javax.swing.JButton();
+        BtnRepVentas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -98,69 +100,69 @@ public class Opciones_reportes extends javax.swing.JDialog {
         jLabel2.setText("¿QUE TIPO DE REPORTE DESEA OBTENER?");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 580, -1));
 
-        BtnAGREGARU.setBackground(new java.awt.Color(153, 102, 0));
-        BtnAGREGARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        BtnAGREGARU.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAGREGARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
-        BtnAGREGARU.setText("REPORTE DE USUARIOS");
-        BtnAGREGARU.setActionCommand("");
-        BtnAGREGARU.setBorder(null);
-        BtnAGREGARU.setBorderPainted(false);
-        BtnAGREGARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnAGREGARU.setFocusPainted(false);
-        BtnAGREGARU.setIconTextGap(10);
-        BtnAGREGARU.addActionListener(new java.awt.event.ActionListener() {
+        BtnRepUsuarios.setBackground(new java.awt.Color(153, 102, 0));
+        BtnRepUsuarios.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnRepUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRepUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
+        BtnRepUsuarios.setText("REPORTE DE USUARIOS");
+        BtnRepUsuarios.setActionCommand("");
+        BtnRepUsuarios.setBorder(null);
+        BtnRepUsuarios.setBorderPainted(false);
+        BtnRepUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRepUsuarios.setFocusPainted(false);
+        BtnRepUsuarios.setIconTextGap(10);
+        BtnRepUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAGREGARUActionPerformed(evt);
+                BtnRepUsuariosActionPerformed(evt);
             }
         });
-        jPanel3.add(BtnAGREGARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, 90));
+        jPanel3.add(BtnRepUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, 90));
 
-        BtnMODIFICARU.setBackground(new java.awt.Color(153, 102, 0));
-        BtnMODIFICARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        BtnMODIFICARU.setForeground(new java.awt.Color(255, 255, 255));
-        BtnMODIFICARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
-        BtnMODIFICARU.setText("REPORTE DE INVENTARIO");
-        BtnMODIFICARU.setBorder(null);
-        BtnMODIFICARU.setBorderPainted(false);
-        BtnMODIFICARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnMODIFICARU.setFocusPainted(false);
-        BtnMODIFICARU.setIconTextGap(10);
-        BtnMODIFICARU.addActionListener(new java.awt.event.ActionListener() {
+        BtnRepInventario.setBackground(new java.awt.Color(153, 102, 0));
+        BtnRepInventario.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnRepInventario.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRepInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
+        BtnRepInventario.setText("REPORTE DE INVENTARIO");
+        BtnRepInventario.setBorder(null);
+        BtnRepInventario.setBorderPainted(false);
+        BtnRepInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRepInventario.setFocusPainted(false);
+        BtnRepInventario.setIconTextGap(10);
+        BtnRepInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMODIFICARUActionPerformed(evt);
+                BtnRepInventarioActionPerformed(evt);
             }
         });
-        jPanel3.add(BtnMODIFICARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 180, 90));
+        jPanel3.add(BtnRepInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 180, 90));
 
-        BtnELIMINARU.setBackground(new java.awt.Color(153, 102, 0));
-        BtnELIMINARU.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        BtnELIMINARU.setForeground(new java.awt.Color(255, 255, 255));
-        BtnELIMINARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
-        BtnELIMINARU.setText("REP. PROD. MAS VENDIDOS");
-        BtnELIMINARU.setBorder(null);
-        BtnELIMINARU.setBorderPainted(false);
-        BtnELIMINARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnELIMINARU.setFocusPainted(false);
-        BtnELIMINARU.setIconTextGap(10);
-        BtnELIMINARU.addActionListener(new java.awt.event.ActionListener() {
+        BtnRepMasVendidos.setBackground(new java.awt.Color(153, 102, 0));
+        BtnRepMasVendidos.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
+        BtnRepMasVendidos.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRepMasVendidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
+        BtnRepMasVendidos.setText("REP. PROD. MAS VENDIDOS");
+        BtnRepMasVendidos.setBorder(null);
+        BtnRepMasVendidos.setBorderPainted(false);
+        BtnRepMasVendidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRepMasVendidos.setFocusPainted(false);
+        BtnRepMasVendidos.setIconTextGap(10);
+        BtnRepMasVendidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnELIMINARUActionPerformed(evt);
+                BtnRepMasVendidosActionPerformed(evt);
             }
         });
-        jPanel3.add(BtnELIMINARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 180, 90));
+        jPanel3.add(BtnRepMasVendidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 180, 90));
 
-        BtnLISTARU.setBackground(new java.awt.Color(153, 102, 0));
-        BtnLISTARU.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        BtnLISTARU.setForeground(new java.awt.Color(255, 255, 255));
-        BtnLISTARU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
-        BtnLISTARU.setText("REPORTE DE VENTAS");
-        BtnLISTARU.setBorder(null);
-        BtnLISTARU.setBorderPainted(false);
-        BtnLISTARU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnLISTARU.setFocusPainted(false);
-        BtnLISTARU.setIconTextGap(10);
-        jPanel3.add(BtnLISTARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
+        BtnRepVentas.setBackground(new java.awt.Color(153, 102, 0));
+        BtnRepVentas.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnRepVentas.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRepVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/reportPeque.png"))); // NOI18N
+        BtnRepVentas.setText("REPORTE DE VENTAS");
+        BtnRepVentas.setBorder(null);
+        BtnRepVentas.setBorderPainted(false);
+        BtnRepVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRepVentas.setFocusPainted(false);
+        BtnRepVentas.setIconTextGap(10);
+        jPanel3.add(BtnRepVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 290));
 
@@ -181,17 +183,19 @@ public class Opciones_reportes extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void BtnAGREGARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAGREGARUActionPerformed
-        
-    }//GEN-LAST:event_BtnAGREGARUActionPerformed
+    private void BtnRepUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepUsuariosActionPerformed
+        Reportes repo = new Reportes();
+        repo.listaUsuarios();
+    }//GEN-LAST:event_BtnRepUsuariosActionPerformed
 
-    private void BtnMODIFICARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMODIFICARUActionPerformed
-        
-    }//GEN-LAST:event_BtnMODIFICARUActionPerformed
+    private void BtnRepInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepInventarioActionPerformed
+        Reportes repo = new Reportes();
+        repo.reporteInventario();
+    }//GEN-LAST:event_BtnRepInventarioActionPerformed
 
-    private void BtnELIMINARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnELIMINARUActionPerformed
+    private void BtnRepMasVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepMasVendidosActionPerformed
         
-    }//GEN-LAST:event_BtnELIMINARUActionPerformed
+    }//GEN-LAST:event_BtnRepMasVendidosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,11 +240,11 @@ public class Opciones_reportes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAGREGARU;
     private javax.swing.JButton BtnCancelar;
-    private javax.swing.JButton BtnELIMINARU;
-    private javax.swing.JButton BtnLISTARU;
-    private javax.swing.JButton BtnMODIFICARU;
+    private javax.swing.JButton BtnRepInventario;
+    private javax.swing.JButton BtnRepMasVendidos;
+    private javax.swing.JButton BtnRepUsuarios;
+    private javax.swing.JButton BtnRepVentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

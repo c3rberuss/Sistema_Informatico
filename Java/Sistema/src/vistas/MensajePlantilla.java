@@ -60,6 +60,7 @@ public class MensajePlantilla extends javax.swing.JDialog {
         BtnCancelar1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnCancelar1.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelar1.setText("CERRAR");
+        BtnCancelar1.setToolTipText("cerrar");
         BtnCancelar1.setBorder(null);
         BtnCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnCancelar1.setFocusPainted(false);

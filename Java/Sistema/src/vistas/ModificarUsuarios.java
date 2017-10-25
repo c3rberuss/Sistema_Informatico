@@ -72,6 +72,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        BtnCargarDatos = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         UsuariosEditados = new javax.swing.JTable();
@@ -191,7 +192,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
                 BtnAgregarVistaPreviaActionPerformed(evt);
             }
         });
-        jPanel4.add(BtnAgregarVistaPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 180, 30));
+        jPanel4.add(BtnAgregarVistaPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 180, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -214,7 +215,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel5.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 240, 10));
+        jPanel5.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 130, 10));
 
         txtBuscarCodigo.setBackground(new java.awt.Color(0, 0, 0));
         txtBuscarCodigo.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -227,7 +228,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
                 txtBuscarCodigoKeyPressed(evt);
             }
         });
-        jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 240, 20));
+        jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 130, 20));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -244,6 +245,22 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jLabel8.setText("INGRESE EL ID DEL USUARIO QUE DESEA");
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 280, 20));
 
+        BtnCargarDatos.setBackground(new java.awt.Color(0, 0, 0));
+        BtnCargarDatos.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnCargarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCargarDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ediSuperPequenho.png"))); // NOI18N
+        BtnCargarDatos.setText("CARGAR DATOS");
+        BtnCargarDatos.setToolTipText("Cargar datos y modificar");
+        BtnCargarDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        BtnCargarDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCargarDatos.setFocusPainted(false);
+        BtnCargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCargarDatosActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnCargarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 30));
+
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 100));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
@@ -252,7 +269,9 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 10, 440));
 
+        UsuariosEditados.setBackground(new java.awt.Color(0, 0, 0));
         UsuariosEditados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        UsuariosEditados.setForeground(new java.awt.Color(0, 0, 0));
         UsuariosEditados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -369,6 +388,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
                this.txtContra.setText(getDatos()[2]);
                this.txtTipoUsuario.setText(getDatos()[3]);
            }else{
+               Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el ID del usuario para cargar los datos a modificar", "CAMPO ID VACIO");
                System.out.println("campos vacios");
            }
         }
@@ -387,7 +407,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
             this.UsuariosEditados.repaint();
             limpiar("campos");
         }else{
-            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
+            Sistema.getMostrarMensaje().mensaje("error", "No se puede agregar a vista previa.\n Algunos campos estan vacios", "CAMPOS VACIOS");
         }
     }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
 
@@ -402,7 +422,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         }
         
         limpiar("tabla");
-        JOptionPane.showMessageDialog(null, "Usuarios Actualizados Exitosamente");
+       Sistema.getMostrarMensaje().mensaje("exito", "Datos de usuario agregados exitosamente.\nNota: Puedes obtener un reporte actualizado de lo que haz modificado en el apartado de reportes", "CAMPOS VACIOS");
     }//GEN-LAST:event_BtnModificarMousePressed
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
@@ -413,6 +433,21 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void BtnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarDatosActionPerformed
+        if(!this.txtBuscarCodigo.getText().isEmpty()){
+               setDatos(users.searchUsers(this.txtBuscarCodigo.getText()));
+               this.txtID.setText(getDatos()[0]);
+               this.txtUsuario.setText(getDatos()[1]);
+               this.txtContra.setText(getDatos()[2]);
+               this.txtTipoUsuario.setText(getDatos()[3]);
+           }else{
+            
+                Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el ID del usuario para cargar los datos a MODIFICAR", "CAMPO ID VACIO");
+                System.out.println("campos vacios");
+               
+           }
+    }//GEN-LAST:event_BtnCargarDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,6 +493,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarVistaPrevia;
+    private javax.swing.JButton BtnCargarDatos;
     private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnLimpiar;
     private javax.swing.JButton BtnModificar;
