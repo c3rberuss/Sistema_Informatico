@@ -219,7 +219,7 @@ public class Venta {
         
     }
     
-    public int buscarProducto(String id){
+    public int buscarStock(String id){
         String producto_;
         int valor = 0;
         
@@ -233,6 +233,74 @@ public class Venta {
         
         return valor;
     }
+    
+    public void eliminarProducto(String id){
+        
+        for(int i = 0; i<Sistema.getProductosAgregados().size(); i++){
+            if(Sistema.getProductosAgregados().get(i)[0].equalsIgnoreCase(id)){
+                Sistema.getProductosAgregados().remove(i);
+                break;
+            }
+        }
+    }
+    
+    public int buscarCantidadAgregada(String id){
+        String producto_;
+        int valor = 0;
+        
+        for(int i = 0; i<Sistema.getProductosAgregados().size(); i++){
+            if(Sistema.getProductosAgregados().get(i)[0].equalsIgnoreCase(id)){
+                producto_=Sistema.getProductosAgregados().get(i)[2];
+                valor = Integer.valueOf(producto_);
+                break;
+            }
+        }
+        
+        return valor;
+    }
+    
+    public void actualizarCantidadAgregada(String id, String cantidad){
+        
+        int nuevaCantidad = 0;
+        
+        for(int i = 0; i<Sistema.getProductosAgregados().size(); i++){
+            if(Sistema.getProductosAgregados().get(i)[0].equalsIgnoreCase(id)){
+                nuevaCantidad = Integer.valueOf(Sistema.getProductosAgregados().get(i)[2]) +
+                        Integer.valueOf(cantidad);
+                
+                Sistema.getProductosAgregados().get(i)[2] = String.valueOf(nuevaCantidad);
+                break;
+            }
+        }
+        
+    }
+    
+    public void editarCantidadAgregada(String id, String cantidad){
+        for(int i = 0; i<Sistema.getProductosAgregados().size(); i++){
+            if(Sistema.getProductosAgregados().get(i)[0].equalsIgnoreCase(id)){
+               Sistema.getProductosAgregados().get(i)[2] = cantidad; 
+               break;
+            }
+        }
+    }
+    
+    
+    public void arrayAdd(String[] producto){
+        
+        boolean noExiste = true;
+        
+        for(int i = 0; i < Sistema.getProductosAgregados().size(); i++){
+            if(Sistema.getProductosAgregados().get(i)[0].equals(producto[0])){
+                noExiste = false;
+            }
+        }
+        
+        if(noExiste){
+            Sistema.getProductosAgregados().add(producto);
+        }
+
+    }
+    
 
     public String nFactura(){
         //setConf(Sistema.getFactory().configuraciones());

@@ -24,6 +24,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import sistema.Sistema;
 
+
 /**
  *
  * @author josuee
@@ -47,9 +48,10 @@ public class Reportes {
             parametro.put("direccion", direccion);
             parametro.put("rutaimg", this.getClass().getClassLoader().getResourceAsStream("Recursos/imagenes/icono2.png"));
             
-            generarReporte(getClass().getResource("/reportes/Plantillas/factura.jasper"), parametro, "factura", false);
+            generarReporte(getClass().getResource("/reportes/Plantillas/factura.jasper"), parametro, 
+                    "factura"+Sistema.getnFactura(), false, "factura");
             
-            Impresion.imprimir(Sistema.getRootPath()+"factura.pdf");
+            Impresion.imprimir(Sistema.getRootPath()+Sistema.getCarpFact()+"factura"+Sistema.getnFactura()+".pdf");
             
             Sistema.getMostrarMensaje().mensaje("exito", 
                         "Imprimiendo la factura, por favor espere un momento.",
@@ -62,7 +64,7 @@ public class Reportes {
         
     }
     
-    private void generarReporte(URL plantilla, HashMap parametros, String nombre, boolean mostrar){
+    private void generarReporte(URL plantilla, HashMap parametros, String nombre, boolean mostrar, String tipo){
         try {
             JasperReport reporte = (JasperReport)JRLoader.loadObject(plantilla);
             
@@ -70,12 +72,23 @@ public class Reportes {
             
             JRExporter exporter = new JRPdfExporter();
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-            exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(Sistema.getRootPath()+nombre+".pdf"));
+            
+            switch(tipo.toLowerCase()){
+                case "reporte":
+                    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(Sistema.getRootPath()+
+                            Sistema.getCarpRepor()+nombre+".pdf"));
+                    break;
+                case "factura":
+                    exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new java.io.File(Sistema.getRootPath()+
+                            Sistema.getCarpFact()+nombre+".pdf"));
+                    break;
+           }
+            
             exporter.exportReport();
             
             if(mostrar){
                 try {
-                    setPdf(Sistema.getFactory().createFile(Sistema.getRootPath()+nombre+".pdf"));
+                    setPdf(Sistema.getFactory().createFile(Sistema.getRootPath()+Sistema.getCarpRepor()+nombre+".pdf"));
                     Desktop.getDesktop().open(getPdf());
                 } catch (IOException ex) {
                     Sistema.getMostrarMensaje().mensaje("error", 
@@ -96,12 +109,14 @@ public class Reportes {
 
     
     public void reporteInventario(){
-        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/InventarioDetallado.jasper"),null,"reporteInventario", true);    
+        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/InventarioDetallado.jasper"),
+                null,"reporteInventario", true, "reporte");    
         
     }
     
     public void listaUsuarios(){
-        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/ListadoUsuarios.jasper"),null,"ListadoUsuarios", true);  
+        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/ListadoUsuarios.jasper"),
+                null,"ListadoUsuarios", true, "reporte");  
     }
     
     public static String getDate(){

@@ -137,7 +137,20 @@ public final class Utilidades {
         
         boolean success = false;
             try{
-                String ruta = Sistema.getRootPath()+"config.properties";
+                
+                File carpetas = Sistema.getFactory().createFile(Sistema.getRootPath()+
+                        Sistema.getCarpConf());   
+                carpetas.mkdirs();
+                
+                carpetas = Sistema.getFactory().createFile(Sistema.getRootPath()+
+                        Sistema.getCarpFact());
+                carpetas.mkdirs();
+                
+                carpetas = Sistema.getFactory().createFile(Sistema.getRootPath()+
+                        Sistema.getCarpRepor());
+                carpetas.mkdirs();
+
+                String ruta = Sistema.getRootPath()+Sistema.getCarpConf()+"config.properties";
                 
                 File archivo = Sistema.getFactory().createFile(ruta);
                 BufferedWriter bw;

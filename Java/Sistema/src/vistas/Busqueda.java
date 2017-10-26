@@ -247,35 +247,59 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
             if(fila > -1){
             
                 int n = this.Resultados.getSelectedRow();
+                boolean agregar = true;
+                
                 String[] datos = new String[4];
                 datos[0] = (String) this.Resultados.getValueAt(n, 0);
                 datos[1] = (String) this.Resultados.getValueAt(n, 1);
                 datos[2] = (String) this.Resultados.getValueAt(n, 3);
                 datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
 
-                int cantidad = Integer.valueOf(datos[3]);
+                int cantidad = Integer.valueOf(datos[3]) + getVenta().buscarCantidadAgregada(datos[0]);
+                
+                if(getVenta().buscarCantidadAgregada(datos[0]) > 0){
+                    agregar = false;
+                }
+                
                 int max = Integer.valueOf(this.Resultados.getValueAt(n, 4).toString());
+                
 
-
-                if(!(datos[3].equals("null")) && (cantidad >= 1 && cantidad <= max)){
-
-                    getVenta().insertarItem(datos[0], datos[1], Double.valueOf(datos[2]), 
-                                Integer.valueOf(datos[3]));
-
-                    String[] prod = new String[2];
-                    prod[0] = datos[0];
-                    prod[1] = String.valueOf(max);
+                if((cantidad > 0 && cantidad <= max)){
                     
-                    Sistema.getProductosAgregados().add(prod);
+                    cantidad = Integer.valueOf(datos[3]);
+                    
+                    if(!(datos[3].equals("null")) && (cantidad >= 1 && cantidad <= max)){
 
-                    Sistema.getMostrarMensaje().mensaje("exito", 
-                        "Producto agregado al carrito exitosamente.", 
-                        "Ventas");
+                        String[] prod = new String[3];
+                        prod[0] = datos[0];
+                        prod[1] = String.valueOf(max);
+                        prod[2] = datos[3];
+                        
+                        if(agregar){
+                            getVenta().arrayAdd(prod);
+                            getVenta().insertarItem(datos[0], datos[1], Double.valueOf(datos[2]), 
+                                    Integer.valueOf(datos[3]));
+                        }else{
+                             
+                            cantidad = cantidad + getVenta().buscarCantidadAgregada(datos[0]);
+                            getVenta().actualizarCantidadAgregada(datos[0], String.valueOf(cantidad));
+                            getVenta().actualizarItem(cantidad, datos[0]); 
+                        }
+           
+                      
+                        Sistema.getMostrarMensaje().mensaje("exito", 
+                            "Producto agregado al carrito exitosamente.", 
+                            "Ventas");
 
+                    }else{
+                        Sistema.getMostrarMensaje().mensaje("advertencia", 
+                            "Ingrese una cantidad válida.\n Entre 1 y "+max, 
+                            "Ventas");
+                    }
                 }else{
                     Sistema.getMostrarMensaje().mensaje("advertencia", 
-                        "Ingrese una cantidad válida.\n Entre 1 y "+max, 
-                        "Ventas");
+                            "Productos insuficientes.", 
+                            "Ventas");
                 }
 
 

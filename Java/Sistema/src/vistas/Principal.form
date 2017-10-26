@@ -383,6 +383,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnReportesMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnReportesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnAyuda">

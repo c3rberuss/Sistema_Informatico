@@ -142,10 +142,10 @@ public class Usuarios {
     
     public void deleteUsers(String id){
         try {
-            setSql("CALL delete_user(?);");
+            setSql("CALL delete_user(?)");
             setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
             getStatement().setString(1, id);
-            getStatement().executeUpdate(sql);
+            getStatement().executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }

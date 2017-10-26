@@ -7,11 +7,6 @@ package vistas;
 
 
 import factory.Factory;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Usuarios;
@@ -200,6 +195,11 @@ public class Principal extends javax.swing.JFrame {
         BtnReportes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnReportesMouseClicked(evt);
+            }
+        });
+        BtnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReportesActionPerformed(evt);
             }
         });
 
@@ -457,6 +457,11 @@ public class Principal extends javax.swing.JFrame {
        Venta venta = new Venta();
        venta.vaciarCarrito();
     }//GEN-LAST:event_formWindowClosing
+
+    private void BtnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReportesActionPerformed
+        Opciones_reportes opRe= new Opciones_reportes(this,true);
+        opRe.setVisible(true);
+    }//GEN-LAST:event_BtnReportesActionPerformed
 
     /**
      * @param args the command line arguments

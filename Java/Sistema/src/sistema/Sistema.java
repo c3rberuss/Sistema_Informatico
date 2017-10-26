@@ -34,27 +34,39 @@ public class Sistema {
     private static Configuracion conf;
     private static MensajePlantilla mostrarMensaje;
     private static ArrayList<String[]> productosAgregados;
+    private static String bar;
+    private static String carpConf;
+    private static String carpRepor;
+    private static String carpFact;
     
     
     public static void main(String[] args) throws IOException{
         
         try {
             
-            factory = new Factory();
-            
+            factory = new Factory();   
             setProductosAgregados(factory.arrayList());
-            
             setRootPath(System.getProperty("user.home")+System.getProperty("file.separator"));  
-           
             String osName = System.getProperty("os.name").toLowerCase();
-
+            
+            setBar(System.getProperty("file.separator"));
+            setCarpConf("Sistema"+getBar()+"Configuracion"+getBar());
+            setCarpRepor("Sistema"+getBar()+"Reportes"+getBar());
+            setCarpFact("Sistema"+getBar()+"Facturas"+getBar());
 
             if(osName.equals("linux")){
                 setConfigFilePath(Sistema.getRootPath()+"config.properties");
             }else if(osName.equals("windows")){
+                
+                setCarpConf(getCarpConf().replaceAll(getBar(), getBar()+getBar()));
+                setCarpRepor(getCarpRepor().replaceAll(getBar(), getBar()+getBar()));
+                setCarpFact(getCarpFact().replaceAll(getBar(), getBar()+getBar()));
+                
+                setBar(getBar()+getBar());
+                
                 String ruta = Sistema.getRootPath()+"config.properties";
-                String separador = System.getProperty("file.separator")+ System.getProperty("file.separator");
-                ruta = ruta.replaceAll(System.getProperty("file.separator"), separador);
+                ruta = ruta.replaceAll(System.getProperty("file.separator"), getBar());
+                
                 Sistema.setRootPath(ruta);
             }
             
@@ -162,5 +174,43 @@ public class Sistema {
     public static void setProductosAgregados(ArrayList<String[]> aProductoAgregados) {
         productosAgregados = aProductoAgregados;
     }
+    
+        public static String getBar() {
+        return bar;
+    }
+
+    public static void setBar(String aBar) {
+        bar = aBar;
+    }
+
+    public static String getCarpConf() {
+        return carpConf;
+    }
+
+    public static void setCarpConf(String aCarpConf) {
+        carpConf = aCarpConf;
+    }
+
+    public static String getCarpRepor() {
+        return carpRepor;
+    }
+
+    public static void setCarpRepor(String aCarpRepor) {
+        carpRepor = aCarpRepor;
+    }
+
+    public static String getCarpFact() {
+        return carpFact;
+    }
+
+    public static void setCarpFact(String aCarpFact) {
+        carpFact = aCarpFact;
+    }
+
+    public static String getnFactura() {
+        return conf.getConfProperty("numero.factura");
+    }
+
+ 
     
 }

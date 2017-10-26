@@ -197,12 +197,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
                 BtnAgregarVistaPreviaMousePressed(evt);
             }
         });
-        BtnAgregarVistaPrevia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAgregarVistaPreviaActionPerformed(evt);
-            }
-        });
-        jPanel4.add(BtnAgregarVistaPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 180, 30));
+        jPanel4.add(BtnAgregarVistaPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 180, 30));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
 
@@ -310,10 +305,6 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAgregarVistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaActionPerformed
-
-    }//GEN-LAST:event_BtnAgregarVistaPreviaActionPerformed
-
     private void BtnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLimpiarMousePressed
         limpiar("tabla");
     }//GEN-LAST:event_BtnLimpiarMousePressed
@@ -346,7 +337,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
             limpiar("campos");
             this.txtID.setText(users.generateId());
         }else{
-            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
+            Sistema.getMostrarMensaje().mensaje("error", "No se puede agregar a vista previa.\n Algunos campos estan vacios", "CAMPOS VACIOS");
         }
  
     }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
@@ -362,7 +353,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         }
         
         limpiar("tabla");
-        JOptionPane.showMessageDialog(null, "Usuarios Agregados Exitosamente");
+        Sistema.getMostrarMensaje().mensaje("exito", "Usuarios agregados exitosamente.\nNota: Puedes obtener un reporte actualizado de lo que haz agregado en el apartado de reportes", "USUARIOS AGREGADOS");
     }//GEN-LAST:event_BtnAgregarMousePressed
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
