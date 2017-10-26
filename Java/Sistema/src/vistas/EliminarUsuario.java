@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Usuarios;

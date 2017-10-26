@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -384,7 +384,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                
             }
 
-       }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
+       }else if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             limpiar("");
             this.setAdd(false);
         }
