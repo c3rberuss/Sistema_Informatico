@@ -109,7 +109,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        TxtId = new javax.swing.JTextField();
         TxtProducto = new javax.swing.JTextField();
         TxtPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -120,6 +119,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel6 = new javax.swing.JLabel();
         sCantidad = new javax.swing.JSpinner();
         BtnAgregar = new javax.swing.JButton();
+        txtId = new javax.swing.JFormattedTextField();
 
         elimnarItem.setText("Eliminar Producto");
         elimnarItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -233,18 +233,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel5.setText("ID:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        TxtId.setBackground(new java.awt.Color(255, 255, 255));
-        TxtId.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        TxtId.setForeground(new java.awt.Color(0, 0, 0));
-        TxtId.setToolTipText("Codigo");
-        TxtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        TxtId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TxtIdKeyPressed(evt);
-            }
-        });
-        jPanel2.add(TxtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 90, 20));
-
         TxtProducto.setBackground(new java.awt.Color(255, 255, 255));
         TxtProducto.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         TxtProducto.setForeground(new java.awt.Color(0, 0, 0));
@@ -337,6 +325,20 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         });
         jPanel2.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 90, 20));
 
+        txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtId.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            txtId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 90, 20));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 630, 490));
 
         pack();
@@ -346,23 +348,12 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void TxtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtIdKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           
-           add();
-
-       }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
-            limpiar("");
-            this.setAdd(false);
-        }
-    }//GEN-LAST:event_TxtIdKeyPressed
-
     
     private void add(){
         if(!isAdd()){
                try {
                     
-                    String consulta = this.TxtId.getText();
+                    String consulta = this.txtId.getText();
 
                     ResultSet rs = venta.buscarItem(consulta);
 
@@ -405,25 +396,25 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                
            }else{
                
-                int cantidad = venta.buscarCantidadAgregada(this.TxtId.getText()) + 
+                int cantidad = venta.buscarCantidadAgregada(this.txtId.getText()) + 
                           Integer.valueOf(this.sCantidad.getValue().toString());
                   
-                  int stock = venta.buscarStock(this.TxtId.getText());
+                  int stock = venta.buscarStock(this.txtId.getText());
               
                   
                   if(cantidad <= stock){
                       
                       cantidad =  Integer.valueOf(this.sCantidad.getValue().toString());
-                      venta.actualizarCantidadAgregada(this.TxtId.getText(), String.valueOf(cantidad));
+                      venta.actualizarCantidadAgregada(this.txtId.getText(), String.valueOf(cantidad));
                       
-                      cantidad = venta.buscarCantidadAgregada(this.TxtId.getText());
+                      cantidad = venta.buscarCantidadAgregada(this.txtId.getText());
                       
-                      venta.actualizarItem(cantidad, this.TxtId.getText());
+                      venta.actualizarItem(cantidad, this.txtId.getText());
 
                       
                       this.add = false;
                       limpiar("");
-                      this.TxtId.requestFocus();
+                      this.txtId.requestFocus();
                       //cargarDatos();
                       venta.cargarDatos(LblTotal, Resultados);
                       enableOrDisable(true); 
@@ -445,7 +436,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             
             this.BtnAgregar.setText("MODIFICAR");
             String id_ = this.Resultados.getValueAt(fila, 0).toString();
-            this.TxtId.setText(String.valueOf(this.Resultados.getValueAt(fila, 0)));
+            this.txtId.setText(String.valueOf(this.Resultados.getValueAt(fila, 0)));
             this.TxtProducto.setText(String.valueOf(this.Resultados.getValueAt(fila, 1)));
             this.TxtPrecio.setText(String.valueOf(this.Resultados.getValueAt(fila, 2)));
             this.sCantidad.setValue(Integer.valueOf(this.Resultados.getValueAt(fila, 3).toString()));
@@ -491,6 +482,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 getFacturacion().setVisible(true);
                 
                 if(getFacturacion().getVentaExitosa()){
+                    venta.registrarVenta(Resultados);
                     venta.descontarExistencias(Resultados);
                     venta.cargarDatos(LblTotal, Resultados);
                     Sistema.setProductosAgregados(Sistema.getFactory().arrayList());
@@ -521,7 +513,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             venta.eliminarProducto(id);
             this.setAdd(false);
             venta.cargarDatos(LblTotal, Resultados);
-            this.TxtId.requestFocus();
+            this.txtId.requestFocus();
             enableOrDisable(true);
             this.BtnAgregar.setText("AGREGAR");
             
@@ -551,41 +543,41 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
           
             if(evt.getKeyCode() == KeyEvent.VK_ENTER){
               
-              if(venta.buscarCantidadAgregada(this.TxtId.getText()) == 0){
+              if(venta.buscarCantidadAgregada(this.txtId.getText()) == 0){
                   
-                  venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
+                  venta.insertarItem(this.txtId.getText(), this.TxtProducto.getText(),
                       Double.valueOf(this.TxtPrecio.getText()), valor);
                   
-                  venta.actualizarCantidadAgregada(this.TxtId.getText(), this.sCantidad.getValue().toString());
+                  venta.actualizarCantidadAgregada(this.txtId.getText(), this.sCantidad.getValue().toString());
                   System.out.println("Se está insertando desde aquí :'v");
                   this.add = false;
                   limpiar("");
-                  this.TxtId.requestFocus();
+                  this.txtId.requestFocus();
                   //cargarDatos();
                   venta.cargarDatos(LblTotal, Resultados);
                   enableOrDisable(true);
                   
               }else{
                   
-                  int cantidad = venta.buscarCantidadAgregada(this.TxtId.getText()) + 
+                  int cantidad = venta.buscarCantidadAgregada(this.txtId.getText()) + 
                           Integer.valueOf(this.sCantidad.getValue().toString());
                   
-                  int stock = venta.buscarStock(this.TxtId.getText());
+                  int stock = venta.buscarStock(this.txtId.getText());
               
                   
                   if(cantidad <= stock){
                       
                       cantidad =  Integer.valueOf(this.sCantidad.getValue().toString());
-                      venta.actualizarCantidadAgregada(this.TxtId.getText(), String.valueOf(cantidad));
+                      venta.actualizarCantidadAgregada(this.txtId.getText(), String.valueOf(cantidad));
                       
-                      cantidad = venta.buscarCantidadAgregada(this.TxtId.getText());
+                      cantidad = venta.buscarCantidadAgregada(this.txtId.getText());
                       
-                      venta.actualizarItem(cantidad, this.TxtId.getText());
+                      venta.actualizarItem(cantidad, this.txtId.getText());
 
                       
                       this.add = false;
                       limpiar("");
-                      this.TxtId.requestFocus();
+                      this.txtId.requestFocus();
                       //cargarDatos();
                       venta.cargarDatos(LblTotal, Resultados);
                       enableOrDisable(true); 
@@ -602,12 +594,12 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
           } 
        }else if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
            
-               venta.actualizarItem(valor, this.TxtId.getText());
-               venta.actualizarCantidadAgregada(this.TxtId.getText(), String.valueOf(valor));
+               venta.actualizarItem(valor, this.txtId.getText());
+               venta.actualizarCantidadAgregada(this.txtId.getText(), String.valueOf(valor));
                
                this.setAdd(false);
                limpiar("");
-               this.TxtId.requestFocus();
+               this.txtId.requestFocus();
               venta.cargarDatos(LblTotal, Resultados);
                enableOrDisable(true);
  
@@ -621,16 +613,86 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         
-        venta.editarCantidadAgregada(this.TxtId.getText(), this.sCantidad.getValue().toString());
-        venta.actualizarItem(Integer.valueOf(venta.buscarCantidadAgregada(this.TxtId.getText())),this.TxtId.getText());
-        limpiar("");
-        venta.cargarDatos(LblTotal, Resultados);
-        this.TxtId.requestFocus();
-        setAdd(false);
-        setEdit(false);
-        enableOrDisable(true); 
-        this.BtnAgregar.setText("AGREGAR");
+        if(isEdit()){
+            venta.editarCantidadAgregada(this.txtId.getText(), this.sCantidad.getValue().toString());
+            venta.actualizarItem(venta.buscarCantidadAgregada(this.txtId.getText()),this.txtId.getText());
+            limpiar("");
+            venta.cargarDatos(LblTotal, Resultados);
+            this.txtId.requestFocus();
+            setAdd(false);
+            setEdit(false);
+            enableOrDisable(true); 
+            this.BtnAgregar.setText("AGREGAR");
+            
+        }else if(isAdd()){
+            
+             
+        int minimo = (int) getModelo_spinner().getMinimum(), 
+            maximo = (int) getModelo_spinner().getMaximum(),
+            valor = Integer.valueOf(this.sCantidad.getValue().toString());
+            
+            if((valor >= minimo) && (valor <= maximo)){
+                if(venta.buscarCantidadAgregada(this.txtId.getText()) == 0){
+                  
+                    venta.insertarItem(this.txtId.getText(), this.TxtProducto.getText(),
+                        Double.valueOf(this.TxtPrecio.getText()), valor);
+
+                    venta.actualizarCantidadAgregada(this.txtId.getText(), this.sCantidad.getValue().toString());
+                    System.out.println("Se está insertando desde aquí :'v");
+                    this.add = false;
+                    limpiar("");
+                    this.txtId.requestFocus();
+                    //cargarDatos();
+                    venta.cargarDatos(LblTotal, Resultados);
+                    enableOrDisable(true);
+                  
+                }else{
+
+                    int cantidad = venta.buscarCantidadAgregada(this.txtId.getText()) + 
+                            Integer.valueOf(this.sCantidad.getValue().toString());
+
+                    int stock = venta.buscarStock(this.txtId.getText());
+
+
+                    if(cantidad <= stock){
+
+                        cantidad =  Integer.valueOf(this.sCantidad.getValue().toString());
+                        venta.actualizarCantidadAgregada(this.txtId.getText(), String.valueOf(cantidad));
+
+                        cantidad = venta.buscarCantidadAgregada(this.txtId.getText());
+
+                        venta.actualizarItem(cantidad, this.txtId.getText());
+
+
+                        this.add = false;
+                        limpiar("");
+                        this.txtId.requestFocus();
+                        //cargarDatos();
+                        venta.cargarDatos(LblTotal, Resultados);
+                        enableOrDisable(true); 
+
+                    }else{
+                          Sistema.getMostrarMensaje().mensaje("advertencia", 
+                              "Productos insuficientes.", 
+                              "Ventas");
+                    }
+
+                }
+            }
+        }
+        
     }//GEN-LAST:event_BtnAgregarActionPerformed
+
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           
+           add();
+
+       }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
+            limpiar("");
+            this.setAdd(false);
+        }
+    }//GEN-LAST:event_txtIdKeyPressed
 
         /**
      * @return the add
@@ -695,7 +757,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private javax.swing.JLabel LblTotal;
     private javax.swing.JPopupMenu PopMenu;
     private javax.swing.JTable Resultados;
-    private javax.swing.JTextField TxtId;
     private javax.swing.JTextField TxtPrecio;
     private javax.swing.JTextField TxtProducto;
     private javax.swing.JMenuItem elimnarItem;
@@ -712,28 +773,29 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSpinner sCantidad;
     private javax.swing.JTextField txtEfectivo;
+    private javax.swing.JFormattedTextField txtId;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void limpiar(String lugar) {
-        this.TxtId.setText("");
+        this.txtId.setText("");
         this.TxtPrecio.setText("");
         this.TxtProducto.setText("");
         this.txtEfectivo.setText("");
-        this.TxtId.requestFocus();
+        this.txtId.requestFocus();
         this.sCantidad.getModel().setValue(0);
     }
     
     
     private void enableOrDisable(boolean type){
         if(type){
-            this.TxtId.enable();
+            this.txtId.enable();
             this.TxtPrecio.enable();
             this.TxtProducto.enable();
         }
         else{
             this.TxtPrecio.disable();
-            this.TxtId.disable();
+            this.txtId.disable();
             this.TxtProducto.disable();
         }
     }

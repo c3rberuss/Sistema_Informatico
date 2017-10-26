@@ -13,10 +13,10 @@ CREATE PROCEDURE `existeItem`(IN `id_` VARCHAR(10)) NO SQL SELECT COUNT(*) FROM 
 CREATE PROCEDURE `insertarItem`(IN `id_` VARCHAR(20), IN `producto_` VARCHAR(50), IN `precio_` DOUBLE(6,2), IN `cantidad_` INT(4)) NO SQL INSERT INTO shopping_cart VALUES(id_, producto_, precio_, cantidad_, null);
 CREATE PROCEDURE `mostrarItems`() NO SQL SELECT * FROM inventario WHERE stock > 0;
 CREATE PROCEDURE `vaciarCarrito`() NO SQL TRUNCATE shopping_cart;
-CREATE TABLE `inventario` (`id` varchar(20) NOT NULL, `producto` varchar(75) NOT NULL, `descripcion` varchar(125) NOT NULL, `stock` int(10) NOT NULL, `precio` double(6,2) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `shopping_cart` (`id` varchar(20) COLLATE utf8_spanish_ci NOT NULL, `producto` varchar(50) COLLATE utf8_spanish_ci NOT NULL, `precio` double(6,2) NOT NULL, `cantidad` int(4) NOT NULL, `n` int(10) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE `users` (`id_usr` varchar(10) NOT NULL, `nick_usr` varchar(100) NOT NULL, `pwd_usr` varchar(20) NOT NULL, `type_usr` varchar(30) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `ventas` (`id` varchar(10) COLLATE utf8_spanish_ci NOT NULL,`producto` varchar(50) COLLATE utf8_spanish_ci NOT NULL,`cantidad` int(100) NOT NULL, `total` double(6,2) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE `inventario` (`id` varchar(20) NOT NULL,`producto` varchar(75) NOT NULL, `descripcion` varchar(125) NOT NULL,`stock` int(10) NOT NULL, `precio` double(6,2) NOT NULL, `precio_costo` double(6,2) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 INSERT INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`, `type_usr`) VALUES('1', 'Administrador', '0000', 'Admin');
 ALTER TABLE `inventario` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 ALTER TABLE `shopping_cart` ADD PRIMARY KEY (`n`), ADD UNIQUE KEY `id` (`id`);
@@ -24,3 +24,7 @@ ALTER TABLE `users` ADD PRIMARY KEY (`id_usr`), ADD UNIQUE KEY `id_usr` (`id_usr
 ALTER TABLE `ventas` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `producto` (`producto`);
 ALTER TABLE `shopping_cart` MODIFY `n` int(10) NOT NULL AUTO_INCREMENT;
 CREATE PROCEDURE `descontar_existencias`(IN `id_` VARCHAR(10), IN `cantidad_` INT(4)) NO SQL UPDATE inventario SET stock=stock-cantidad_ WHERE id=id_;
+CREATE PROCEDURE `registrar_venta`(IN `id_` VARCHAR(10), IN `producto_` VARCHAR(50), IN `cantidad_` INT(4), IN `precio_` DOUBLE(6,2)) NO SQL BEGIN IF NOT EXISTS(SELECT * from ventas where id=id_) THEN SET @costo = (SELECT precio_costo FROM inventario where id=id_); INSERT INTO ventas VALUES(id_, producto_, cantidad_, precio_*cantidad_, @costo * cantidad_, (precio_*cantidad_) - (@costo * cantidad_)); ELSE SET @costo = (SELECT precio_costo FROM inventario where id=id_); UPDATE ventas SET total_ventas=(total_ventas+(precio_*cantidad_)), cantidad = cantidad + cantidad_, total_inversion = total_inversion + (@costo * cantidad_), total_ganancias = ((total_ventas) - total_inversion)WHERE id=id_; END IF; END;
+CREATE PROCEDURE delete_product`(IN `ID VARCHAR(20)) NO SQL DELETE FROM inventario WHERE id=ID;
+CREATE PROCEDURE search_product`(IN `ID VARCHAR(20)) NO SQL SELECT * FROM inventario WHERE id=ID;
+CREATE PROCEDURE update_product`(IN `IDP VARCHAR(20), IN NOM VARCHAR(75), IN DESCR VARCHAR(125), IN STOCK INT(10), IN PRECIO DOUBLE) NO SQL UPDATE inventario SET producto=NOM, descripcion=DESCR, stock=STOCK, precio=PRECIO WHERE id=IDP;

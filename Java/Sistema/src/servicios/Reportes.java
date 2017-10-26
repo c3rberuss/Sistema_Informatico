@@ -119,6 +119,11 @@ public class Reportes {
                 null,"ListadoUsuarios", true, "reporte");  
     }
     
+    public void reporteVentas(){
+        generarReporte(this.getClass().getClassLoader().getResource("reportes/Plantillas/ReporteDeVentas.jasper"),
+                null,"ReporteDeVentas", true, "reporte");  
+    }
+    
     public static String getDate(){
        
         Calendar fecha = new GregorianCalendar();

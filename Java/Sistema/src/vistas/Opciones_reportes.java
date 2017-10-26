@@ -6,6 +6,7 @@
 package vistas;
 
 import servicios.Reportes;
+import sistema.Sistema;
 
 /**
  *
@@ -16,10 +17,21 @@ public class Opciones_reportes extends javax.swing.JDialog {
     ///variables para mover ventana
     int x,y;
     
+    private Reportes reporte;
+    
     public Opciones_reportes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        setReporte(Sistema.getFactory().generateReport());
+    }
+
+    private Reportes getReporte() {
+        return reporte;
+    }
+
+    private void setReporte(Reportes reporte) {
+        this.reporte = reporte;
     }
 
     /**
@@ -162,6 +174,11 @@ public class Opciones_reportes extends javax.swing.JDialog {
         BtnRepVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnRepVentas.setFocusPainted(false);
         BtnRepVentas.setIconTextGap(10);
+        BtnRepVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRepVentasActionPerformed(evt);
+            }
+        });
         jPanel3.add(BtnRepVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 290));
@@ -184,18 +201,22 @@ public class Opciones_reportes extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void BtnRepUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepUsuariosActionPerformed
-        Reportes repo = new Reportes();
-        repo.listaUsuarios();
+
+        getReporte().listaUsuarios();
     }//GEN-LAST:event_BtnRepUsuariosActionPerformed
 
     private void BtnRepInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepInventarioActionPerformed
-        Reportes repo = new Reportes();
-        repo.reporteInventario();
+        
+       getReporte().reporteInventario();
     }//GEN-LAST:event_BtnRepInventarioActionPerformed
 
     private void BtnRepMasVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepMasVendidosActionPerformed
         
     }//GEN-LAST:event_BtnRepMasVendidosActionPerformed
+
+    private void BtnRepVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepVentasActionPerformed
+        getReporte().reporteVentas();
+    }//GEN-LAST:event_BtnRepVentasActionPerformed
 
     /**
      * @param args the command line arguments

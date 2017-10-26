@@ -144,6 +144,24 @@ public class Venta {
         }
     }
     
+    public void registrarVenta(JTable tabla){
+        
+        int filas = tabla.getModel().getRowCount();
+        for(int i = 0; i < filas; ++i){ 
+            try {
+                setStatement(Sistema.getCon().getConexion().prepareStatement("CALL registrar_venta(?, ?, ?, ?)"));
+                getStatement().setString(1, tabla.getValueAt(i, 0).toString());
+                getStatement().setString(2, tabla.getValueAt(i, 1).toString());
+                getStatement().setInt(3, Integer.valueOf(tabla.getValueAt(i, 3).toString()));
+                getStatement().setDouble(4, Double.valueOf(tabla.getValueAt(i, 2).toString()));
+                getStatement().executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("ha ocurrido un error al registrar venta.\nError: "+ex.getMessage());
+            }
+        } 
+        
+    }
+    
     
     
     public ResultSet mostrarItems(){
@@ -201,7 +219,6 @@ public class Venta {
     public void descontarExistencias(JTable tabla){
         
         int filas = tabla.getModel().getRowCount();
-        System.out.println(filas);
         for(int i = 0; i < filas; ++i){ 
             try {
                 setStatement(Sistema.getCon().getConexion().prepareStatement("CALL descontar_existencias(?, ?)"));
@@ -209,13 +226,11 @@ public class Venta {
                 getStatement().setInt(2, Integer.valueOf(tabla.getValueAt(i, 3).toString()));
                 getStatement().executeUpdate();
             } catch (SQLException ex) {
-                System.out.println("ha ocurrido un error al descontar del inventario");
+                System.out.println("ha ocurrido un error al descontar del inventario. \nError: " + ex.getMessage());
             }
         } 
         
-        System.out.println("vaciando carrito");
         vaciarCarrito();
-        System.out.println("carrito vaciado");
         
     }
     
