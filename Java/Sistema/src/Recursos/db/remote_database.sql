@@ -25,6 +25,6 @@ ALTER TABLE `ventas` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNI
 ALTER TABLE `shopping_cart` MODIFY `n` int(10) NOT NULL AUTO_INCREMENT;
 CREATE PROCEDURE `descontar_existencias`(IN `id_` VARCHAR(10), IN `cantidad_` INT(4)) NO SQL UPDATE inventario SET stock=stock-cantidad_ WHERE id=id_;
 CREATE PROCEDURE `registrar_venta`(IN `id_` VARCHAR(10), IN `producto_` VARCHAR(50), IN `cantidad_` INT(4), IN `precio_` DOUBLE(6,2)) NO SQL BEGIN IF NOT EXISTS(SELECT * from ventas where id=id_) THEN SET @costo = (SELECT precio_costo FROM inventario where id=id_); INSERT INTO ventas VALUES(id_, producto_, cantidad_, precio_*cantidad_, @costo * cantidad_, (precio_*cantidad_) - (@costo * cantidad_)); ELSE SET @costo = (SELECT precio_costo FROM inventario where id=id_); UPDATE ventas SET total_ventas=(total_ventas+(precio_*cantidad_)), cantidad = cantidad + cantidad_, total_inversion = total_inversion + (@costo * cantidad_), total_ganancias = ((total_ventas) - total_inversion)WHERE id=id_; END IF; END;
-CREATE PROCEDURE delete_product`(IN `ID VARCHAR(20)) NO SQL DELETE FROM inventario WHERE id=ID;
-CREATE PROCEDURE search_product`(IN `ID VARCHAR(20)) NO SQL SELECT * FROM inventario WHERE id=ID;
-CREATE PROCEDURE update_product`(IN `IDP VARCHAR(20), IN NOM VARCHAR(75), IN DESCR VARCHAR(125), IN STOCK INT(10), IN PRECIO DOUBLE) NO SQL UPDATE inventario SET producto=NOM, descripcion=DESCR, stock=STOCK, precio=PRECIO WHERE id=IDP;
+CREATE PROCEDURE delete_product(IN ID VARCHAR(20)) NO SQL DELETE FROM inventario WHERE id=ID;
+CREATE PROCEDURE search_product(IN ID VARCHAR(20)) NO SQL SELECT * FROM inventario WHERE id=ID;
+CREATE PROCEDURE update_product(IN IDP VARCHAR(20), IN NOM VARCHAR(75), IN DESCR VARCHAR(125), IN STOCK INT(10), IN PRECIO DOUBLE) NO SQL UPDATE inventario SET producto=NOM, descripcion=DESCR, stock=STOCK, precio=PRECIO WHERE id=IDP;
