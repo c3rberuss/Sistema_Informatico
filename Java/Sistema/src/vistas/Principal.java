@@ -215,6 +215,11 @@ public class Principal extends javax.swing.JFrame {
         BtnAyuda.setFocusPainted(false);
         BtnAyuda.setIconTextGap(30);
         BtnAyuda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ayuda.png"))); // NOI18N
+        BtnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAyudaActionPerformed(evt);
+            }
+        });
 
         jButton8.setBackground(new java.awt.Color(3, 19, 27));
         jButton8.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -224,11 +229,6 @@ public class Principal extends javax.swing.JFrame {
         jButton8.setBorderPainted(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setFocusPainted(false);
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
-            }
-        });
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -441,13 +441,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_closeSesionActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-
+        
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        MensajePlantilla mensaje = new MensajePlantilla(this, true);
-        mensaje.mensaje("error", "Esto es una prueba de mensaje de error, para probarque tanto texto se le puede meter a esta cosa :v", "titulo");
-    }//GEN-LAST:event_jButton8MouseClicked
 
     private void BtnReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnReportesMouseClicked
 
@@ -462,6 +457,11 @@ public class Principal extends javax.swing.JFrame {
         Opciones_reportes opRe= new Opciones_reportes(this,true);
         opRe.setVisible(true);
     }//GEN-LAST:event_BtnReportesActionPerformed
+
+    private void BtnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAyudaActionPerformed
+        Ayuda ayu = new Ayuda(this,true);
+        ayu.setVisible(true);
+    }//GEN-LAST:event_BtnAyudaActionPerformed
 
     /**
      * @param args the command line arguments

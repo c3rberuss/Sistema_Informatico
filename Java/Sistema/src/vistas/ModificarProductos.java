@@ -61,18 +61,18 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         BtnCargarDatos = new javax.swing.JButton();
-        jSeparator7 = new javax.swing.JSeparator();
-        txtProducto2 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtCantidad = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtPrecioAdqui = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        txtProducto2 = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        txtCantidad = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductosAgregados = new javax.swing.JTable();
@@ -126,15 +126,15 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("CODIGO DE PRODUCTO:");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 280, 20));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 280, 20));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("PRECIO DE PRODUCTO:");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 280, 20));
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 280, 20));
 
         jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, 10));
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 180, 10));
 
         txtCodigo.setEditable(false);
         txtCodigo.setBackground(new java.awt.Color(3, 19, 27));
@@ -152,10 +152,10 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
                 txtCodigoFocusLost(evt);
             }
         });
-        jPanel4.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 260, 20));
+        jPanel4.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 55, 10));
+        jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 55, 10));
 
         txtPrecio.setBackground(new java.awt.Color(3, 19, 27));
         txtPrecio.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -171,7 +171,7 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
                 txtPrecioFocusLost(evt);
             }
         });
-        jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 110, 20));
+        jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 110, 20));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
@@ -266,59 +266,11 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 100));
 
-        jSeparator7.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 180, 10));
-
-        txtProducto2.setBackground(new java.awt.Color(3, 19, 27));
-        txtProducto2.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtProducto2.setForeground(new java.awt.Color(255, 255, 255));
-        txtProducto2.setToolTipText("Nombre de productor");
-        txtProducto2.setBorder(null);
-        txtProducto2.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtProducto2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtProducto2FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProducto2FocusLost(evt);
-            }
-        });
-        jPanel4.add(txtProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 260, 20));
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("NOMBRE DE PRODUCTO:");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 280, 20));
-
-        txtCantidad.setBackground(new java.awt.Color(3, 19, 27));
-        txtCantidad.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
-        txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
-        txtCantidad.setToolTipText("Cantidad en existencia");
-        txtCantidad.setBorder(null);
-        txtCantidad.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCantidadFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCantidadFocusLost(evt);
-            }
-        });
-        jPanel4.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 80, 20));
-
-        jSeparator5.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 40, 10));
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("CANTIDAD EN STOCK DE ESTE  DE PRODUCTO:");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 280, 20));
-
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("$");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 10, 20));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 10, 20));
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
@@ -352,6 +304,54 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
 
         jSeparator10.setForeground(new java.awt.Color(102, 102, 102));
         jPanel4.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 55, 10));
+
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("NOMBRE DE PRODUCTO:");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 280, 20));
+
+        txtProducto2.setBackground(new java.awt.Color(3, 19, 27));
+        txtProducto2.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtProducto2.setForeground(new java.awt.Color(255, 255, 255));
+        txtProducto2.setToolTipText("Nombre de productor");
+        txtProducto2.setBorder(null);
+        txtProducto2.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtProducto2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtProducto2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtProducto2FocusLost(evt);
+            }
+        });
+        jPanel4.add(txtProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 260, 20));
+
+        jSeparator7.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, 10));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("CANTIDAD EN STOCK DE ESTE  DE PRODUCTO:");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 280, 20));
+
+        jSeparator5.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 40, 10));
+
+        txtCantidad.setBackground(new java.awt.Color(3, 19, 27));
+        txtCantidad.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtCantidad.setToolTipText("Cantidad en existencia");
+        txtCantidad.setBorder(null);
+        txtCantidad.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusLost(evt);
+            }
+        });
+        jPanel4.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 80, 20));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 470));
 
