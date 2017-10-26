@@ -38,7 +38,6 @@ public class Sistema {
     private static String carpConf;
     private static String carpRepor;
     private static String carpFact;
-    private static String nFactura;
     
     
     public static void main(String[] args) throws IOException{

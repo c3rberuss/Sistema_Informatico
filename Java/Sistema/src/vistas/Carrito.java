@@ -349,7 +349,17 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     private void TxtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtIdKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
            
-           if(!isAdd()){
+           add();
+
+       }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
+            limpiar("");
+            this.setAdd(false);
+        }
+    }//GEN-LAST:event_TxtIdKeyPressed
+
+    
+    private void add(){
+        if(!isAdd()){
                try {
                     
                     String consulta = this.TxtId.getText();
@@ -368,12 +378,13 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                             getModelo_spinner().setValue(1);
                             this.sCantidad.setModel(getModelo_spinner());
                             
-                            String[] producto = new String[2];
+                            String[] producto = new String[3];
                             
                             producto[0] = rs.getString(1);
                             producto[1] = String.valueOf(rs.getInt(4));
+                            producto[2] = "0";
                             
-                            Sistema.getProductosAgregados().add(producto);
+                            venta.arrayAdd(producto);
                             
                         }
                         this.setAdd(true);
@@ -391,42 +402,63 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                     JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
                     Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
                 }
+               
            }else{
                
-               venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
-                       Double.valueOf(this.TxtPrecio.getText()), Integer.valueOf(this.sCantidad.getValue().toString()));
-               this.setAdd(false);
-               limpiar("");
-               this.TxtId.requestFocus();
-               // cargarDatos();
-               venta.cargarDatos(LblTotal, Resultados);
+                int cantidad = venta.buscarCantidadAgregada(this.TxtId.getText()) + 
+                          Integer.valueOf(this.sCantidad.getValue().toString());
+                  
+                  int stock = venta.buscarStock(this.TxtId.getText());
+              
+                  
+                  if(cantidad <= stock){
+                      
+                      cantidad =  Integer.valueOf(this.sCantidad.getValue().toString());
+                      venta.actualizarCantidadAgregada(this.TxtId.getText(), String.valueOf(cantidad));
+                      
+                      cantidad = venta.buscarCantidadAgregada(this.TxtId.getText());
+                      
+                      venta.actualizarItem(cantidad, this.TxtId.getText());
+
+                      
+                      this.add = false;
+                      limpiar("");
+                      this.TxtId.requestFocus();
+                      //cargarDatos();
+                      venta.cargarDatos(LblTotal, Resultados);
+                      enableOrDisable(true); 
+                      
+                  }else{
+                        Sistema.getMostrarMensaje().mensaje("advertencia", 
+                            "Productos insuficientes.", 
+                            "Ventas");
+                  }
                
             }
-
-       }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
-            limpiar("");
-            this.setAdd(false);
-        }
-    }//GEN-LAST:event_TxtIdKeyPressed
-
+    }
+    
+    
     private void ResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResultadosMouseClicked
         int fila = this.Resultados.rowAtPoint(evt.getPoint());
         
         if(fila > -1){
             
+            this.BtnAgregar.setText("MODIFICAR");
             String id_ = this.Resultados.getValueAt(fila, 0).toString();
             this.TxtId.setText(String.valueOf(this.Resultados.getValueAt(fila, 0)));
             this.TxtProducto.setText(String.valueOf(this.Resultados.getValueAt(fila, 1)));
             this.TxtPrecio.setText(String.valueOf(this.Resultados.getValueAt(fila, 2)));
             this.sCantidad.setValue(Integer.valueOf(this.Resultados.getValueAt(fila, 3).toString()));
             
-            getModelo_spinner().setMaximum(venta.buscarProducto(id_));
+            getModelo_spinner().setMaximum(venta.buscarStock(id_));
             getModelo_spinner().setMinimum(1);
             getModelo_spinner().setStepSize(1);
             getModelo_spinner().setValue(Integer.valueOf(this.Resultados.getValueAt(fila, 3).toString()));
             this.sCantidad.setModel(getModelo_spinner());
             this.sCantidad.requestFocus();
+            
             enableOrDisable(false);
+            setAdd(true);
             setEdit(true);
 
         }
@@ -484,13 +516,14 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             System.out.println(Resultados.getRowCount());
             limpiar("");
             int fila = this.Resultados.getSelectedRow();
-            String id = (String) this.Resultados.getValueAt(fila, 0);
+            String id = this.Resultados.getValueAt(fila, 0).toString();
             venta.borrarItem(Resultados, id);
-            Sistema.getProductosAgregados().remove(id);
+            venta.eliminarProducto(id);
             this.setAdd(false);
             venta.cargarDatos(LblTotal, Resultados);
             this.TxtId.requestFocus();
             enableOrDisable(true);
+            this.BtnAgregar.setText("AGREGAR");
             
         }else{
             Sistema.getMostrarMensaje().mensaje("advertencia", 
@@ -515,28 +548,70 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
             valor = Integer.valueOf(this.sCantidad.getValue().toString());
         
         if(isAdd() && (valor >= minimo || valor <= maximo)){
-          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-              venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
+          
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+              
+              if(venta.buscarCantidadAgregada(this.TxtId.getText()) == 0){
+                  
+                  venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
                       Double.valueOf(this.TxtPrecio.getText()), valor);
-              this.add = false;
-              limpiar("");
-              this.TxtId.requestFocus();
-              //cargarDatos();
-              venta.cargarDatos(LblTotal, Resultados);
-              enableOrDisable(true);      
+                  
+                  venta.actualizarCantidadAgregada(this.TxtId.getText(), this.sCantidad.getValue().toString());
+                  System.out.println("Se está insertando desde aquí :'v");
+                  this.add = false;
+                  limpiar("");
+                  this.TxtId.requestFocus();
+                  //cargarDatos();
+                  venta.cargarDatos(LblTotal, Resultados);
+                  enableOrDisable(true);
+                  
+              }else{
+                  
+                  int cantidad = venta.buscarCantidadAgregada(this.TxtId.getText()) + 
+                          Integer.valueOf(this.sCantidad.getValue().toString());
+                  
+                  int stock = venta.buscarStock(this.TxtId.getText());
+              
+                  
+                  if(cantidad <= stock){
+                      
+                      cantidad =  Integer.valueOf(this.sCantidad.getValue().toString());
+                      venta.actualizarCantidadAgregada(this.TxtId.getText(), String.valueOf(cantidad));
+                      
+                      cantidad = venta.buscarCantidadAgregada(this.TxtId.getText());
+                      
+                      venta.actualizarItem(cantidad, this.TxtId.getText());
+
+                      
+                      this.add = false;
+                      limpiar("");
+                      this.TxtId.requestFocus();
+                      //cargarDatos();
+                      venta.cargarDatos(LblTotal, Resultados);
+                      enableOrDisable(true); 
+                      
+                  }else{
+                        Sistema.getMostrarMensaje().mensaje("advertencia", 
+                            "Productos insuficientes.", 
+                            "Ventas");
+                  }
+                  
+              }
+                            
                    
           } 
-       }else{
-            if(evt.getKeyCode() == KeyEvent.VK_ENTER){   
+       }else if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
+           
                venta.actualizarItem(valor, this.TxtId.getText());
+               venta.actualizarCantidadAgregada(this.TxtId.getText(), String.valueOf(valor));
+               
                this.setAdd(false);
                limpiar("");
                this.TxtId.requestFocus();
-              // cargarDatos();
               venta.cargarDatos(LblTotal, Resultados);
                enableOrDisable(true);
  
-          }
+          
         }
     }//GEN-LAST:event_sCantidadKeyPressed
 
@@ -546,59 +621,15 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         
-        if(!isAdd()){
-               try {
-                    
-                    String consulta = this.TxtId.getText();
-
-                    ResultSet rs = venta.buscarItem(consulta);
-
-                    if(rs.first()){
-                        rs.beforeFirst();
-                        while(rs.next()){
-                            
-                            this.TxtProducto.setText(rs.getString(2));
-                            this.TxtPrecio.setText(rs.getString(3));
-                            getModelo_spinner().setMaximum(rs.getInt(4));
-                            getModelo_spinner().setMinimum(1);
-                            getModelo_spinner().setStepSize(1);
-                            getModelo_spinner().setValue(1);
-                            this.sCantidad.setModel(getModelo_spinner());
-                            
-                            String[] producto = new String[2];
-                            
-                            producto[0] = rs.getString(1);
-                            producto[1] = String.valueOf(rs.getInt(4));
-                            
-                            Sistema.getProductosAgregados().add(producto);
-                            
-                        }
-                        this.setAdd(true);
-                        this.sCantidad.requestFocus();
-
-                    }else{
-                        this.setAdd(false);
-                        JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
-                        limpiar("");
-                    }
-
-               
-                } catch (SQLException ex) {
-                    this.setAdd(false);
-                    JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
-                    Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
-                }
-           }else{
-               
-               venta.insertarItem(this.TxtId.getText(), this.TxtProducto.getText(),
-                       Double.valueOf(this.TxtPrecio.getText()), Integer.valueOf(this.sCantidad.getValue().toString()));
-               this.setAdd(false);
-               limpiar("");
-               this.TxtId.requestFocus();
-               // cargarDatos();
-               venta.cargarDatos(LblTotal, Resultados);
-               
-            }
+        venta.editarCantidadAgregada(this.TxtId.getText(), this.sCantidad.getValue().toString());
+        venta.actualizarItem(Integer.valueOf(venta.buscarCantidadAgregada(this.TxtId.getText())),this.TxtId.getText());
+        limpiar("");
+        venta.cargarDatos(LblTotal, Resultados);
+        this.TxtId.requestFocus();
+        setAdd(false);
+        setEdit(false);
+        enableOrDisable(true); 
+        this.BtnAgregar.setText("AGREGAR");
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
         /**

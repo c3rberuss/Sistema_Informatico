@@ -7,11 +7,6 @@ package vistas;
 
 
 import factory.Factory;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import servicios.Configuracion;
 import servicios.Usuarios;

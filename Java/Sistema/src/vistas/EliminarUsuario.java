@@ -410,6 +410,18 @@ public class EliminarUsuario extends javax.swing.JDialog implements Ventana {
         }
     }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
 
+    private void BtnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMousePressed
+
+        int fils = this.UsuariosEliminados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            this.datos[0] = this.UsuariosEliminados.getModel().getValueAt(i,0).toString();
+            users.deleteUsers(getDatos()[0]);
+        }
+        
+        limpiar("tabla");
+        JOptionPane.showMessageDialog(null, "Usuarios Eliminados Exitosamente");
+    }//GEN-LAST:event_BtnEliminarMousePressed
+
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
        x = evt.getX();
         y = evt.getY();
