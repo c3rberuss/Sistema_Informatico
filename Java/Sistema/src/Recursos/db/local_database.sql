@@ -30,3 +30,4 @@ CREATE PROCEDURE `registrar_venta`(IN `id_` VARCHAR(10), IN `producto_` VARCHAR(
 CREATE PROCEDURE delete_product(IN ID VARCHAR(20)) NO SQL DELETE FROM inventario WHERE id=ID;
 CREATE PROCEDURE search_product(IN ID VARCHAR(20)) NO SQL SELECT * FROM inventario WHERE id=ID;
 CREATE PROCEDURE update_product(IN IDP VARCHAR(20), IN NOM VARCHAR(75), IN DESCR VARCHAR(125), IN STOCK INT(10), IN PRECIO DOUBLE) NO SQL UPDATE inventario SET producto=NOM, descripcion=DESCR, stock=STOCK, precio=PRECIO WHERE id=IDP;
+CREATE PROCEDURE add_product`(IN `id VARCHAR(20), IN prod VARCHAR(75), IN descr VARCHAR(125), IN stock INT(10), IN precio DOUBLE) NO SQL INSERT INTO inventario VALUES(id, prod, descr, stock, precio);
