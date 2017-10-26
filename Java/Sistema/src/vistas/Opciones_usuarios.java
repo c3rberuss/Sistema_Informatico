@@ -163,6 +163,11 @@ public class Opciones_usuarios extends javax.swing.JDialog {
         BtnLISTARU.setFocusPainted(false);
         BtnLISTARU.setIconTextGap(10);
         BtnLISTARU.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listar.png"))); // NOI18N
+        BtnLISTARU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLISTARUActionPerformed(evt);
+            }
+        });
         jPanel3.add(BtnLISTARU, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 290));
@@ -200,6 +205,11 @@ public class Opciones_usuarios extends javax.swing.JDialog {
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void BtnLISTARUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLISTARUActionPerformed
+        ListarUsuarios LiUs = new ListarUsuarios(new javax.swing.JDialog(),true);
+        LiUs.setVisible(true);
+    }//GEN-LAST:event_BtnLISTARUActionPerformed
 
     /**
      * @param args the command line arguments
