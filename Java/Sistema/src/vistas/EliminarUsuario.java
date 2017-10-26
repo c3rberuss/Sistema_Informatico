@@ -405,7 +405,7 @@ public class EliminarUsuario extends javax.swing.JDialog implements Ventana {
             limpiar("campos");
             BtnEliminar.setEnabled(true);
         }else{
-            Sistema.getMostrarMensaje().mensaje("error", "No hay datos cargados para agregar a vista previda", "ERROR: DATOS SIN CARGAR");
+            Sistema.getMostrarMensaje().mensaje("error", "No hay datos cargados para agregar a vista previa", "ERROR: DATOS SIN CARGAR");
             
         }
     }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed

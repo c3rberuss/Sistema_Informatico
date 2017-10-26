@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -124,17 +125,17 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 20));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("ID DEL USUARIO");
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 280, 20));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("TIPO DE USUARIO");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 280, 20));
 
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 10));
+        jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 180, 10));
 
         txtID.setBackground(new java.awt.Color(3, 19, 27));
         txtID.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -142,9 +143,17 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         txtID.setToolTipText("ID");
         txtID.setBorder(null);
         txtID.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtIDFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIDFocusLost(evt);
+            }
+        });
         jPanel4.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
 
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator4.setForeground(new java.awt.Color(102, 102, 102));
         jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 110, 10));
 
         txtTipoUsuario.setBackground(new java.awt.Color(3, 19, 27));
@@ -158,7 +167,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jPanel4.add(txtTipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 20));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("CONTRASEÑA DEL USUARIO:");
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 280, 20));
 
@@ -168,10 +177,18 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         txtContra.setToolTipText("Contraseña de acceso al sistema");
         txtContra.setBorder(null);
         txtContra.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtContra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtContraFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContraFocusLost(evt);
+            }
+        });
         jPanel4.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 260, 20));
 
-        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 260, 10));
+        jSeparator6.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 180, 10));
 
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(0, 102, 102));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -195,7 +212,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jPanel4.add(BtnAgregarVistaPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 180, 30));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("NOMBRE DE USUARIO:");
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 280, 20));
 
@@ -205,10 +222,19 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         txtUsuario.setToolTipText("Nombre del usuario");
         txtUsuario.setBorder(null);
         txtUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
+            }
+        });
         jPanel4.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
 
-        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 10));
+        jSeparator7.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, 10));
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -321,11 +347,6 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         BtnModificar.setBorder(null);
         BtnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnModificar.setFocusPainted(false);
-        BtnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnModificarMousePressed(evt);
-            }
-        });
         BtnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnModificarActionPerformed(evt);
@@ -371,7 +392,17 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_BtnLimpiarActionPerformed
 
     private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
-        // TODO add your handling code here:
+        int cols = this.UsuariosEditados.getModel().getColumnCount();
+        int fils = this.UsuariosEditados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            for(int j=0; j<cols; j++){
+                this.datos[j] = this.UsuariosEditados.getModel().getValueAt(i,j).toString();
+            }
+            users.updateUsers(getDatos());
+        }
+        
+        limpiar("tabla");
+       Sistema.getMostrarMensaje().mensaje("exito", "Datos de usuario MODIFICADOS exitosamente.\nNota: Puedes obtener un reporte actualizado de lo que haz modificado en el apartado de reportes", "MODIFICADO CON EXITO");
     }//GEN-LAST:event_BtnModificarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
@@ -411,20 +442,6 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         }
     }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
 
-    private void BtnModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnModificarMousePressed
-        int cols = this.UsuariosEditados.getModel().getColumnCount();
-        int fils = this.UsuariosEditados.getModel().getRowCount();
-        for(int i=0; i<fils; i++) {
-            for(int j=0; j<cols; j++){
-                this.datos[j] = this.UsuariosEditados.getModel().getValueAt(i,j).toString();
-            }
-            users.updateUsers(getDatos());
-        }
-        
-        limpiar("tabla");
-       Sistema.getMostrarMensaje().mensaje("exito", "Datos de usuario agregados exitosamente.\nNota: Puedes obtener un reporte actualizado de lo que haz modificado en el apartado de reportes", "CAMPOS VACIOS");
-    }//GEN-LAST:event_BtnModificarMousePressed
-
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         x = evt.getX();
         y = evt.getY();
@@ -448,6 +465,42 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
                
            }
     }//GEN-LAST:event_BtnCargarDatosActionPerformed
+
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        this.jLabel9.setForeground(new Color(255,255,255,255));
+        this.jSeparator7.setForeground(new Color(255,255,255,255));
+        this.jSeparator7.setSize(260,10);
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+        this.jLabel9.setForeground(new Color(102,102,102,102));
+        this.jSeparator7.setForeground(new Color(102,102,102,102));
+        this.jSeparator7.setSize(180,10);
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusGained
+        this.jLabel6.setForeground(new Color(255,255,255,255));
+        this.jSeparator3.setForeground(new Color(255,255,255,255));
+        this.jSeparator3.setSize(260,10);
+    }//GEN-LAST:event_txtIDFocusGained
+
+    private void txtIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusLost
+        this.jLabel6.setForeground(new Color(102,102,102,102));
+        this.jSeparator3.setForeground(new Color(102,102,102,102));
+        this.jSeparator3.setSize(180,10);
+    }//GEN-LAST:event_txtIDFocusLost
+
+    private void txtContraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusGained
+        this.jLabel10.setForeground(new Color(255,255,255,255));
+        this.jSeparator6.setForeground(new Color(255,255,255,255));
+        this.jSeparator6.setSize(260,10);
+    }//GEN-LAST:event_txtContraFocusGained
+
+    private void txtContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusLost
+        this.jLabel10.setForeground(new Color(102,102,102,102));
+        this.jSeparator6.setForeground(new Color(102,102,102,102));
+        this.jSeparator6.setSize(180,10);
+    }//GEN-LAST:event_txtContraFocusLost
 
     /**
      * @param args the command line arguments

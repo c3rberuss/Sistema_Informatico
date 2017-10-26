@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Productos;
 import servicios.Ventana;
+import sistema.Sistema;
 
 /**
  *
@@ -66,6 +67,10 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        BtnCargarDatos = new javax.swing.JButton();
+        txtPrecioAdqui = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductosEliminados = new javax.swing.JTable();
@@ -113,25 +118,26 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CANTIDAD EN STOCK DE ESTE  DE PRODUCTO:");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 280, 20));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 280, 20));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ELIMINAR");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 70, 20));
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 300, 20));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("CODIGO DE PRODUCTO:");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 280, 20));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 280, 20));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("PRECIO DE PRODUCTO:");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 280, 20));
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 280, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 10));
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 260, 10));
 
         txtCodigo.setBackground(new java.awt.Color(3, 19, 27));
         txtCodigo.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -140,10 +146,10 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         txtCodigo.setBorder(null);
         txtCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
         txtCodigo.setEnabled(false);
-        jPanel4.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
+        jPanel4.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 110, 10));
+        jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 110, 10));
 
         txtPrecio.setBackground(new java.awt.Color(3, 19, 27));
         txtPrecio.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -152,10 +158,10 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         txtPrecio.setBorder(null);
         txtPrecio.setCaretColor(new java.awt.Color(255, 255, 255));
         txtPrecio.setEnabled(false);
-        jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 20));
+        jPanel4.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 110, 20));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 80, 10));
+        jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 80, 10));
 
         txtCantidad.setBackground(new java.awt.Color(3, 19, 27));
         txtCantidad.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -164,12 +170,12 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         txtCantidad.setBorder(null);
         txtCantidad.setCaretColor(new java.awt.Color(255, 255, 255));
         txtCantidad.setEnabled(false);
-        jPanel4.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 80, 20));
+        jPanel4.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 80, 20));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("DESCRIPCION DE PRODUCTO");
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 280, 20));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 280, 20));
 
         txtDescripcion.setBackground(new java.awt.Color(3, 19, 27));
         txtDescripcion.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -178,10 +184,10 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         txtDescripcion.setBorder(null);
         txtDescripcion.setCaretColor(new java.awt.Color(255, 255, 255));
         txtDescripcion.setEnabled(false);
-        jPanel4.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 260, 20));
+        jPanel4.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 260, 10));
+        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 260, 10));
 
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(153, 0, 0));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -192,11 +198,6 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         BtnAgregarVistaPrevia.setBorder(null);
         BtnAgregarVistaPrevia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnAgregarVistaPrevia.setFocusPainted(false);
-        BtnAgregarVistaPrevia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                BtnAgregarVistaPreviaMouseReleased(evt);
-            }
-        });
         BtnAgregarVistaPrevia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarVistaPreviaActionPerformed(evt);
@@ -207,7 +208,7 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("NOMBRE DE PRODUCTO:");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 280, 20));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 280, 20));
 
         txtProducto2.setBackground(new java.awt.Color(3, 19, 27));
         txtProducto2.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -216,17 +217,17 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         txtProducto2.setBorder(null);
         txtProducto2.setCaretColor(new java.awt.Color(255, 255, 255));
         txtProducto2.setEnabled(false);
-        jPanel4.add(txtProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
+        jPanel4.add(txtProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 260, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 10));
+        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 260, 10));
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel5.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 200, 10));
+        jPanel5.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 90, 10));
 
         txtBuscarCodigo.setBackground(new java.awt.Color(0, 0, 0));
         txtBuscarCodigo.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -239,7 +240,7 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
                 txtBuscarCodigoKeyPressed(evt);
             }
         });
-        jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 20));
+        jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 90, 20));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -256,7 +257,40 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         jLabel8.setText("INGRESE EL CODIGO DEL PRODUCTO QUE");
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 280, 20));
 
+        BtnCargarDatos.setBackground(new java.awt.Color(0, 0, 0));
+        BtnCargarDatos.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        BtnCargarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCargarDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/ediSuperPequenho.png"))); // NOI18N
+        BtnCargarDatos.setText("CARGAR DATOS");
+        BtnCargarDatos.setToolTipText("Cargar datos y modificar");
+        BtnCargarDatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        BtnCargarDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCargarDatos.setFocusPainted(false);
+        BtnCargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCargarDatosActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnCargarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 120, 30));
+
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 100));
+
+        txtPrecioAdqui.setBackground(new java.awt.Color(3, 19, 27));
+        txtPrecioAdqui.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
+        txtPrecioAdqui.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecioAdqui.setToolTipText("Precio");
+        txtPrecioAdqui.setBorder(null);
+        txtPrecioAdqui.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtPrecioAdqui.setEnabled(false);
+        jPanel4.add(txtPrecioAdqui, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 110, 20));
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("PRECIO DE ADQUISICION DE PRODUCTO:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 280, 20));
+
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 110, 10));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
 
@@ -327,12 +361,8 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         BtnEliminar.setToolTipText("Agregar al inventario");
         BtnEliminar.setBorder(null);
         BtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnEliminar.setEnabled(false);
         BtnEliminar.setFocusPainted(false);
-        BtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                BtnEliminarMouseReleased(evt);
-            }
-        });
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
@@ -365,10 +395,6 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAgregarVistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaActionPerformed
-
-    }//GEN-LAST:event_BtnAgregarVistaPreviaActionPerformed
-
     private void BtnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLimpiarMousePressed
 
     }//GEN-LAST:event_BtnLimpiarMousePressed
@@ -378,7 +404,16 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_BtnLimpiarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        // TODO add your handling code here:
+        int cols = this.ProductosEliminados.getModel().getColumnCount();
+        int fils = this.ProductosEliminados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            this.datos[1] = this.ProductosEliminados.getModel().getValueAt(i,0).toString();
+            System.out.println(getDatos()[1]);
+            product.deleteProduct(getDatos()[1]);
+        }
+        
+        limpiar("tabla");
+        Sistema.getMostrarMensaje().mensaje("exito", "Productos eliminados exitosamente!", "PRODUCTOS ELIMINADOS");
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
@@ -395,23 +430,6 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
 
-    private void BtnAgregarVistaPreviaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaMouseReleased
-     String[] datos ={
-            this.txtCodigo.getText(),
-            this.txtProducto2.getText(),
-            this.txtDescripcion.getText(),
-            this.txtPrecio.getText(),
-            this.txtCantidad.getText()
-        };
-     if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty()){
-            this.ProductosEliminados.setModel(product.addTable(this.ProductosEliminados, datos));
-            this.ProductosEliminados.repaint();
-            limpiar("campos");
-        }else{
-            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
-        }
-    }//GEN-LAST:event_BtnAgregarVistaPreviaMouseReleased
-
     private void txtBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoKeyPressed
                 if(evt.getKeyCode()==KeyEvent.VK_ENTER){
            if(!this.txtBuscarCodigo.getText().isEmpty()){
@@ -423,22 +441,42 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
                this.txtCantidad.setText(getDatos()[3]);
            }else{
                System.out.println("campos vacios");
+               Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el CODIGO del producto para cargar los datos a ELIMINAR", "CAMPO CODIGO VACIO");
            }
         }
     }//GEN-LAST:event_txtBuscarCodigoKeyPressed
 
-    private void BtnEliminarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMouseReleased
-    int cols = this.ProductosEliminados.getModel().getColumnCount();
-        int fils = this.ProductosEliminados.getModel().getRowCount();
-        for(int i=0; i<fils; i++) {
-            this.datos[1] = this.ProductosEliminados.getModel().getValueAt(i,0).toString();
-            System.out.println(getDatos()[1]);
-            product.deleteProduct(getDatos()[1]);
+    private void BtnAgregarVistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaActionPerformed
+         String[] datos ={
+            this.txtCodigo.getText(),
+            this.txtProducto2.getText(),
+            this.txtDescripcion.getText(),
+            this.txtPrecio.getText(),
+            this.txtCantidad.getText()
+        };
+     if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty()){
+            this.ProductosEliminados.setModel(product.addTable(this.ProductosEliminados, datos));
+            this.ProductosEliminados.repaint();
+            limpiar("campos");
+            BtnEliminar.setEnabled(true);
+        }else{
+             Sistema.getMostrarMensaje().mensaje("error", "No hay datos cargados para agregar a vista previa", "ERROR: DATOS SIN CARGAR");
         }
-        
-        limpiar("tabla");
-        JOptionPane.showMessageDialog(null, "Usuarios Eliminados Exitosamente");
-    }//GEN-LAST:event_BtnEliminarMouseReleased
+    }//GEN-LAST:event_BtnAgregarVistaPreviaActionPerformed
+
+    private void BtnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarDatosActionPerformed
+        if(!this.txtBuscarCodigo.getText().isEmpty()){
+               setDatos(product.searchProducts(this.txtBuscarCodigo.getText()));
+               this.txtProducto2.setText(getDatos()[1]);
+               this.txtCodigo.setText(getDatos()[0]);
+               this.txtDescripcion.setText(getDatos()[2]);
+               this.txtPrecio.setText(getDatos()[4]);
+               this.txtCantidad.setText(getDatos()[3]);
+           }else{
+               System.out.println("campos vacios");
+               Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el CODIGO del producto para cargar los datos a ELIMINAR", "CAMPO CODIGO VACIO");
+           }
+    }//GEN-LAST:event_BtnCargarDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,6 +522,7 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarVistaPrevia;
+    private javax.swing.JButton BtnCargarDatos;
     private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnLimpiar;
@@ -491,6 +530,7 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -511,12 +551,14 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField txtBuscarCodigo;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtPrecioAdqui;
     private javax.swing.JTextField txtProducto2;
     // End of variables declaration//GEN-END:variables
 

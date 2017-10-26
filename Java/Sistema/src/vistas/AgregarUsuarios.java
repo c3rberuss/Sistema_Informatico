@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Usuarios;
@@ -113,17 +114,17 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 280, 30));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("NOMBRE DE USUARIO:");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 280, 20));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("ID DEL USUARIO:");
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 280, 20));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("TIPO DE USUARIO:");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 280, 20));
 
@@ -133,13 +134,21 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         txtUsuario.setToolTipText("Nombre de usuario");
         txtUsuario.setBorder(null);
         txtUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
+            }
+        });
         jPanel4.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 260, 20));
 
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 260, 10));
+        jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 180, 10));
 
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, 10));
+        jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, 10));
 
         txtID.setBackground(new java.awt.Color(3, 19, 27));
         txtID.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
@@ -149,7 +158,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         txtID.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel4.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
 
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator4.setForeground(new java.awt.Color(102, 102, 102));
         jPanel4.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 110, 10));
 
         txtTipoUsuario.setBackground(new java.awt.Color(3, 19, 27));
@@ -168,7 +177,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 280, 20));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("CONTRASEÑA DE USUARIO:");
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 280, 20));
 
@@ -178,10 +187,18 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         txtContra.setToolTipText("Contraseña para ingresar al sistema");
         txtContra.setBorder(null);
         txtContra.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtContra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtContraFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContraFocusLost(evt);
+            }
+        });
         jPanel4.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 260, 20));
 
-        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 10));
+        jSeparator6.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 180, 10));
 
         BtnAgregarVistaPrevia.setBackground(new java.awt.Color(0, 102, 0));
         BtnAgregarVistaPrevia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -364,6 +381,30 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
          this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        this.jLabel5.setForeground(new Color(255,255,255,255));
+        this.jSeparator2.setForeground(new Color(255,255,255,255));
+        this.jSeparator2.setSize(260,10);
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+        this.jLabel5.setForeground(new Color(102,102,102,102));
+        this.jSeparator2.setForeground(new Color(102,102,102,102));
+        this.jSeparator2.setSize(180,10);
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtContraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusGained
+        this.jLabel10.setForeground(new Color(255,255,255,255));
+        this.jSeparator6.setForeground(new Color(255,255,255,255));
+        this.jSeparator6.setSize(260,10);
+    }//GEN-LAST:event_txtContraFocusGained
+
+    private void txtContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusLost
+        this.jLabel10.setForeground(new Color(102,102,102,102));
+        this.jSeparator6.setForeground(new Color(102,102,102,102));
+        this.jSeparator6.setSize(180,10);
+    }//GEN-LAST:event_txtContraFocusLost
 
     /**
      * @param args the command line arguments
