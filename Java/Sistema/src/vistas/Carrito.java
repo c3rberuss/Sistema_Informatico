@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -233,7 +233,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         jLabel5.setText("ID:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        TxtProducto.setBackground(new java.awt.Color(255, 255, 255));
         TxtProducto.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         TxtProducto.setForeground(new java.awt.Color(0, 0, 0));
         TxtProducto.setToolTipText("Nombre de producto");
@@ -242,7 +241,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         TxtProducto.setEnabled(false);
         jPanel2.add(TxtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 200, 20));
 
-        TxtPrecio.setBackground(new java.awt.Color(255, 255, 255));
         TxtPrecio.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         TxtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         TxtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -328,7 +326,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
         txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtId.setForeground(new java.awt.Color(0, 0, 0));
         try {
-            txtId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+            txtId.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -354,7 +352,6 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                try {
                     
                     String consulta = this.txtId.getText();
-
                     ResultSet rs = venta.buscarItem(consulta);
 
                     if(rs.first()){
@@ -390,7 +387,8 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                
                 } catch (SQLException ex) {
                     this.setAdd(false);
-                    JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
+                    this.setEdit(false);
+                    JOptionPane.showMessageDialog(this, "Excepcion");
                     Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
                 }
                
@@ -684,14 +682,19 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           
-           add();
+      
+            
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
 
-       }else if (evt.getKeyCode() == KeyEvent.VK_BACKSPACE) {
+            add();
+
+        }else if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             limpiar("");
             this.setAdd(false);
         }
+            
+       
+        
     }//GEN-LAST:event_txtIdKeyPressed
 
         /**

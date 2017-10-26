@@ -97,7 +97,9 @@ public class Factory {
     public Usuarios usuarios(){
         return new Usuarios();
     }
-    
+    public Productos productos(){
+    return new Productos();
+    }
     public Conexion conexion() throws ClassNotFoundException, SQLException{
         return new Conexion();
     }

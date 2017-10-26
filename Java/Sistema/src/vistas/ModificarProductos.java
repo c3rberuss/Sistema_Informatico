@@ -5,19 +5,28 @@
  */
 package vistas;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import servicios.Productos;
+import servicios.Ventana;
+import sistema.Sistema;
+
 /**
  *
  * @author edwin
  */
-public class ModificarProductos extends javax.swing.JDialog {
+public class ModificarProductos extends javax.swing.JDialog implements Ventana {
 
     //variables para mover ventana
     int x,y;
-    
+    private Productos product;
+    private String[] datos;
     public ModificarProductos(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        product = Sistema.getFactory().productos();
     }
 
     /**
@@ -123,6 +132,7 @@ public class ModificarProductos extends javax.swing.JDialog {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 260, 10));
 
+        txtCodigo.setEditable(false);
         txtCodigo.setBackground(new java.awt.Color(3, 19, 27));
         txtCodigo.setFont(new java.awt.Font("Century Gothic", 2, 12)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,6 +188,11 @@ public class ModificarProductos extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBorder(null);
         BtnAgregarVistaPrevia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnAgregarVistaPrevia.setFocusPainted(false);
+        BtnAgregarVistaPrevia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnAgregarVistaPreviaMousePressed(evt);
+            }
+        });
         BtnAgregarVistaPrevia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarVistaPreviaActionPerformed(evt);
@@ -214,6 +229,11 @@ public class ModificarProductos extends javax.swing.JDialog {
         txtBuscarCodigo.setToolTipText("Nombre de productor");
         txtBuscarCodigo.setBorder(null);
         txtBuscarCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarCodigoKeyPressed(evt);
+            }
+        });
         jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 20));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -235,7 +255,6 @@ public class ModificarProductos extends javax.swing.JDialog {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 10, 440));
 
@@ -245,7 +264,7 @@ public class ModificarProductos extends javax.swing.JDialog {
 
             },
             new String [] {
-
+                "Codigo", "Producto", "Descripcion", "Stock", "Precio"
             }
         ));
         ProductosAgregados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -289,6 +308,11 @@ public class ModificarProductos extends javax.swing.JDialog {
         BtnModificar.setBorder(null);
         BtnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnModificar.setFocusPainted(false);
+        BtnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BtnModificarMousePressed(evt);
+            }
+        });
         BtnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnModificarActionPerformed(evt);
@@ -326,7 +350,7 @@ public class ModificarProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAgregarVistaPreviaActionPerformed
 
     private void BtnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLimpiarMousePressed
-
+        limpiar("tabla");
     }//GEN-LAST:event_BtnLimpiarMousePressed
 
     private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
@@ -350,6 +374,52 @@ public class ModificarProductos extends javax.swing.JDialog {
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void BtnAgregarVistaPreviaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaMousePressed
+        String[] datos ={
+            this.txtProducto2.getText(),
+            this.txtCodigo.getText(),
+            this.txtDescripcion.getText(),
+            this.txtPrecio.getText(),
+            this.txtCantidad.getText()
+        };
+        if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && !datos[3].isEmpty()){
+            this.ProductosAgregados.setModel(product.addTable(this.ProductosAgregados, datos));
+            this.ProductosAgregados.repaint();
+            limpiar("campos");
+        }else{
+            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
+        }
+    }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
+
+    private void BtnModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnModificarMousePressed
+                int cols = this.ProductosAgregados.getModel().getColumnCount();
+        int fils = this.ProductosAgregados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            for(int j=0; j<cols; j++){
+                this.datos[j] = this.ProductosAgregados.getModel().getValueAt(i,j).toString();
+            }
+            product.updateProducts(getDatos());
+        }
+        
+        limpiar("tabla");
+        JOptionPane.showMessageDialog(null, "Usuarios Actualizados Exitosamente");
+    }//GEN-LAST:event_BtnModificarMousePressed
+
+    private void txtBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoKeyPressed
+         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           if(!this.txtBuscarCodigo.getText().isEmpty()){
+               setDatos(product.searchProducts(this.txtBuscarCodigo.getText()));
+               this.txtProducto2.setText(getDatos()[0]);
+               this.txtCodigo.setText(getDatos()[1]);
+               this.txtDescripcion.setText(getDatos()[2]);
+               this.txtPrecio.setText(getDatos()[3]);
+               this.txtCantidad.setText(getDatos()[4]);
+           }else{
+               System.out.println("campos vacios");
+           }
+        }
+    }//GEN-LAST:event_txtBuscarCodigoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -430,4 +500,53 @@ public class ModificarProductos extends javax.swing.JDialog {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProducto2;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the product
+     */
+    public Productos getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(Productos product) {
+        this.product = product;
+    }
+
+    /**
+     * @return the datos
+     */
+    public String[] getDatos() {
+        return datos;
+    }
+
+    /**
+     * @param datos the datos to set
+     */
+    public void setDatos(String[] datos) {
+        this.datos = datos;
+    }
+
+    @Override
+    public void limpiar(String lugar) {
+        switch(lugar){
+            case "campos":
+                this.txtBuscarCodigo.setText("");
+                this.txtProducto2.setText("");
+                this.txtCodigo.setText("");
+                this.txtDescripcion.setText("");
+                this.txtPrecio.setText("");
+                this.txtCantidad.setText("");
+                break;
+            case "tabla":
+                DefaultTableModel modelo=(DefaultTableModel) this.ProductosAgregados.getModel();
+                int filas=this.ProductosAgregados.getRowCount();
+                for (int i = 0;i<filas; i++) {
+                    modelo.removeRow(0);
+                }
+                break;
+        }
+    }
 }

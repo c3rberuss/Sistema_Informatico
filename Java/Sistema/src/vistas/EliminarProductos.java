@@ -5,16 +5,27 @@
  */
 package vistas;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import servicios.Productos;
+import servicios.Ventana;
+
 /**
  *
  * @author edwin
  */
-public class EliminarProductos extends javax.swing.JDialog {
+public class EliminarProductos extends javax.swing.JDialog implements Ventana {
 
     //variables para mover ventana
     int x, y;
+    private String[] datos;
+    private Productos product;
+    
     public EliminarProductos(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
+        datos = new String[5];
+        product = new Productos();
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -57,7 +68,7 @@ public class EliminarProductos extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ProductosAgregados = new javax.swing.JTable();
+        ProductosEliminados = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         BtnLimpiar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
@@ -181,6 +192,11 @@ public class EliminarProductos extends javax.swing.JDialog {
         BtnAgregarVistaPrevia.setBorder(null);
         BtnAgregarVistaPrevia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnAgregarVistaPrevia.setFocusPainted(false);
+        BtnAgregarVistaPrevia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BtnAgregarVistaPreviaMouseReleased(evt);
+            }
+        });
         BtnAgregarVistaPrevia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarVistaPreviaActionPerformed(evt);
@@ -218,6 +234,11 @@ public class EliminarProductos extends javax.swing.JDialog {
         txtBuscarCodigo.setToolTipText("Codigo de producto por eliminar");
         txtBuscarCodigo.setBorder(null);
         txtBuscarCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarCodigoKeyPressed(evt);
+            }
+        });
         jPanel5.add(txtBuscarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 20));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -239,21 +260,35 @@ public class EliminarProductos extends javax.swing.JDialog {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 460));
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 10, 440));
 
-        ProductosAgregados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        ProductosAgregados.setModel(new javax.swing.table.DefaultTableModel(
+        ProductosEliminados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        ProductosEliminados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "Codigo", "Producto", "Descripcion", "Precio", "Stock"
             }
-        ));
-        ProductosAgregados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(ProductosAgregados);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ProductosEliminados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane1.setViewportView(ProductosEliminados);
+        if (ProductosEliminados.getColumnModel().getColumnCount() > 0) {
+            ProductosEliminados.getColumnModel().getColumn(0).setResizable(false);
+            ProductosEliminados.getColumnModel().getColumn(1).setResizable(false);
+            ProductosEliminados.getColumnModel().getColumn(2).setResizable(false);
+            ProductosEliminados.getColumnModel().getColumn(3).setResizable(false);
+            ProductosEliminados.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 420, 300));
 
@@ -293,6 +328,11 @@ public class EliminarProductos extends javax.swing.JDialog {
         BtnEliminar.setBorder(null);
         BtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnEliminar.setFocusPainted(false);
+        BtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BtnEliminarMouseReleased(evt);
+            }
+        });
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
@@ -355,6 +395,51 @@ public class EliminarProductos extends javax.swing.JDialog {
        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
 
+    private void BtnAgregarVistaPreviaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaMouseReleased
+     String[] datos ={
+            this.txtCodigo.getText(),
+            this.txtProducto2.getText(),
+            this.txtDescripcion.getText(),
+            this.txtPrecio.getText(),
+            this.txtCantidad.getText()
+        };
+     if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty()){
+            this.ProductosEliminados.setModel(product.addTable(this.ProductosEliminados, datos));
+            this.ProductosEliminados.repaint();
+            limpiar("campos");
+        }else{
+            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
+        }
+    }//GEN-LAST:event_BtnAgregarVistaPreviaMouseReleased
+
+    private void txtBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoKeyPressed
+                if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           if(!this.txtBuscarCodigo.getText().isEmpty()){
+               setDatos(product.searchProducts(this.txtBuscarCodigo.getText()));
+               this.txtProducto2.setText(getDatos()[1]);
+               this.txtCodigo.setText(getDatos()[0]);
+               this.txtDescripcion.setText(getDatos()[2]);
+               this.txtPrecio.setText(getDatos()[4]);
+               this.txtCantidad.setText(getDatos()[3]);
+           }else{
+               System.out.println("campos vacios");
+           }
+        }
+    }//GEN-LAST:event_txtBuscarCodigoKeyPressed
+
+    private void BtnEliminarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMouseReleased
+    int cols = this.ProductosEliminados.getModel().getColumnCount();
+        int fils = this.ProductosEliminados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            this.datos[1] = this.ProductosEliminados.getModel().getValueAt(i,0).toString();
+            System.out.println(getDatos()[1]);
+            product.deleteProduct(getDatos()[1]);
+        }
+        
+        limpiar("tabla");
+        JOptionPane.showMessageDialog(null, "Usuarios Eliminados Exitosamente");
+    }//GEN-LAST:event_BtnEliminarMouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -402,7 +487,7 @@ public class EliminarProductos extends javax.swing.JDialog {
     private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnLimpiar;
-    private javax.swing.JTable ProductosAgregados;
+    private javax.swing.JTable ProductosEliminados;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -434,4 +519,39 @@ public class EliminarProductos extends javax.swing.JDialog {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProducto2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void limpiar(String lugar) {
+       switch(lugar){
+            case "campos":
+                this.txtBuscarCodigo.setText("");
+                this.txtCantidad.setText("");
+                this.txtCodigo.setText("");
+                this.txtDescripcion.setText("");
+                this.txtPrecio.setText("");
+                this.txtProducto2.setText("");
+                break;
+            case "tabla":
+                DefaultTableModel modelo=(DefaultTableModel) this.ProductosEliminados.getModel();
+                int filas=this.ProductosEliminados.getRowCount();
+                for (int i = 0;i<filas; i++) {
+                    modelo.removeRow(0);
+                }
+                break;
+        }
+    }
+
+    /**
+     * @return the datos
+     */
+    public String[] getDatos() {
+        return datos;
+    }
+
+    /**
+     * @param datos the datos to set
+     */
+    public void setDatos(String[] datos) {
+        this.datos = datos;
+    }
 }
