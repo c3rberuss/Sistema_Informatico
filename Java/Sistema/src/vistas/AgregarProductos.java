@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Productos;
 import servicios.Ventana;
+import sistema.Sistema;
 
 /**
  *
@@ -17,15 +18,13 @@ import servicios.Ventana;
  */
 public class AgregarProductos extends javax.swing.JDialog implements Ventana {
 
-    private Productos product = new Productos();
-<<<<<<< HEAD
-    private String[] datos = new String[5];
-    int x,y;
-=======
+
     private String[] datos = new String[6];
->>>>>>> refs/remotes/origin/master
-    /**
-     * Creates new form AgregarUsuario
+    private Productos product;
+    
+    private int x, y;
+    
+     /* Creates new form AgregarUsuario
      * @param parent
      * @param modal
      */
@@ -33,6 +32,7 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        this.product = Sistema.getFactory().productos();
         this.txtCodigo.setText(product.generateId());
         this.txtCodigo.disable();
     }
@@ -641,6 +641,7 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
                 this.txtPrecio.setText("");
                 this.txtProducto.setText("");
                 this.txtPrecioAdqui.setText("");
+                this.txtCodigo.setText(product.generateId());
                 break;
             case "tabla":
                 DefaultTableModel modelo=(DefaultTableModel) this.ProductosAgregados.getModel();
