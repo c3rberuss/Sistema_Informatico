@@ -11,13 +11,12 @@ package vistas;
  */
 public class Ayuda extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Ayuda
-     */
+    int x,y;
     public Ayuda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        
         
     }
 
@@ -52,6 +51,16 @@ public class Ayuda extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(3, 19, 27));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -130,9 +139,15 @@ public class Ayuda extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
+    }//GEN-LAST:event_jPanel2MouseDragged
+        
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

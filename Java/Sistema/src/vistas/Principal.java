@@ -246,6 +246,11 @@ public class Principal extends javax.swing.JFrame {
         BtnAcercaDe.setFocusPainted(false);
         BtnAcercaDe.setIconTextGap(30);
         BtnAcercaDe.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/dev.png"))); // NOI18N
+        BtnAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAcercaDeActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(3, 19, 27));
 
@@ -462,6 +467,11 @@ public class Principal extends javax.swing.JFrame {
         Ayuda ayu = new Ayuda(this,true);
         ayu.setVisible(true);
     }//GEN-LAST:event_BtnAyudaActionPerformed
+
+    private void BtnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAcercaDeActionPerformed
+        AcercaDe ad = new AcercaDe(this,true);
+        ad.setVisible(true);
+    }//GEN-LAST:event_BtnAcercaDeActionPerformed
 
     /**
      * @param args the command line arguments

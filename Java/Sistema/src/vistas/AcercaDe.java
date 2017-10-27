@@ -11,12 +11,11 @@ package vistas;
  */
 public class AcercaDe extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AcercaDe
-     */
+    int x,y;
     public AcercaDe(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,8 +34,20 @@ public class AcercaDe extends javax.swing.JDialog {
         BtnCancelar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAyuda1 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtAyuda2 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtAyuda3 = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtAyuda4 = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(35, 48, 54));
@@ -46,12 +57,22 @@ public class AcercaDe extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(3, 19, 27));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/dev50.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/devPequenho.png"))); // NOI18N
         jLabel1.setText("ACERCA DE");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 810, 30));
 
@@ -66,7 +87,7 @@ public class AcercaDe extends javax.swing.JDialog {
         BtnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelar.setText("CERRAR");
-        BtnCancelar.setToolTipText("Cerrar panel de ayuda");
+        BtnCancelar.setToolTipText("Cerrar panel de Acerca De");
         BtnCancelar.setBorder(null);
         BtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnCancelar.setFocusPainted(false);
@@ -89,12 +110,79 @@ public class AcercaDe extends javax.swing.JDialog {
         txtAyuda1.setForeground(new java.awt.Color(255, 255, 255));
         txtAyuda1.setLineWrap(true);
         txtAyuda1.setRows(5);
+        txtAyuda1.setText("LECTOR PDF\n\nEste sistema necesita que tengas instalado un lector de PDF para poder abrir los reportes al instante.");
         txtAyuda1.setWrapStyleWord(true);
         txtAyuda1.setBorder(null);
         txtAyuda1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane3.setViewportView(txtAyuda1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 380, 110));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 470, 110));
+
+        jScrollPane4.setBorder(null);
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtAyuda2.setEditable(false);
+        txtAyuda2.setBackground(new java.awt.Color(35, 48, 54));
+        txtAyuda2.setColumns(20);
+        txtAyuda2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        txtAyuda2.setForeground(new java.awt.Color(255, 255, 255));
+        txtAyuda2.setLineWrap(true);
+        txtAyuda2.setRows(5);
+        txtAyuda2.setText("BARCODE TO PC\n\nEste software es una herramienta que le ayudará a agilizar el proceso de insercion de codigos en el carrito puesto que es un lector de codigo de barras que ayudara para mejor fluidez en las ventas.\nPuedes tener mas info en este link: https://barcodetopc.com");
+        txtAyuda2.setWrapStyleWord(true);
+        txtAyuda2.setBorder(null);
+        txtAyuda2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane4.setViewportView(txtAyuda2);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 470, 90));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/barcode.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 120, 120));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/PDF.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, 90, 110));
+
+        jScrollPane5.setBorder(null);
+        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtAyuda3.setEditable(false);
+        txtAyuda3.setBackground(new java.awt.Color(35, 48, 54));
+        txtAyuda3.setColumns(20);
+        txtAyuda3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        txtAyuda3.setForeground(new java.awt.Color(255, 255, 255));
+        txtAyuda3.setLineWrap(true);
+        txtAyuda3.setRows(5);
+        txtAyuda3.setText("ICONS8.ES\n\nEste es una pagina web donde se descargaron los iconos utilizados en el sistema de gestion de ventas. \nPuedes revisar en el siguiente link: https://iconos8.es donde hay infinidad de iconos que puedes elegir.");
+        txtAyuda3.setWrapStyleWord(true);
+        txtAyuda3.setBorder(null);
+        txtAyuda3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane5.setViewportView(txtAyuda3);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 470, 110));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/icons8.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 110, 110));
+
+        jScrollPane6.setBorder(null);
+        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtAyuda4.setEditable(false);
+        txtAyuda4.setBackground(new java.awt.Color(35, 48, 54));
+        txtAyuda4.setColumns(20);
+        txtAyuda4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        txtAyuda4.setForeground(new java.awt.Color(255, 255, 255));
+        txtAyuda4.setLineWrap(true);
+        txtAyuda4.setRows(5);
+        txtAyuda4.setText("SERVIDOR DE MY SQL\n\nEste sistema puede ser utilizado con dos tipos de servidores [LOCAL o REMOTO], para lo cual en el local, el usuario puede instalar el servidor de su preferencia que soporte MySQL y en el remoto debes utilizar un servidir online que tambien soporte MySQL.");
+        txtAyuda4.setWrapStyleWord(true);
+        txtAyuda4.setBorder(null);
+        txtAyuda4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane6.setViewportView(txtAyuda4);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 470, 110));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/mysql.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 160, 80));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 650));
 
@@ -104,6 +192,15 @@ public class AcercaDe extends javax.swing.JDialog {
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
+    }//GEN-LAST:event_jPanel2MouseDragged
 
     /**
      * @param args the command line arguments
@@ -150,10 +247,20 @@ public class AcercaDe extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextArea txtAyuda1;
+    private javax.swing.JTextArea txtAyuda2;
+    private javax.swing.JTextArea txtAyuda3;
+    private javax.swing.JTextArea txtAyuda4;
     // End of variables declaration//GEN-END:variables
 }
