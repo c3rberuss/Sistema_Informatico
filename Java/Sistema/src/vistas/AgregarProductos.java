@@ -348,20 +348,11 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
         BtnAgregar.setToolTipText("Agregar al inventario");
         BtnAgregar.setBorder(null);
         BtnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnAgregar.setEnabled(false);
         BtnAgregar.setFocusPainted(false);
-        BtnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnAgregarMousePressed(evt);
-            }
-        });
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAgregarActionPerformed(evt);
-            }
-        });
-        BtnAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                BtnAgregarKeyReleased(evt);
             }
         });
         jPanel3.add(BtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, 170, 30));
@@ -420,7 +411,19 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_BtnLimpiarActionPerformed
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        // TODO add your handling code here:
+         int cols = this.ProductosAgregados.getModel().getColumnCount();
+        int fils = this.ProductosAgregados.getModel().getRowCount();
+        for(int i=0; i<fils; i++) {
+            for(int j=0; j<cols; j++){
+               
+                this.datos[j] = this.ProductosAgregados.getModel().getValueAt(i,j).toString();
+                
+            }
+            product.addProduct(getDatos());
+        }
+        
+        limpiar("tabla");
+        Sistema.getMostrarMensaje().mensaje("exito", "Productos agregados exitosamente./nNota: puedes obtener un reporte de tus productos agregados en el apartado de reportes", "PRODUCTOS AGREGADOS CORRECTAMENTE");
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnAgregarVistaPreviaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaMousePressed
@@ -438,30 +441,11 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
             this.ProductosAgregados.setModel(product.addTable(this.ProductosAgregados, datos));
             this.ProductosAgregados.repaint();
             limpiar("campos");
+            this.BtnAgregar.setEnabled(true);
         }else{
-            JOptionPane.showMessageDialog(null, "¡Algunos campos están vacíos!");
+            Sistema.getMostrarMensaje().mensaje("error", "No se puede agregar a vista previa.\n Algunos campos estan vacios", "CAMPOS VACIOS");
         }
     }//GEN-LAST:event_BtnAgregarVistaPreviaMousePressed
-
-    private void BtnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMousePressed
-        int cols = this.ProductosAgregados.getModel().getColumnCount();
-        int fils = this.ProductosAgregados.getModel().getRowCount();
-        for(int i=0; i<fils; i++) {
-            for(int j=0; j<cols; j++){
-               
-                this.datos[j] = this.ProductosAgregados.getModel().getValueAt(i,j).toString();
-                
-            }
-            product.addProduct(getDatos());
-        }
-        
-        limpiar("tabla");
-        JOptionPane.showMessageDialog(null, "Usuarios Agregados Exitosamente");
-    }//GEN-LAST:event_BtnAgregarMousePressed
-
-    private void BtnAgregarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAgregarKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnAgregarKeyReleased
 
     private void txtProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductoFocusGained
         this.jLabel5.setForeground(new Color(255,255,255,255));
