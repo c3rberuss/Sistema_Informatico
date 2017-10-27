@@ -211,7 +211,7 @@ public class Opciones_reportes extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRepInventarioActionPerformed
 
     private void BtnRepMasVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepMasVendidosActionPerformed
-        
+        getReporte().reporteMasVendido();
     }//GEN-LAST:event_BtnRepMasVendidosActionPerformed
 
     private void BtnRepVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRepVentasActionPerformed
