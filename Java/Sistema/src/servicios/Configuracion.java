@@ -269,11 +269,9 @@ public class Configuracion {
             }
             
         } catch (FileNotFoundException ex) {
-            System.out.println("ERROR!!!!!!");
-            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+           
         } catch (IOException | SQLException ex) {
            
-            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

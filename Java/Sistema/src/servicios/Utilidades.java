@@ -82,20 +82,37 @@ public final class Utilidades {
             switch(resp){
                 case 0:
                     
-                    setVent_config(Sistema.getFactory().ventanaConfiguracion(null, true));
-                    getVent_config().setLocationRelativeTo(null);
-                    getVent_config().setVisible(true);
-                    
-                    if(con.getConexion() != null){
-                        getConfiguracion().dbInit("local_database.sql", con.getConexion());
-                        getConfiguracion().setConfProperty("data.db", "Sistema_DB");
-                        getConfiguracion().setConfProperty("data.init", "true");
-                        success = true;
-                    }else{
-                        Sistema.getMostrarMensaje().mensaje("error", 
-                        "Ha ocurrido un error al generar la Base de Datos :(", 
-                        "Error base de datos");
-                    }
+                  
+                        
+                        setVent_config(Sistema.getFactory().ventanaConfiguracion(null, true));
+                        getVent_config().setLocationRelativeTo(null);
+                        getVent_config().setVisible(true);
+
+                        if(con.getConexion() != null){
+                            
+                            try {
+                                getConfiguracion().dbInit("local_database.sql", con.getConexion());
+                                getConfiguracion().setConfProperty("data.db", "Sistema_DB");
+                                getConfiguracion().setConfProperty("data.init", "true");
+                                success = true;
+                            
+                            } catch (Exception e) {
+                                Sistema.getMostrarMensaje().mensaje("error", 
+                                        "Ha Ocurrido un Error al intentar conectar con el servidor",
+                                        "Base de datos");
+
+                                eliminarCarpeta(Sistema.getFactory().createFile(Sistema.getRootPath()+"Sistema"));
+                                System.exit(1);
+                            }
+                            
+                        }else{
+                            Sistema.getMostrarMensaje().mensaje("error", 
+                            "Reinicie el Sistema y revise los datos de Conexion.", 
+                            "Datos de conexion incorrectos");
+                            eliminarCarpeta(Sistema.getFactory().createFile(Sistema.getRootPath()+"Sistema"));
+                            System.exit(1);
+                        }
+                        
                     
 
                     break;
@@ -104,11 +121,31 @@ public final class Utilidades {
                         setVent_config(new vistas.Config(null, true));
                         getVent_config().setLocationRelativeTo(null);
                         getVent_config().setVisible(true);
+                        
+                        if(con.getConexion() != null){
+                            
+                            try {
+                                getConfiguracion().dbInit("remote_database.sql", con.getConexion());
+                                getConfiguracion().setConfProperty("data.init", "true");
+                                success = true;
+                            
+                            } catch (Exception e) {
+                                Sistema.getMostrarMensaje().mensaje("error", 
+                                        "Ha Ocurrido un Error al intentar conectar con el servidor",
+                                        "Base de datos");
 
-                        getConfiguracion().dbInit("remote_database.sql", con.getConexion());
-
-                        getConfiguracion().setConfProperty("data.init", "true");
-                        success = true;
+                                eliminarCarpeta(Sistema.getFactory().createFile(Sistema.getRootPath()+"Sistema"));
+                                System.exit(1);
+                            }
+                            
+                        }else{
+                            Sistema.getMostrarMensaje().mensaje("error", 
+                            "Reinicie el Sistema y revise los datos de Conexion.", 
+                            "Datos de conexion incorrectos");
+                            
+                            eliminarCarpeta(Sistema.getFactory().createFile(Sistema.getRootPath()+"Sistema"));
+                            System.exit(1);
+                        }
                     
                     break;
                     

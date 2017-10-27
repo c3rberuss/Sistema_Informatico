@@ -6,9 +6,6 @@
 package vistas;
 
 import factory.Factory;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import servicios.Configuracion;
 import sistema.Sistema;
 
@@ -20,7 +17,7 @@ public class Config extends javax.swing.JDialog {
 
     private boolean islocal;
     private Configuracion config;
-    
+    public static boolean ventana;
     //variables para mover ventana
     
     int x,y;
@@ -30,6 +27,7 @@ public class Config extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        ventana = false;
         config = new Factory().configuraciones();
         this.islocal = Boolean.valueOf(config.getConfProperty("data.local"));
         this.txtServer.setText(config.getConfProperty("data.server"));
@@ -45,6 +43,11 @@ public class Config extends javax.swing.JDialog {
 
     public boolean isIslocal() {
         return islocal;
+    }
+    
+    public void ventana(){
+        this.txtDB.setEnabled(false);
+        this.txtServer.setEnabled(false);
     }
 
     public void setIslocal(boolean islocal) {
