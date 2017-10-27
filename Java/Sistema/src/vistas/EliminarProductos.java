@@ -6,7 +6,6 @@
 package vistas;
 
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Productos;
 import servicios.Ventana;
@@ -25,7 +24,7 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     
     public EliminarProductos(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        datos = new String[5];
+        datos = new String[6];
         product = new Productos();
         initComponents();
         this.setLocationRelativeTo(null);
@@ -303,11 +302,11 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
 
             },
             new String [] {
-                "Codigo", "Producto", "Descripcion", "Precio", "Stock"
+                "Codigo", "Producto", "Descripcion", "Precio", "Stock", "Costo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -404,11 +403,9 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_BtnLimpiarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        int cols = this.ProductosEliminados.getModel().getColumnCount();
         int fils = this.ProductosEliminados.getModel().getRowCount();
         for(int i=0; i<fils; i++) {
             this.datos[1] = this.ProductosEliminados.getModel().getValueAt(i,0).toString();
-            System.out.println(getDatos()[1]);
             product.deleteProduct(getDatos()[1]);
         }
         
@@ -431,14 +428,15 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void txtBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCodigoKeyPressed
-                if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
            if(!this.txtBuscarCodigo.getText().isEmpty()){
                setDatos(product.searchProducts(this.txtBuscarCodigo.getText()));
                this.txtProducto2.setText(getDatos()[1]);
                this.txtCodigo.setText(getDatos()[0]);
                this.txtDescripcion.setText(getDatos()[2]);
-               this.txtPrecio.setText(getDatos()[4]);
-               this.txtCantidad.setText(getDatos()[3]);
+               this.txtPrecio.setText(getDatos()[3]);
+               this.txtCantidad.setText(getDatos()[4]);
+               this.txtPrecioAdqui.setText(getDatos()[5]);
            }else{
                System.out.println("campos vacios");
                Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el CODIGO del producto para cargar los datos a ELIMINAR", "CAMPO CODIGO VACIO");
@@ -447,14 +445,19 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
     }//GEN-LAST:event_txtBuscarCodigoKeyPressed
 
     private void BtnAgregarVistaPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaActionPerformed
-         String[] datos ={
-            this.txtCodigo.getText(),
-            this.txtProducto2.getText(),
-            this.txtDescripcion.getText(),
-            this.txtPrecio.getText(),
-            this.txtCantidad.getText()
-        };
-     if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty()){
+        
+     String[] datos ={
+         this.txtCodigo.getText(),
+        this.txtProducto2.getText(),
+        this.txtDescripcion.getText(),
+        this.txtPrecio.getText(),
+        this.txtCantidad.getText(),
+        this.txtPrecioAdqui.getText()
+    };
+        
+     if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && 
+                !datos[3].isEmpty() && !datos[4].isEmpty() && !datos[5].isEmpty()){
+         
             this.ProductosEliminados.setModel(product.addTable(this.ProductosEliminados, datos));
             this.ProductosEliminados.repaint();
             limpiar("campos");
@@ -470,8 +473,9 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
                this.txtProducto2.setText(getDatos()[1]);
                this.txtCodigo.setText(getDatos()[0]);
                this.txtDescripcion.setText(getDatos()[2]);
-               this.txtPrecio.setText(getDatos()[4]);
-               this.txtCantidad.setText(getDatos()[3]);
+               this.txtPrecio.setText(getDatos()[3]);
+               this.txtCantidad.setText(getDatos()[4]);
+               this.txtPrecioAdqui.setText(getDatos()[5]);
            }else{
                System.out.println("campos vacios");
                Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el CODIGO del producto para cargar los datos a ELIMINAR", "CAMPO CODIGO VACIO");
@@ -572,6 +576,7 @@ public class EliminarProductos extends javax.swing.JDialog implements Ventana {
                 this.txtDescripcion.setText("");
                 this.txtPrecio.setText("");
                 this.txtProducto2.setText("");
+                this.txtPrecioAdqui.setText("");
                 break;
             case "tabla":
                 DefaultTableModel modelo=(DefaultTableModel) this.ProductosEliminados.getModel();

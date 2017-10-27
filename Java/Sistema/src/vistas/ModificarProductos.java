@@ -7,7 +7,6 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Productos;
 import servicios.Ventana;
@@ -364,7 +363,7 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
 
             },
             new String [] {
-                "Codigo", "Producto", "Descripcion", "Stock", "Precio"
+                "Codigo", "Producto", "Descripcion", "Stock", "Precio", "Costo"
             }
         ));
         ProductosAgregados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -479,13 +478,16 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
 
     private void BtnAgregarVistaPreviaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarVistaPreviaMousePressed
         String[] datos ={
-            this.txtProducto2.getText(),
             this.txtCodigo.getText(),
+            this.txtProducto2.getText(),
             this.txtDescripcion.getText(),
+            this.txtCantidad.getText(),
             this.txtPrecio.getText(),
-            this.txtCantidad.getText()
+            this.txtPrecioAdqui.getText()
         };
-        if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && !datos[3].isEmpty()){
+        
+        if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && !datos[3].isEmpty()
+                && !datos[4].isEmpty() && !datos[5].isEmpty()){
             this.ProductosAgregados.setModel(product.addTable(this.ProductosAgregados, datos));
             this.ProductosAgregados.repaint();
             limpiar("campos");
@@ -499,11 +501,12 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
          if(evt.getKeyCode()==KeyEvent.VK_ENTER){
            if(!this.txtBuscarCodigo.getText().isEmpty()){
                setDatos(product.searchProducts(this.txtBuscarCodigo.getText()));
-               this.txtProducto2.setText(getDatos()[0]);
-               this.txtCodigo.setText(getDatos()[1]);
+               this.txtProducto2.setText(getDatos()[1]);
+               this.txtCodigo.setText(getDatos()[0]);
                this.txtDescripcion.setText(getDatos()[2]);
                this.txtPrecio.setText(getDatos()[3]);
                this.txtCantidad.setText(getDatos()[4]);
+               this.txtPrecioAdqui.setText(getDatos()[5]);
            }else{
                System.out.println("campos vacios");
            }
@@ -575,11 +578,12 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
     private void BtnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarDatosActionPerformed
         if(!this.txtBuscarCodigo.getText().isEmpty()){
                setDatos(product.searchProducts(this.txtBuscarCodigo.getText()));
-               this.txtProducto2.setText(getDatos()[0]);
-               this.txtCodigo.setText(getDatos()[1]);
+               this.txtProducto2.setText(getDatos()[1]);
+               this.txtCodigo.setText(getDatos()[0]);
                this.txtDescripcion.setText(getDatos()[2]);
                this.txtPrecio.setText(getDatos()[3]);
                this.txtCantidad.setText(getDatos()[4]);
+               this.txtPrecioAdqui.setText(getDatos()[5]);
            }else{
                Sistema.getMostrarMensaje().mensaje("error", "No ha agregado el CODIGO del producto para cargar los datos a MODIFICAR", "CAMPO CODIGO VACIO");
                 System.out.println("campos vacios");
@@ -725,6 +729,7 @@ public class ModificarProductos extends javax.swing.JDialog implements Ventana {
                 this.txtDescripcion.setText("");
                 this.txtPrecio.setText("");
                 this.txtCantidad.setText("");
+                this.txtPrecioAdqui.setText("");
                 break;
             case "tabla":
                 DefaultTableModel modelo=(DefaultTableModel) this.ProductosAgregados.getModel();
