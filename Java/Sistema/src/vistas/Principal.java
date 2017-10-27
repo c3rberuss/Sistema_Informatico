@@ -411,6 +411,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void BtnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionActionPerformed
         Config conf = new Config(this,true);
+        conf.ventana();
         conf.setVisible(true);
     }//GEN-LAST:event_BtnConfiguracionActionPerformed
 
