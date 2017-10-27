@@ -5,6 +5,9 @@
  */
 package vistas;
 
+import servicios.Productos;
+import sistema.Sistema;
+
 /**
  *
  * @author edwin
@@ -13,10 +16,22 @@ public class ListarProductos extends javax.swing.JDialog {
 //variables para mover ventana
     int x,y;
     
+    private Productos producto;
+    
     public ListarProductos(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        setProducto(Sistema.getFactory().productos());
+        getProducto().listarProductos(Productos);
+    }
+
+    private Productos getProducto() {
+        return producto;
+    }
+
+    private void setProducto(Productos producto) {
+        this.producto = producto;
     }
 
     /**
@@ -103,7 +118,7 @@ public class ListarProductos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Codigo", "Producto", "Descripcion", "Stock", "Precio"
+                "Codigo", "Producto", "Descripcion", "Stock", "Precio", "Precio Costo"
             }
         ));
         Productos.setToolTipText("");

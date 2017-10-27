@@ -43,12 +43,12 @@ public class Productos {
             if(getResult().first()){
                 getResult().beforeFirst();
                 while(getResult().next()){
-                    datos[0] = getResult().getString(1);
-                    datos[1] = getResult().getString(2);
-                    datos[2] = getResult().getString(3);
-                    datos[3] = getResult().getString(4);
-                    datos[4] = getResult().getString(5);
-                    datos[5] = getResult().getString(6);
+                    datos[0] = getResult().getString("id");
+                    datos[1] = getResult().getString("producto");
+                    datos[2] = getResult().getString("descripcion");
+                    datos[3] = getResult().getString("precio");
+                    datos[4] = getResult().getString("stock");
+                    datos[5] = getResult().getString("precio_costo");
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "No se encontró ninguna coincidencia");
@@ -62,7 +62,7 @@ public class Productos {
         return datos; 
     }
 
-        public void deleteProduct(String id){
+    public void deleteProduct(String id){
         try {
             setSql("CALL delete_product(?);");
             setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
@@ -73,7 +73,33 @@ public class Productos {
         }
     }
         
-        public void updateProducts(String[] datos){
+    public void listarProductos(JTable tabla){
+        try {
+            setSql("CALL mostrar_productos()");
+            setStatement(Sistema.getCon().getConexion().prepareStatement(getSql()));
+            setResult(getStatement().executeQuery());
+            DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+            
+           Object [] fila=new Object[6];
+            
+            while(getResult().next()){
+                fila[0] = getResult().getString("id");
+                fila[1] = getResult().getString("producto");
+                fila[2] = getResult().getString("descripcion");
+                fila[3] = getResult().getString("stock");
+                fila[4] = getResult().getString("precio");
+                fila[5] = getResult().getString("precio_costo");
+                modelo.addRow(fila);
+            }
+            
+            tabla.setModel(modelo);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateProducts(String[] datos){
         try {
             setSql("CALL update_product(?, ?, ?, ?, ?, ?);");
             setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
@@ -91,6 +117,7 @@ public class Productos {
     }
     
     public DefaultTableModel addTable(JTable tabla, String[] datos){
+        
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         
         Object[] fila=new Object[6];
@@ -116,9 +143,9 @@ public class Productos {
             getStatement().setString(1, datos[1]);
             getStatement().setString(2, datos[0]);
             getStatement().setString(3, datos[2]);
-            getStatement().setString(4, datos[4]);
-            getStatement().setString(5, datos[3]);
-            getStatement().setString(6, datos[5]);
+            getStatement().setInt(4, Integer.valueOf(datos[4]));
+            getStatement().setDouble(5, Double.valueOf(datos[3]));
+            getStatement().setDouble(6, Double.valueOf(datos[5]));
             getStatement().executeUpdate();
             
         } catch (SQLException ex) {

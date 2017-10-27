@@ -54,3 +54,5 @@ DROP PROCEDURE IF EXISTS add_product;
 CREATE PROCEDURE add_product(IN id VARCHAR(20), IN prod VARCHAR(75), IN descr VARCHAR(125), IN stock INT(10), IN precio DOUBLE, IN adqui DOUBLE) NO SQL INSERT INTO inventario VALUES(id, prod, descr, stock, precio, adqui);
 DROP PROCEDURE IF EXISTS mostrar_users;
 CREATE PROCEDURE `mostrar_users` ()  NO SQL SELECT * from users;
+DROP PROCEDURE IF EXISTS mostrar_productos;
+CREATE PROCEDURE `mostrar_productos`() NO SQL SELECT * FROM inventario;

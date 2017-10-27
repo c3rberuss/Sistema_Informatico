@@ -18,8 +18,12 @@ import servicios.Ventana;
 public class AgregarProductos extends javax.swing.JDialog implements Ventana {
 
     private Productos product = new Productos();
+<<<<<<< HEAD
     private String[] datos = new String[5];
     int x,y;
+=======
+    private String[] datos = new String[6];
+>>>>>>> refs/remotes/origin/master
     /**
      * Creates new form AgregarUsuario
      * @param parent
@@ -307,7 +311,7 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
 
             },
             new String [] {
-                "NOMBRE", "CODIGO", "DESCRIPCION", "PRECIO", "STOCK"
+                "NOMBRE", "CODIGO", "DESCRIPCION", "PRECIO", "STOCK", "COSTO"
             }
         ));
         ProductosAgregados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -425,10 +429,12 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
             this.txtCodigo.getText(),
             this.txtDescripcion.getText(),
             this.txtPrecio.getText(),
-            this.txtCantidad.getText()
+            this.txtCantidad.getText(),
+            this.txtPrecioAdqui.getText()
         };
         
-        if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && !datos[3].isEmpty() && !datos[4].isEmpty()){
+        if(!datos[0].isEmpty() && !datos[1].isEmpty() && !datos[2].isEmpty() && 
+                !datos[3].isEmpty() && !datos[4].isEmpty() && !datos[5].isEmpty()){
             this.ProductosAgregados.setModel(product.addTable(this.ProductosAgregados, datos));
             this.ProductosAgregados.repaint();
             limpiar("campos");
@@ -440,7 +446,7 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
     private void BtnAgregarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAgregarMousePressed
         int cols = this.ProductosAgregados.getModel().getColumnCount();
         int fils = this.ProductosAgregados.getModel().getRowCount();
-              for(int i=0; i<fils; i++) {
+        for(int i=0; i<fils; i++) {
             for(int j=0; j<cols; j++){
                
                 this.datos[j] = this.ProductosAgregados.getModel().getValueAt(i,j).toString();
@@ -634,6 +640,7 @@ public class AgregarProductos extends javax.swing.JDialog implements Ventana {
                 this.txtDescripcion.setText("");
                 this.txtPrecio.setText("");
                 this.txtProducto.setText("");
+                this.txtPrecioAdqui.setText("");
                 break;
             case "tabla":
                 DefaultTableModel modelo=(DefaultTableModel) this.ProductosAgregados.getModel();
