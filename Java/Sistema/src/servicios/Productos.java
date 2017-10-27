@@ -32,7 +32,7 @@ public class Productos {
     
     public String[] searchProducts(String id){
         
-        String[] datos = new String[5];
+        String[] datos = new String[6];
         
         try {
             setSql("CALL search_product(?);");
@@ -48,6 +48,7 @@ public class Productos {
                     datos[2] = getResult().getString(3);
                     datos[3] = getResult().getString(4);
                     datos[4] = getResult().getString(5);
+                    datos[5] = getResult().getString(6);
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "No se encontró ninguna coincidencia");
@@ -74,13 +75,14 @@ public class Productos {
         
         public void updateProducts(String[] datos){
         try {
-            setSql("CALL update_product(?, ?, ?, ?, ?);");
+            setSql("CALL update_product(?, ?, ?, ?, ?, ?);");
             setStatement(Sistema.getCon().getConexion().prepareStatement(sql));
             getStatement().setString(1, datos[0]);
             getStatement().setString(2, datos[1]);
             getStatement().setString(3, datos[2]);
             getStatement().setString(4, datos[3]);
             getStatement().setString(5, datos[4]);
+            getStatement().setString(6, datos[5]);
             getStatement().executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,9 +93,9 @@ public class Productos {
     public DefaultTableModel addTable(JTable tabla, String[] datos){
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         
-        Object[] fila=new Object[5];
+        Object[] fila=new Object[6];
         
-        for(int i = 0; i<5; i++){
+        for(int i = 0; i<6; i++){
           fila[i]=datos[i];  
         }
         
@@ -108,7 +110,7 @@ public class Productos {
     
      public void addProduct(String[] datos){
         try {
-            setSql( "CALL add_product(?, ?, ?, ?, ?);");
+            setSql( "CALL add_product(?, ?, ?, ?, ?, ?);");
             
             setStatement(Sistema.getCon().getConexion().prepareStatement(getSql()));
             getStatement().setString(1, datos[1]);
@@ -116,6 +118,7 @@ public class Productos {
             getStatement().setString(3, datos[2]);
             getStatement().setString(4, datos[4]);
             getStatement().setString(5, datos[3]);
+            getStatement().setString(6, datos[5]);
             getStatement().executeUpdate();
             
         } catch (SQLException ex) {
