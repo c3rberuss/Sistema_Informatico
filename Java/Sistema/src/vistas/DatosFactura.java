@@ -25,8 +25,7 @@ public class DatosFactura extends javax.swing.JDialog {
     private Venta venta;
     private boolean ventaExitosa;
     
-    //variables de movimiento
-    int x, y;
+    private int x, y;
     
     public DatosFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

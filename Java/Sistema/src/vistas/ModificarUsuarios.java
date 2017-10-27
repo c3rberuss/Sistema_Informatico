@@ -295,7 +295,7 @@ public class ModificarUsuarios extends javax.swing.JDialog implements Ventana {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 10, 440));
 
-        UsuariosEditados.setBackground(new java.awt.Color(0, 0, 0));
+        UsuariosEditados.setBackground(new java.awt.Color(204, 204, 204));
         UsuariosEditados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         UsuariosEditados.setForeground(new java.awt.Color(0, 0, 0));
         UsuariosEditados.setModel(new javax.swing.table.DefaultTableModel(

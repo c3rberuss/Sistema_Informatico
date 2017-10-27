@@ -140,6 +140,30 @@ public class Usuarios {
         
     }
     
+    public void listarUsers(JTable tabla){
+        try {
+            setSql("CALL mostrar_users()");
+            setStatement(Sistema.getCon().getConexion().prepareStatement(getSql()));
+            setResult(getStatement().executeQuery());
+            DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+            
+           Object [] fila=new Object[4];
+            
+            while(getResult().next()){
+                fila[0] = getResult().getString("id_usr");
+                fila[1] = getResult().getString("nick_usr");
+                fila[2] = getResult().getString("pwd_usr");
+                fila[3] = getResult().getString("type_usr");
+                modelo.addRow(fila);
+            }
+            
+            tabla.setModel(modelo);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void deleteUsers(String id){
         try {
             setSql("CALL delete_user(?)");

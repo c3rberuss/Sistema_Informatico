@@ -272,7 +272,7 @@ public class Configuracion {
             System.out.println("ERROR!!!!!!");
             Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | SQLException ex) {
-            System.out.println("ERROR!!!!!!");
+           
             Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         }
 

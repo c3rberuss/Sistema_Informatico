@@ -103,6 +103,11 @@ public class Opciones_inventario extends javax.swing.JDialog {
         BtnLISTARP.setFocusPainted(false);
         BtnLISTARP.setIconTextGap(10);
         BtnLISTARP.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/listar.png"))); // NOI18N
+        BtnLISTARP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLISTARPActionPerformed(evt);
+            }
+        });
         jPanel3.add(BtnLISTARP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, 90));
 
         BtnMODIFICARP.setBackground(new java.awt.Color(0, 102, 102));
@@ -201,6 +206,11 @@ public class Opciones_inventario extends javax.swing.JDialog {
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
         this.setLocation(this.getLocation().x + evt.getX()- x , this.getLocation().y + evt.getY() - y );
     }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void BtnLISTARPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLISTARPActionPerformed
+        ListarProductos LiPr = new ListarProductos(new javax.swing.JDialog(),true);
+        LiPr.setVisible(true);
+    }//GEN-LAST:event_BtnLISTARPActionPerformed
 
     /**
      * @param args the command line arguments

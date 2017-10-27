@@ -6,7 +6,6 @@
 package vistas;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import servicios.Usuarios;
 import servicios.Ventana;
@@ -221,6 +220,7 @@ public class AgregarUsuarios extends javax.swing.JDialog implements Ventana{
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 10, 440));
 
+        UsuariosAgregados.setBackground(new java.awt.Color(153, 153, 153));
         UsuariosAgregados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         UsuariosAgregados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
