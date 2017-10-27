@@ -376,7 +376,10 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
 
                     }else{
                         this.setAdd(false);
-                        JOptionPane.showMessageDialog(this, "No se encontró ninguna coincidencia");
+                        Sistema.getMostrarMensaje().mensaje("error", 
+                            "No se encontró ninguna coincidencia./nIntente nuevamente", 
+                            "ERROR EN ID");
+                        
                         limpiar("");
                     }
 
@@ -384,7 +387,7 @@ public class Carrito extends javax.swing.JDialog implements Ventana{
                 } catch (SQLException ex) {
                     this.setAdd(false);
                     this.setEdit(false);
-                    JOptionPane.showMessageDialog(this, "Excepcion");
+                    
                     Logger.getLogger(Carrito.class.getName()).log(Level.SEVERE, null, ex);
                 }
                
