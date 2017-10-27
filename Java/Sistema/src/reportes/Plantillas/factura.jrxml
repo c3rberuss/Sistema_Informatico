@@ -193,7 +193,7 @@
 			<rectangle>
 				<reportElement x="25" y="0" width="187" height="19" uuid="cab67936-1836-4ec7-8ebf-79bcfcc2df43"/>
 			</rectangle>
-			<textField>
+			<textField pattern="$#,##0.00">
 				<reportElement x="240" y="0" width="119" height="17" uuid="05b38824-0ce5-4b2f-9c8f-e69ede529b52"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
@@ -241,7 +241,7 @@
 				</textElement>
 				<text><![CDATA[TOTAL DE VENTA: $]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="$#,##0.00">
 				<reportElement x="432" y="18" width="113" height="19" forecolor="#CC0000" uuid="64f353c3-3ee6-4597-8740-bab9508d2042"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="12" isBold="true"/>

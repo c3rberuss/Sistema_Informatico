@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7cc335fe-6453-4748-a740-6a3622b6c689">
 	<property name="ireport.zoom" value="1.9487171000000016"/>
-	<property name="ireport.x" value="122"/>
-	<property name="ireport.y" value="4"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="170"/>
 	<queryString>
 		<![CDATA[select * from inventario;]]>
 	</queryString>
@@ -169,7 +169,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="$#,##0.00">
 				<reportElement x="424" y="3" width="62" height="20" uuid="7b0e2581-f776-4078-98f8-343bd061927f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
@@ -209,7 +209,7 @@
 				<reportElement x="259" y="23" width="277" height="65" backcolor="#CCCCCC" uuid="b115669c-d045-44a0-95f5-6f4ca28fc0c3"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="259" y="6" width="139" height="17" uuid="e3a8b1ed-8a88-42cf-ab9c-33b085b104be"/>
+				<reportElement x="259" y="6" width="197" height="17" uuid="e3a8b1ed-8a88-42cf-ab9c-33b085b104be"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
@@ -243,7 +243,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{producto_1}]]></textFieldExpression>
 			</textField>
-			<textField pattern="$#,###.##">
+			<textField pattern="$#,##0.00">
 				<reportElement x="439" y="48" width="91" height="17" forecolor="#FF0000" uuid="19e4a7d2-2b98-4e2b-a8af-d3d1eeea83d8"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>

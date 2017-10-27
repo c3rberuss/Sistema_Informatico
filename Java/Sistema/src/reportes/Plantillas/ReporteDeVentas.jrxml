@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7cc335fe-6453-4748-a740-6a3622b6c689">
-	<property name="ireport.zoom" value="2.357947691000003"/>
-	<property name="ireport.x" value="391"/>
-	<property name="ireport.y" value="222"/>
+	<property name="ireport.zoom" value="1.100000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[select * from ventas ORDER BY cantidad DESC;]]>
 	</queryString>
@@ -57,7 +57,7 @@
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="SansSerif" size="12" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[REPORTE DE TODOS LOS PRODUCTOS AGREGADOS EN EL INVENTARIO
+				<text><![CDATA[REPORTE DE LAS VENTAS REALIZADAS
 [NOMBRE DE EMPRESA] ]]></text>
 			</staticText>
 		</band>
