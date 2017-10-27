@@ -27,6 +27,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     private Utilidades utilidades;
     private TableRowSorter trsFiltro;
     private Venta venta;
+    private IngresarCantidad vCantidad;
     
     //variables para mover ventana
     int x,y;
@@ -40,6 +41,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
         utilidades = Sistema.getFactory().herramientas();
         setVenta(Sistema.getFactory().venta());
         utilidades.mostrar(this.Resultados, getVenta().mostrarItems());
+        setvCantidad(Sistema.getFactory().cantidad(null, true));
        
     }
     
@@ -242,7 +244,7 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     private void addCartitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCartitoMousePressed
 
         int fila = this.Resultados.getSelectedRow();
-
+        int c = 0;
         try{
             if(fila > -1){
             
@@ -253,7 +255,11 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
                 datos[0] = (String) this.Resultados.getValueAt(n, 0);
                 datos[1] = (String) this.Resultados.getValueAt(n, 1);
                 datos[2] = (String) this.Resultados.getValueAt(n, 3);
-                datos[3] = JOptionPane.showInputDialog("Ingrese la Cantidad");
+                
+                getvCantidad().setVisible(true);
+                
+                datos[3] = String.valueOf(getvCantidad().getCantidad());
+                c = Integer.valueOf(datos[3]);
 
                 int cantidad = Integer.valueOf(datos[3]) + getVenta().buscarCantidadAgregada(datos[0]);
                 
@@ -297,16 +303,19 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
                             "Ventas");
                     }
                 }else{
-                    Sistema.getMostrarMensaje().mensaje("advertencia", 
+                    if(cantidad > 0){
+                        Sistema.getMostrarMensaje().mensaje("advertencia", 
                             "Productos insuficientes.", 
                             "Ventas");
+                    }
                 }
 
 
             }else{
+               
                 Sistema.getMostrarMensaje().mensaje("advertencia", 
-                    "Debe de Seleccionar el producto a agregar al Carrito.", 
-                    "Ventas");
+                "Debe de Seleccionar el producto a agregar al Carrito.", 
+                "Ventas");
             }
         }catch(HeadlessException | NumberFormatException e){
             System.out.println("Causa: "+e.getCause()+"\n Error: "+e.getCause());
@@ -382,5 +391,13 @@ public class Busqueda extends javax.swing.JDialog implements Ventana {
     @Override
     public void limpiar(String lugar) {
         this.txtBusqueda.setText("");
+    }
+
+    private IngresarCantidad getvCantidad() {
+        return vCantidad;
+    }
+
+    private void setvCantidad(IngresarCantidad vCantidad) {
+        this.vCantidad = vCantidad;
     }
 }

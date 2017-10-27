@@ -258,13 +258,20 @@ public class Config extends javax.swing.JDialog {
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
 
-        getConfig().setConfProperty("data.db", this.txtDB.getText());
-        getConfig().setConfProperty("data.server", this.txtServer.getText());
-        getConfig().setConfProperty("data.user", this.txtUsuario.getText());
-        getConfig().setConfProperty("data.pass", this.txtPass.getText());
-        Sistema.getCon().setDb(this.txtDB.getText());
-        Sistema.getCon().setPass(this.txtPass.getText());
-        this.dispose();
+        try {
+            
+            getConfig().setConfProperty("data.db", this.txtDB.getText());
+            getConfig().setConfProperty("data.server", this.txtServer.getText());
+            getConfig().setConfProperty("data.user", this.txtUsuario.getText());
+            getConfig().setConfProperty("data.pass", this.txtPass.getText());
+            Sistema.getCon().setDb(this.txtDB.getText());
+            Sistema.getCon().setPass(this.txtPass.getText());
+            this.dispose();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed

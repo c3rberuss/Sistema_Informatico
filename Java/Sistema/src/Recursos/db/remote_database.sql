@@ -1,7 +1,7 @@
 CREATE PROCEDURE `add_user` (IN `id` VARCHAR(8), IN `nick` VARCHAR(100), IN `pwd` VARCHAR(20), IN `type` VARCHAR(30))  NO SQL INSERT INTO users VALUES(id, nick, pwd, type);
 CREATE PROCEDURE `delete_user` (IN `id` VARCHAR(10))  NO SQL DELETE FROM users WHERE id_usr=id;
 CREATE PROCEDURE `get_user_type` (IN `nick` VARCHAR(100))  NO SQL SELECT type_usr FROM users WHERE nick_usr=nick;
-CREATE PROCEDURE `login` (IN `nick` VARCHAR(100), IN `pwd` VARCHAR(50))  NO SQL SELECT COUNT(*) FROM users WHERE nick_usr=nick AND pwd_usr=pwd;
+CREATE PROCEDURE `login`(IN `nick` VARCHAR(100), IN `pwd` VARCHAR(50)) NO SQL SELECT COUNT(*) FROM users WHERE upper(nick_usr)=upper(nick) AND pwd_usr=pwd;
 CREATE PROCEDURE `search_user` (IN `id` VARCHAR(10))  NO SQL SELECT * FROM users WHERE id_usr=id;
 CREATE PROCEDURE `update_user` (IN `id` VARCHAR(10), IN `nick` VARCHAR(100), IN `pwd` VARCHAR(20))  NO SQL UPDATE users SET id_usr=id, nick_usr=nick, pwd_usr=pwd WHERE id_usr=id;
 CREATE PROCEDURE `carrito`() NO SQL SELECT id, producto, precio, cantidad FROM shopping_cart ORDER BY n DESC;

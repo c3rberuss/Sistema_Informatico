@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import sistema.Sistema;
 import vistas.Busqueda;
 import vistas.Config;
+import vistas.TipoServidor;
 
 /**
  *
@@ -60,6 +61,7 @@ public final class Utilidades {
     
     public boolean isInicialized(Conexion con) throws IOException, ClassNotFoundException, SQLException{
         
+        TipoServidor servidor = Sistema.getFactory().servidor(null, true);
         boolean success = false;
         String sql;
         
@@ -67,10 +69,9 @@ public final class Utilidades {
         boolean init = Boolean.valueOf(getConfiguracion().getConfProperty("data.init"));
         if(init == false){
             
-            String[] botones = { "Servidor Local", "Servidor Online","Cancelar"};
-            int resp = JOptionPane.showOptionDialog(null,"¿Qué tipo de Servidor usará?",
-                    "Confguracion Inicial", JOptionPane.YES_NO_CANCEL_OPTION, 
-                    JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
+           
+           servidor.setVisible(true);
+           int resp = servidor.elegirServidor();
             
             if(resp == 0){
                 getConfiguracion().setConfProperty("data.local", "true");
@@ -174,6 +175,10 @@ public final class Utilidades {
             } 
             }catch (IOException ex) {
                 Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+
+                eliminarCarpeta(Sistema.getFactory().createFile(Sistema.getRootPath()+
+                        "Sistema"));
+                
             }
 
             return success;
@@ -188,6 +193,17 @@ public final class Utilidades {
         }
         
         return model;
+    }
+    
+    public void eliminarCarpeta(File carpetaSistema) { 
+
+        if (!carpetaSistema.exists()) { return; } 
+
+        if (carpetaSistema.isDirectory()) { 
+            for (File f : carpetaSistema.listFiles()) { 
+               eliminarCarpeta(f);  } 
+        } 
+        carpetaSistema.delete(); 
     }
     
     public void mostrar(JTable Resultados, ResultSet rs){
@@ -215,10 +231,6 @@ public final class Utilidades {
         }
         
         
-    }
-    
-    public static String generateId(){
-        return String.valueOf((java.util.UUID.randomUUID().getLeastSignificantBits()*-1)/10000).substring(0, 10);
     }
     
 }

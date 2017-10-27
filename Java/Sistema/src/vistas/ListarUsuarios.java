@@ -5,6 +5,9 @@
  */
 package vistas;
 
+import servicios.Usuarios;
+import sistema.Sistema;
+
 /**
  *
  * @author edwin
@@ -12,10 +15,23 @@ package vistas;
 public class ListarUsuarios extends javax.swing.JDialog {
 
     int x,y;
+    private Usuarios users;
+    
     public ListarUsuarios(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        setUsers(Sistema.getFactory().usuarios());
+        getUsers().listarUsers(Usuarios);
+        
+    }
+
+    private Usuarios getUsers() {
+        return users;
+    }
+
+    private void setUsers(Usuarios users) {
+        this.users = users;
     }
 
     /**
@@ -34,7 +50,7 @@ public class ListarUsuarios extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Productos = new javax.swing.JTable();
+        Usuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -94,20 +110,20 @@ public class ListarUsuarios extends javax.swing.JDialog {
         jLabel2.setText("LISTADO DE USUARIOS EN EL SISTEMA");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 750, 40));
 
-        Productos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        Productos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        Productos.setForeground(new java.awt.Color(0, 0, 0));
-        Productos.setModel(new javax.swing.table.DefaultTableModel(
+        Usuarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        Usuarios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Usuarios.setForeground(new java.awt.Color(0, 0, 0));
+        Usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nombre", "Contraseña", "Tipo"
+                "ID", "NOMBRE", "CONTRASEÑA", "TIPO"
             }
         ));
-        Productos.setToolTipText("");
-        Productos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(Productos);
+        Usuarios.setToolTipText("");
+        Usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane1.setViewportView(Usuarios);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 680, 370));
 
@@ -173,7 +189,7 @@ public class ListarUsuarios extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCerrar;
-    private javax.swing.JTable Productos;
+    private javax.swing.JTable Usuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

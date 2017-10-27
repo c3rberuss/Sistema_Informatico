@@ -84,12 +84,19 @@ public class Sistema {
             }
             
             try{
+                
                 con = new servicios.Conexion();  
+                
             }catch(Exception ex){
                 getMostrarMensaje().mensaje("error", 
                         "Ha ocurrido un error al intentar conectarse al servidor. "
                                 + "Por favor, revise los datos de Conexion.", 
                         "configuracion inicial");
+                
+                uti.eliminarCarpeta(Sistema.getFactory().createFile(Sistema.getRootPath()+
+                        "Sistema"));
+                
+                System.exit(0);
             }
             
             if(uti.isInicialized(con)){
