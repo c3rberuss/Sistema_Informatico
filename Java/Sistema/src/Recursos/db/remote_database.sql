@@ -33,9 +33,13 @@ CREATE TABLE IF NOT EXISTS `users` (`id_usr` varchar(10) NOT NULL, `nick_usr` va
 CREATE TABLE IF NOT EXISTS `ventas` (`id` varchar(10) COLLATE utf8_spanish_ci NOT NULL,`producto` varchar(50) COLLATE utf8_spanish_ci NOT NULL,`cantidad` int(100) NOT NULL, `total` double(6,2) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 CREATE TABLE IF NOT EXISTS `inventario` (`id` varchar(20) NOT NULL,`producto` varchar(75) NOT NULL, `descripcion` varchar(125) NOT NULL,`stock` int(10) NOT NULL, `precio` double(6,2) NOT NULL, `precio_costo` double(6,2) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 INSERT IGNORE INTO `users` (`id_usr`, `nick_usr`, `pwd_usr`, `type_usr`) values( '1', 'Administrador', '0000', 'Admin');
+ALTER TABLE `inventario` DROP PRIMARY KEY, DROP KEY `id`;
 ALTER TABLE `inventario` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `shopping_cart` MODIFY n INT UNSIGNED, DROP PRIMARY KEY, DROP KEY id;
 ALTER TABLE `shopping_cart` ADD PRIMARY KEY (`n`), ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `users` DROP PRIMARY KEY, DROP KEY `id_usr`, DROP KEY `nick_usr`;
 ALTER TABLE `users` ADD PRIMARY KEY (`id_usr`), ADD UNIQUE KEY `id_usr` (`id_usr`), ADD UNIQUE KEY `nick_usr` (`nick_usr`);
+ALTER TABLE `ventas` DROP PRIMARY KEY, DROP KEY `id`, DROP KEY `producto`;
 ALTER TABLE `ventas` ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `producto` (`producto`);
 ALTER TABLE `shopping_cart` MODIFY `n` int(10) NOT NULL AUTO_INCREMENT;
 DROP PROCEDURE IF EXISTS descontar_existencias;
@@ -47,6 +51,6 @@ CREATE PROCEDURE delete_product(IN id_ VARCHAR(20)) NO SQL DELETE FROM inventari
 DROP PROCEDURE IF EXISTS search_product;
 CREATE PROCEDURE search_product(IN id_ VARCHAR(20)) NO SQL SELECT * FROM inventario WHERE id=id_;
 DROP PROCEDURE IF EXISTS update_product;
-CREATE PROCEDURE update_product(IN id_ VARCHAR(20), IN NOM VARCHAR(75), IN DESCR VARCHAR(125), IN stock_ INT(10), IN precio_ DOUBLE) NO SQL UPDATE inventario SET producto=NOM, descripcion=DESCR, stock=stock_, precio=precio_ WHERE id=id_;
+CREATE PROCEDURE update_product(IN id_ VARCHAR(20), IN NOM VARCHAR(75), IN DESCR VARCHAR(125), IN stock_ INT(10), IN precio_ DOUBLE,  IN ADQU DOUBLE) NO SQL UPDATE inventario SET producto=NOM, descripcion=DESCR, stock=stock_, precio=precio_, precio_costo=ADQU WHERE id=id_;
 DROP PROCEDURE IF EXISTS add_product;
-CREATE PROCEDURE add_product(IN id VARCHAR(20), IN prod VARCHAR(75), IN descr VARCHAR(125), IN stock INT(10), IN precio DOUBLE) NO SQL INSERT INTO inventario VALUES(id, prod, descr, stock, precio);
+CREATE PROCEDURE add_product(IN id VARCHAR(20), IN prod VARCHAR(75), IN descr VARCHAR(125), IN stock INT(10), IN precio DOUBLE, IN adqui DOUBLE) NO SQL INSERT INTO inventario VALUES(id, prod, descr, stock, precio, adqui);
