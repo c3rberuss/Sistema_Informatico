@@ -61,7 +61,7 @@ public final class Utilidades {
     
     public boolean isInicialized(Conexion con) throws IOException, ClassNotFoundException, SQLException{
         
-        TipoServidor servidor = Sistema.getFactory().servidor();
+        TipoServidor servidor = Sistema.getFactory().servidor(null,true);
         boolean success = false;
         String sql;
         

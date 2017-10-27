@@ -5,24 +5,20 @@
  */
 package vistas;
 
-import javax.swing.ImageIcon;
 
-/**
- *
- * @author edwin
- */
-public class TipoServidor extends javax.swing.JFrame {
+
+public class TipoServidor extends javax.swing.JDialog {
 
     private int respuesta;
     
-    public TipoServidor() {
+    public TipoServidor(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/Recursos/imagenes/icono2.png")).getImage());
         setRespuesta(2);
     }
 
-    private void setRespuesta(int respuesta) {
+     private void setRespuesta(int respuesta) {
         this.respuesta = respuesta;
     }
     private int getRespuesta() {
@@ -46,7 +42,7 @@ public class TipoServidor extends javax.swing.JFrame {
         btnLocal = new javax.swing.JButton();
         btnRemoto = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,8 +66,10 @@ public class TipoServidor extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(102, 0, 0));
         btnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR Y CERRAR");
         btnCancelar.setBorder(null);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setFocusPainted(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,9 +93,11 @@ public class TipoServidor extends javax.swing.JFrame {
 
         btnLocal.setBackground(new java.awt.Color(3, 19, 27));
         btnLocal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnLocal.setForeground(new java.awt.Color(255, 255, 255));
         btnLocal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/local.png"))); // NOI18N
         btnLocal.setText("LOCAL");
         btnLocal.setBorder(null);
+        btnLocal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLocal.setFocusPainted(false);
         btnLocal.setIconTextGap(10);
         btnLocal.addActionListener(new java.awt.event.ActionListener() {
@@ -109,9 +109,11 @@ public class TipoServidor extends javax.swing.JFrame {
 
         btnRemoto.setBackground(new java.awt.Color(3, 19, 27));
         btnRemoto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnRemoto.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/imagenes/remoto.png"))); // NOI18N
         btnRemoto.setText("REMOTO");
         btnRemoto.setBorder(null);
+        btnRemoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemoto.setFocusPainted(false);
         btnRemoto.setIconTextGap(10);
         btnRemoto.addActionListener(new java.awt.event.ActionListener() {
@@ -170,11 +172,19 @@ public class TipoServidor extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TipoServidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TipoServidor().setVisible(true);
+                TipoServidor dialog = new TipoServidor(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -190,5 +200,3 @@ public class TipoServidor extends javax.swing.JFrame {
     private javax.swing.JLabel txtTipoMensaje1;
     // End of variables declaration//GEN-END:variables
 }
-
-

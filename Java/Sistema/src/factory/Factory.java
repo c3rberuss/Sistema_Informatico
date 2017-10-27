@@ -132,8 +132,8 @@ public class Factory {
         return new String[elementos];
     }
     
-    public TipoServidor servidor(){
-        return new TipoServidor();
+    public TipoServidor servidor(Frame parent, boolean modal){
+        return new TipoServidor(parent,modal);
     }
     
     public IngresarCantidad cantidad(Frame padre, boolean modal){
