@@ -147,7 +147,8 @@ public class Venta {
     public void registrarVenta(JTable tabla){
         
         int filas = tabla.getModel().getRowCount();
-        for(int i = 0; i < filas; ++i){ 
+
+        for(int i = 0; i < filas; i++){ 
             try {
                 setStatement(Sistema.getCon().getConexion().prepareStatement("CALL registrar_venta(?, ?, ?, ?)"));
                 getStatement().setString(1, tabla.getValueAt(i, 0).toString());
@@ -156,7 +157,8 @@ public class Venta {
                 getStatement().setDouble(4, Double.valueOf(tabla.getValueAt(i, 2).toString()));
                 getStatement().executeUpdate();
             } catch (SQLException ex) {
-                System.out.println("ha ocurrido un error al registrar venta.\nError: "+ex.getMessage());
+                System.out.println("ha ocurrido un error al registrar venta.\nError: "+ex.getMessage()+
+                        "\nCausa: "+ex.getCause());
             }
         } 
         
@@ -219,7 +221,7 @@ public class Venta {
     public void descontarExistencias(JTable tabla){
         
         int filas = tabla.getModel().getRowCount();
-        for(int i = 0; i < filas; ++i){ 
+        for(int i = 0; i < filas; i++){ 
             try {
                 setStatement(Sistema.getCon().getConexion().prepareStatement("CALL descontar_existencias(?, ?)"));
                 getStatement().setString(1, tabla.getValueAt(i, 0).toString());
